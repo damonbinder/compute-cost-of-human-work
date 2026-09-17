@@ -10,6 +10,7 @@ free text is embedded as written. Every stored enum value gets a short label —
 the page never shows a reader a column name or a raw token.
 """
 
+import base64
 import csv
 import datetime
 import json
@@ -337,6 +338,13 @@ with open(os.path.join(HERE, "template.html"), encoding="utf-8") as f:
     html = f.read()
 html = html.replace("__DATA__", json.dumps(payload, separators=(",", ":")))
 html = html.replace("__NPOINTS__", "{:,}".format(len(points)))
+
+# The narrow-screen fallback. The chart needs about 768px to be legible, so
+# below that the page shows this static rendering instead of the live plot.
+# It is embedded, not linked, because the page has to stay a single file.
+with open(os.path.join(HERE, "fallback.webp"), "rb") as f:
+    fallback = base64.b64encode(f.read()).decode("ascii")
+html = html.replace("__FALLBACK__", "data:image/webp;base64," + fallback)
 
 out = os.path.join(HERE, "index.html")
 with open(out, "w", encoding="utf-8") as f:

@@ -96,6 +96,29 @@
     background: none; border: 0; padding: 0; cursor: pointer;
   }
   #about .x:hover { color: var(--ink); }
+
+  /* The plot needs about 768px before its axis labels stop colliding and the
+     350 marks stop overlapping into a smudge. Below that the page shows a
+     static rendering of the same view instead of a chart nobody can read.
+     The gate is on width, not on the user agent, so a desktop window that is
+     merely narrow gets it too and widening the window restores the plot. */
+  #narrow { display: none; }
+  @media (max-width: 767px) {
+    #app { display: none; }
+    #narrow { display: block; }
+  }
+  #narrow {
+    max-width: 640px; margin: 0 auto; padding: 22px 16px 40px;
+  }
+  #narrow h1 { margin: 0 0 18px; font-size: 21px; line-height: 1.25; }
+  #narrow img {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+  }
+  #narrow p { margin: 16px 0 0; color: var(--mid); font-size: 14px; line-height: 1.6; }
+  #narrow .links { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+  #narrow a { color: var(--mid); text-underline-offset: 2px; }
+  #narrow a:hover { color: var(--accent); }
   #bar .toggles label {
     display: flex; align-items: center; gap: 6px; cursor: pointer;
     font-size: 12.5px; color: var(--mid);
@@ -278,6 +301,21 @@
   #detail a { color: var(--mid); text-underline-offset: 2px; }
   #detail a:hover { color: var(--accent); }
 </style>
+
+<div id="narrow">
+  <h1>Compute cost of human work</h1>
+  <img src="__FALLBACK__" width="1400" height="965"
+       alt="Scatter plot of AI compute in FLOPs against human active time in
+            seconds, for 395 tasks, coloured by task category. Compute rises
+            with human time across roughly nine orders of magnitude on each
+            axis.">
+  <p>This explorer is only available on a desktop device, or a wider window.
+  The chart above is a static version of the same data.</p>
+  <p>This explorer and the underlying dataset were created with the assistance
+  of Claude and ChatGPT.</p>
+  <p class="links"><a href="https://github.com/damonbinder/compute-cost-of-human-work"
+  target="_blank" rel="noopener">The dataset</a></p>
+</div>
 
 <div id="app">
   <header>
@@ -739,7 +777,19 @@ function layout() {
 
 /* ---------- render ---------- */
 
+/* Below the gate the plot is hidden, so rendering it would cost a phone the
+   whole layout and 350 marks for nothing. Crossing back to a wide window fires
+   resize, which calls render again. */
+const narrowQuery = matchMedia("(max-width: 767px)");
+const narrow = () => narrowQuery.matches;
+/* Crossing the gate has to render explicitly. A window widening out of the
+   fallback leaves #app going from display:none to grid, which neither the
+   resize listener nor the ResizeObserver can be relied on to report, so
+   without this the reader gets an empty frame. */
+narrowQuery.addEventListener("change", () => render());
+
 function render() {
+  if (narrow()) return;
   layout();
   const mx = MEASURES[state.x], my = MEASURES[state.y];
   // Named durations on the y axis are labelled outside the frame; give them room.
