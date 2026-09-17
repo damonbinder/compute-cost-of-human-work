@@ -27,3 +27,14 @@ python3 explorer/build.py
 That reads `dataset/points.csv` and `dataset/models.csv`, substitutes them into
 `explorer/template.html`, and writes `explorer/index.html`. It uses nothing
 beyond the Python standard library.
+
+## License
+
+[CC0 1.0 Universal](LICENSE): the compilation, the derived estimates, the notes
+and the explorer code are placed in the public domain. Copy, change and
+redistribute any of it, with or without attribution.
+
+The cited sources are a different matter. This dataset is derived from published
+benchmarks, papers and evaluation results that remain under their own terms,
+and nothing here can waive rights in them. The waiver covers this repository's
+own content.
