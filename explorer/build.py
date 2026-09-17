@@ -19,7 +19,7 @@ from collections import Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASET = os.path.join(HERE, "..", "dataset")
-BLOB = "https://github.com/damonbinder/ai-compute-vs-human-time/blob/main/dataset/"
+BLOB = "https://github.com/damonbinder/compute-cost-of-human-work/blob/main/dataset/"
 
 # Colour slots before a dimension folds its smallest values into "Other".
 # Eight is where hues stop being reliably separable on a scatter, so the long
