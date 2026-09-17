@@ -297,7 +297,7 @@
         <label title="The cheapest row of each task that reaches the human baseline">
           <input type="checkbox" id="front" checked> cheapest per task</label>
         <label title="Each row's own low-high bounds on compute and on human time, where its research note argues them">
-          <input type="checkbox" id="bars"> uncertainty</label>
+          <input type="checkbox" id="bars" checked> uncertainty</label>
       </div>
     </div>
     <div class="field find">
@@ -319,7 +319,9 @@
       relevant values.</p>
       <p>The cheapest-per-task toggle shows, for each task, only the model that
       completed it at human level or better for the fewest FLOPs.</p>
-      <p>Further information is in the write-up and the full dataset on GitHub.</p>
+      <p>This explorer and the underlying dataset were created with the
+      assistance of Claude and ChatGPT. Further information is in the write-up
+      and the full dataset on GitHub.</p>
       <p class="more"><a href="#" id="postlink">The write-up</a>
       &middot; <a href="https://github.com/damonbinder/compute-cost-of-human-work"
       target="_blank" rel="noopener">The dataset</a></p>
@@ -471,7 +473,7 @@ function secondAxis(mx, my) {
 }
 
 const state = {
-  x: 0, y: 1, c: 0, f: -1, u: 0, q: "", sel: null, bars: false,
+  x: 0, y: 1, c: 0, f: -1, u: 0, q: "", sel: null, bars: true,
   frontier: true,
   // dimension index -> the value indices switched off in it. A filter set on
   // one dimension stays set while you colour or filter by another.
