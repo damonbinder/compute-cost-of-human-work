@@ -1,0 +1,178 @@
+--- a/src/nnue/dataset_counters.h
++++ b/src/nnue/dataset_counters.h
+@@ -0,0 +1,32 @@
++// Dataset instrumentation; Stockfish 13 source remains GPL-3.0-or-later.
++#ifndef DATASET_NNUE_COUNTERS_H
++#define DATASET_NNUE_COUNTERS_H
++#include <cstdint>
++#include <sstream>
++#if !defined(USE_NEON)
++#error "This operation counter requires the inspected NEON implementation."
++#endif
++namespace DatasetNNUE {
++struct Counters {
++  std::uint64_t evaluations = 0, affine_calls = 0;
++  std::uint64_t affine_multiplies = 0, affine_additions = 0;
++  std::uint64_t refreshes = 0, incremental_updates = 0, cache_hits = 0;
++  std::uint64_t feature_additions = 0, feature_subtractions = 0;
++  std::uint64_t clipped_values = 0, activation_shifts = 0, output_divisions = 0;
++};
++inline Counters count;
++inline void reset() { count = Counters{}; }
++inline std::string json(std::uint64_t search_nodes) {
++  std::ostringstream s;
++  s << "{\"search_nodes\":" << search_nodes << ",";
++#define FIELD(name) s << "\"" #name "\":" << count.name << ",";
++  FIELD(evaluations) FIELD(affine_calls) FIELD(affine_multiplies) FIELD(affine_additions)
++  FIELD(refreshes) FIELD(incremental_updates) FIELD(cache_hits)
++  FIELD(feature_additions) FIELD(feature_subtractions)
++  FIELD(clipped_values) FIELD(activation_shifts)
++#undef FIELD
++  s << "\"output_divisions\":" << count.output_divisions << "}";
++  return s.str();
++}
++}
++#endif
+--- a/src/nnue/evaluate_nnue.cpp
++++ b/src/nnue/evaluate_nnue.cpp
+@@ -28,6 +28,7 @@
+ #include "../types.h"
+ 
+ #include "evaluate_nnue.h"
++#include "dataset_counters.h"
+ 
+ namespace Eval::NNUE {
+ 
+@@ -105,6 +106,8 @@
+ 
+   // Evaluation function. Perform differential calculation.
+   Value evaluate(const Position& pos) {
++    ++DatasetNNUE::count.evaluations;
++    ++DatasetNNUE::count.output_divisions;
+ 
+     // We manually align the arrays on the stack because with gcc < 9.3
+     // overaligning stack variables with alignas() doesn't work correctly.
+--- a/src/nnue/layers/affine_transform.h
++++ b/src/nnue/layers/affine_transform.h
+@@ -23,6 +23,7 @@
+ 
+ #include <iostream>
+ #include "../nnue_common.h"
++#include "../dataset_counters.h"
+ 
+ namespace Eval::NNUE::Layers {
+ 
+@@ -130,6 +131,12 @@
+         const TransformedFeatureType* transformed_features, char* buffer) const {
+       const auto input = previous_layer_.Propagate(
+           transformed_features, buffer + kSelfBufferSize);
++      ++DatasetNNUE::count.affine_calls;
++      DatasetNNUE::count.affine_multiplies += std::uint64_t(kPaddedInputDimensions) * kOutputDimensions;
++      // NEON: N products, N additions in pairwise/accumulate operations,
++      // then three scalar additions reducing four lanes for each output.
++      DatasetNNUE::count.affine_additions += std::uint64_t(kPaddedInputDimensions + 3) * kOutputDimensions;
++
+ 
+ #if defined (USE_AVX512)
+ 
+--- a/src/nnue/layers/clipped_relu.h
++++ b/src/nnue/layers/clipped_relu.h
+@@ -22,6 +22,7 @@
+ #define NNUE_LAYERS_CLIPPED_RELU_H_INCLUDED
+ 
+ #include "../nnue_common.h"
++#include "../dataset_counters.h"
+ 
+ namespace Eval::NNUE::Layers {
+ 
+@@ -64,6 +65,9 @@
+         const TransformedFeatureType* transformed_features, char* buffer) const {
+       const auto input = previous_layer_.Propagate(
+           transformed_features, buffer + kSelfBufferSize);
++      DatasetNNUE::count.clipped_values += kInputDimensions;
++      DatasetNNUE::count.activation_shifts += kInputDimensions;
++
+       const auto output = reinterpret_cast<OutputType*>(buffer);
+ 
+   #if defined(USE_AVX2)
+--- a/src/nnue/nnue_feature_transformer.h
++++ b/src/nnue/nnue_feature_transformer.h
+@@ -22,6 +22,7 @@
+ #define NNUE_FEATURE_TRANSFORMER_H_INCLUDED
+ 
+ #include "nnue_common.h"
++#include "dataset_counters.h"
+ #include "nnue_architecture.h"
+ #include "features/index_list.h"
+ 
+@@ -121,6 +122,7 @@
+ 
+     // Convert input features
+     void Transform(const Position& pos, OutputType* output) const {
++      DatasetNNUE::count.clipped_values += kOutputDimensions;
+ 
+       UpdateAccumulator(pos, WHITE);
+       UpdateAccumulator(pos, BLACK);
+@@ -266,7 +268,10 @@
+       if (st->accumulator.state[c] == COMPUTED)
+       {
+         if (next == nullptr)
++        {
++          ++DatasetNNUE::count.cache_hits;
+           return;
++        }
+ 
+         // Update incrementally in two steps. First, we update the "next"
+         // accumulator. Then, we update the current accumulator (pos.state()).
+@@ -289,6 +294,14 @@
+         // Now update the accumulators listed in info[], where the last element is a sentinel.
+         StateInfo *info[3] =
+           { next, next == pos.state() ? nullptr : pos.state(), nullptr };
++        // Count each actual accumulator update once, before SIMD tiling.
++        for (IndexType i = 0; info[i]; ++i)
++        {
++          ++DatasetNNUE::count.incremental_updates;
++          DatasetNNUE::count.feature_subtractions += std::uint64_t(removed[i].size()) * kHalfDimensions;
++          DatasetNNUE::count.feature_additions += std::uint64_t(added[i].size()) * kHalfDimensions;
++        }
++
+   #ifdef VECTOR
+         for (IndexType j = 0; j < kHalfDimensions / kTileHeight; ++j)
+         {
+@@ -361,6 +374,9 @@
+         accumulator.state[c] = COMPUTED;
+         Features::IndexList active;
+         Features::HalfKP<Features::Side::kFriend>::AppendActiveIndices(pos, c, &active);
++        ++DatasetNNUE::count.refreshes;
++        DatasetNNUE::count.feature_additions += std::uint64_t(active.size()) * kHalfDimensions;
++
+ 
+   #ifdef VECTOR
+         for (IndexType j = 0; j < kHalfDimensions / kTileHeight; ++j)
+--- a/src/search.cpp
++++ b/src/search.cpp
+@@ -24,6 +24,7 @@
+ #include <sstream>
+ 
+ #include "evaluate.h"
++#include "nnue/dataset_counters.h"
+ #include "misc.h"
+ #include "movegen.h"
+ #include "movepick.h"
+@@ -214,6 +215,8 @@
+ /// command. It searches from the root position and outputs the "bestmove".
+ 
+ void MainThread::search() {
++  if (Threads.size() != 1) { std::cerr << "Counter requires Threads=1" << std::endl; std::exit(2); }
++  DatasetNNUE::reset();
+ 
+   if (Limits.perft)
+   {
+@@ -276,6 +279,7 @@
+   if (bestThread != this)
+       sync_cout << UCI::pv(bestThread->rootPos, bestThread->completedDepth, -VALUE_INFINITE, VALUE_INFINITE) << sync_endl;
+ 
++  sync_cout << "info string neural_counters " << DatasetNNUE::json(Threads.nodes_searched()) << sync_endl;
+   sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
+ 
+   if (bestThread->rootMoves[0].pv.size() > 1 || bestThread->rootMoves[0].extract_ponder_from_tt(rootPos))

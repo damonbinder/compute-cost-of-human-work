@@ -1,0 +1,25 @@
+{
+  "review_scope": "Read two outcome-independent SHA256-selected prompts per source complexity cell, then inspect targeted failure modes and all14 strict-regex failures. These are analytical checks, not timed human attempts.",
+  "template_rules": [
+    "A busy interval includes its start and excludes its end; a meeting may begin exactly when another ends.",
+    "A missing calendar day has no listed busy blocks; explicit whole-day/week free statements agree with that interpretation.",
+    "Negative before/after preferences forbid overlapping those periods, including shorthand continuation sentences with only a day or day and time.",
+    "Earliest availability is required only when the prompt says so; otherwise any feasible slot of the required duration is accepted.",
+    "All times in the released first proposals and references use00 or30 minutes. The independent parser asserts this rather than rounding other minutes as the original evaluator would.",
+    "Formatting tolerance removes Markdown emphasis/backticks only. It does not mine a correct time from an explanation when the actual first proposal is wrong."
+  ],
+  "cases": [
+    {"id":"calendar_scheduling_example_727","issue":"Multiple valid answers","finding":"Monday and Wednesday are excluded; Tuesday after15:00 is excluded. The AI's Tuesday10:00–10:30 and gold14:00–14:30 are both free for George and Jose. No earliest condition is present. Exact match penalizes a valid alternative."},
+    {"id":"calendar_scheduling_example_795","issue":"Earliest constraint","finding":"Monday10:30–11:30 is free for Walter and Janice and is earlier than the AI's otherwise feasible Monday15:00–16:00. The earlier slot is explicitly required."},
+    {"id":"calendar_scheduling_example_211","issue":"Earliest constraint with multiple attendees","finding":"All five are free10:00–10:30. The AI's12:00–12:30 is also free but violates the requested earliest availability."},
+    {"id":"calendar_scheduling_example_115","issue":"Calendar collision","finding":"The AI proposes15:30–16:00, but Rachel is busy14:00–16:00. Gold16:00–16:30 respects both the calendars and Catherine's not-before14:00 preference."},
+    {"id":"calendar_scheduling_example_3","issue":"Calendar collision","finding":"AI Monday11:00–12:00 overlaps Arthur's10:30–12:00 meeting. Gold9:30–10:30 fits all three schedules."},
+    {"id":"calendar_scheduling_example_573","issue":"Workday boundary","finding":"AI16:30–17:30 has the correct one-hour duration but extends beyond the stated17:00 workday. Gold11:00–12:00 is free for Diana and Alexis."},
+    {"id":"calendar_scheduling_example_32","issue":"Incorrect no-solution response","finding":"All three are free9:00–9:30, which ends at Frank's9:30 cutoff. Treating the end boundary correctly leaves the gold solution; the AI falsely says no solution."},
+    {"id":"calendar_scheduling_example_117","issue":"Markdown parse failure","finding":"Removing bold markers exposes10:30–11:00, but Jesse is busy for exactly that interval. This is not a formatting-only loss of a correct answer. Gold13:30–14:00 is free."},
+    {"id":"calendar_scheduling_example_968","issue":"Shorthand multi-day preferences","finding":"Catherine excludes Wednesday and Friday. Debra excludes Monday, Tuesday after11:00, and Thursday. Tuesday9:30–10:00 is free and satisfies the inherited negative preferences."},
+    {"id":"calendar_scheduling_example_823","issue":"Free-week attendee and rejected overlapping answer","finding":"Natalie is free all week; Tuesday is excluded and Thursday must end by13:30. The AI's Monday14:30–15:30 overlaps Christian's15:00–16:00 block. Thursday12:30–13:30 is valid."},
+    {"id":"calendar_scheduling_example_384","issue":"Correct slot, inaccurate optional explanation","finding":"The first proposal12:00–12:30 is valid. The explanation misstates Diana/Julia's busy times. The requested deliverable and both scoring methods evaluate the meeting slot, not an optional rationale."},
+    {"id":"all14_strict_regex_failures","issue":"Possible format penalty","finding":"Thirteen outputs give no proposed day/time slot and claim no solution; every source task has a verified feasible gold slot. The remaining117 output uses bold markup and is still a calendar collision after tolerance. Formatting tolerance changes no correct-answer total."}
+  ]
+}

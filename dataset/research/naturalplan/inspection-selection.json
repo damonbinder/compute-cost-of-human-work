@@ -1,0 +1,26 @@
+{
+  "seed": "naturalplan-inspection-2026-09-12",
+  "rule": "two SHA256-first IDs per source complexity cell, independent of outcome",
+  "ids": [
+    "calendar_scheduling_example_555",
+    "calendar_scheduling_example_596",
+    "calendar_scheduling_example_662",
+    "calendar_scheduling_example_661",
+    "calendar_scheduling_example_727",
+    "calendar_scheduling_example_795",
+    "calendar_scheduling_example_841",
+    "calendar_scheduling_example_823",
+    "calendar_scheduling_example_968",
+    "calendar_scheduling_example_909",
+    "calendar_scheduling_example_51",
+    "calendar_scheduling_example_70",
+    "calendar_scheduling_example_133",
+    "calendar_scheduling_example_115",
+    "calendar_scheduling_example_205",
+    "calendar_scheduling_example_211",
+    "calendar_scheduling_example_384",
+    "calendar_scheduling_example_363",
+    "calendar_scheduling_example_467",
+    "calendar_scheduling_example_452"
+  ]
+}

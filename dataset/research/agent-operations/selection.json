@@ -1,0 +1,76 @@
+{
+  "date": "2025-10-13",
+  "start": "2025-10-13T16:59:30.236Z",
+  "points": [
+    {
+      "point_id": "agen-village-web-opus41-first-deployment",
+      "agent_id": "e6f7327f-15be-49ec-9612-efe003af0da8",
+      "model_id": "claude-opus-4-1",
+      "end": "2025-10-13T17:36:34.451Z",
+      "session_ids": [
+        "32a1425f-0576-475a-8d13-e9667a5e1648",
+        "03b814ea-8887-4e9f-a2b0-fe13aa95bacd",
+        "27df718b-4e7e-4b1a-af61-ca83de535d65"
+      ],
+      "active_parameters": 180000000000,
+      "human_minutes": {
+        "plan_and_content": 30,
+        "html_and_css": 75,
+        "browser_check_and_small_fixes": 20,
+        "deploy_and_handoff": 15
+      },
+      "human_minutes_sensitivity": [
+        80,
+        240
+      ]
+    },
+    {
+      "point_id": "agen-village-web-sonnet45-first-deployment",
+      "agent_id": "169ea37e-c664-4012-acba-cb583aaab1f3",
+      "model_id": "claude-sonnet-4-5",
+      "end": "2025-10-13T17:42:59.495Z",
+      "session_ids": [
+        "97d771df-cec5-40fb-ae2f-5d777674cc0b",
+        "b8a3455e-1eed-492d-8a31-1aebffddd9e6",
+        "8fd5d73f-19e0-42da-bda2-8b2ace2c9ec8",
+        "c7df9844-64f6-408f-a94e-d7f68cb098a3",
+        "f5f86fb3-f88b-489b-b359-8fb5d2acf0bd"
+      ],
+      "active_parameters": 100000000000,
+      "human_minutes": {
+        "plan_and_content": 45,
+        "html_and_css": 100,
+        "browser_check_and_small_fixes": 20,
+        "deploy_and_handoff": 15
+      },
+      "human_minutes_sensitivity": [
+        100,
+        300
+      ]
+    }
+  ],
+  "helper": {
+    "model": "gpt-5-codex",
+    "active_parameters": 100000000000
+  },
+  "assumptions": {
+    "consolidation_input": "last native full context plus last output, per selected session",
+    "consolidation_output": "cl100k_base tokenization of actual retained summary",
+    "missing_timeout_helper_fresh_tokens": 10000,
+    "missing_timeout_helper_fresh_tokens_sensitivity": [
+      4000,
+      40000
+    ],
+    "vision_crops_per_computer_call": 12,
+    "vision_crops_per_computer_call_sensitivity": [
+      1,
+      24
+    ],
+    "vision_proxy": "CLIP ViT-L/14 at336;24layers,1024hidden,4096MLP,577positions",
+    "image_positions_per_screenshot": 1000,
+    "image_positions_per_screenshot_sensitivity": [
+      750,
+      1250
+    ]
+  }
+}

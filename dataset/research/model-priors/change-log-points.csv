@@ -1,0 +1,5 @@
+point_id,old_compute_flops,new_compute_flops,method
+reas-navier-stokes-openai,7.068518518518518e+22,2.1205555555555554e+23,params_tokens
+reas-flt-lean-anthropic-internal,6.252e+21,9.378e+21,params_tokens
+game-portal-gpt6astra,1577559600000000000,,operation_count
+game-factorio-gpt6astra,1.9324229651584856e+19,,operation_count

@@ -1,0 +1,675 @@
+{
+ "anchors": {
+  "A1_erdos1026": {
+   "arithmetic": "6 x 2 d x 8 h/d x 0.25 = 24 h",
+   "days_basis": "Tao: all key inputs were 'assembled within 48 hours'",
+   "elapsed_days": 2.0,
+   "fraction": [
+    0.125,
+    0.25,
+    0.375
+   ],
+   "fraction_basis": "pointed, not assumed: the same post times the individual contributions at 'within hours', 'less than an hour after that' and 'approximately an hour of run time', which is one to three hours each over the window, so 1/8 to 3/8 of one working day",
+   "hours": 24.0,
+   "hours_high": 36.0,
+   "hours_low": 12.0,
+   "key": "A1_erdos1026",
+   "measures": "a small, obscure problem closed under directed attention",
+   "people": 6,
+   "people_basis": "Tao's blog post of 2025-12-08 names about six contributors making identifiable inputs",
+   "person_days_x_8h": 96.0
+  },
+  "A2_riordan_scott_548": {
+   "arithmetic": "2 x 8 d x 8 h/d x 0.4 = 51 h",
+   "days_basis": "2026-09-06, when the submission repositories were pushed, to their 2026-09-14 submission",
+   "elapsed_days": 8.0,
+   "fraction": [
+    0.2,
+    0.4,
+    0.6
+   ],
+   "fraction_basis": "assumption. Both are Oxford professors with teaching and administration, but 14 September is before Michaelmas term starts, so the fraction is set above a term-time one; 0.40 is 3.2 hours a day each for eight straight days including a weekend",
+   "hours": 51.2,
+   "hours_high": 76.8,
+   "hours_low": 25.6,
+   "key": "A2_riordan_scott_548",
+   "measures": "digesting, simplifying and extending a short argument already in hand, on this study's own problem #548",
+   "people": 2,
+   "people_basis": "two authors on arXiv:2609.15893",
+   "person_days_x_8h": 128.0
+  },
+  "A3_erdos52": {
+   "arithmetic": "4 x 7 d x 8 h/d x 0.35 = 78 h",
+   "days_basis": "2026-05-20, the AI disproof of #90 that the erdosproblems wiki records as having inspired it, to their 2026-05-27 submission",
+   "elapsed_days": 7.0,
+   "fraction": [
+    0.2,
+    0.35,
+    0.5
+   ],
+   "fraction_basis": "assumption. Four working mathematicians in late May, out of term in both the UK and the US, collaborating intensively; 0.35 is 2.8 hours a day each. Four people full time for a week would be 224 hours and they were not full time",
+   "hours": 78.39999999999999,
+   "hours_high": 112.0,
+   "hours_low": 44.800000000000004,
+   "key": "A3_erdos52",
+   "measures": "resolving a Bloom top-ten Erdos problem and writing 25 pages",
+   "people": 4,
+   "people_basis": "four authors on arXiv:2605.28781",
+   "person_days_x_8h": 224.0
+  },
+  "A4_sothanaphan_728": {
+   "arithmetic": "1 x 28 d x 8 h/d x 0.3 = 67 h",
+   "days_basis": "about four weeks spanning v1 to v5, the last dated 2026-01-27, against an AI resolution earlier that January",
+   "elapsed_days": 28.0,
+   "fraction": [
+    0.15,
+    0.3,
+    0.5
+   ],
+   "fraction_basis": "assumption. One author over a month rather than a burst, so a lower fraction than the two collaborative anchors above",
+   "hours": 67.2,
+   "hours_high": 112.0,
+   "hours_low": 33.6,
+   "key": "A4_sothanaphan_728",
+   "measures": "writing a 20-page paper from a finished AI Lean proof",
+   "people": 1,
+   "people_basis": "sole author of arXiv:2601.07421",
+   "person_days_x_8h": 224.0
+  }
+ },
+ "prices": {
+  "cache_read": 1.0,
+  "cache_write": 12.5,
+  "input": 10.0,
+  "output": 50.0
+ },
+ "problems": {
+  "1": {
+   "compute": {
+    "alpha": 6.9982648930017355,
+    "attention_context": 19595.14170040486,
+    "attention_ratio": 0.14422024291497976,
+    "compute_flops": 2.37402816e+19,
+    "compute_flops_high": 7.373203429376e+19,
+    "compute_flops_low": 7.93451070464e+18,
+    "context_high": 133582.88027761714,
+    "context_low": 13828.57142857143,
+    "counted_tokens": 34580000.0,
+    "mean_cost_usd": 894.5,
+    "mean_working_hours": 55.55,
+    "range_span": 9.292574808758207,
+    "resolutions": [
+     {
+      "alpha": 4.417910447761194,
+      "cache_read": 74000000.0,
+      "cache_write": 13400000.0,
+      "cost_usd": 405,
+      "counted_tokens": 16750000.0,
+      "input": 50000.0,
+      "label": "default configuration, 28 Aug 2026",
+      "output": 3300000.0,
+      "priced_over_reported": 1.0049382716049382,
+      "priced_usd": 407.0,
+      "working_hours": 27.1
+     },
+     {
+      "alpha": 7.822934554474337,
+      "cache_read": 410000000.0,
+      "cache_write": 43400000.0,
+      "cost_usd": 1384,
+      "counted_tokens": 52410000.0,
+      "input": 410000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026 re-run",
+      "output": 8600000.0,
+      "priced_over_reported": 1.001878612716763,
+      "priced_usd": 1386.6,
+      "working_hours": 84.0
+     }
+    ],
+    "resolutions_without_tokens": [],
+    "scenarios": {
+     "cache_reads_charged_a_weights_pass": 1.8988106087125506e+20,
+     "cheapest_resolution": 1.1499413441295546e+19,
+     "dearest_resolution": 3.598114975870445e+19,
+     "parameter_only_no_attention": 2.0748e+19
+    }
+   },
+   "flops_per_human_second": 27573930343099.59,
+   "human": {
+    "arithmetic": "2427 lines / 417.2 = 5.8 pages, short, x 8 h/page = 47 h solve; 2427 lines / 12.6 lines/h = 193 h Lean; total 239 h",
+    "central": {
+     "hours_per_page": 8.0,
+     "lean_hours": 192.61904761904762,
+     "lean_lines_per_hour": 12.6,
+     "person_years_2000h": 0.1195789389581336,
+     "seconds": 860968.3604985619,
+     "seconds_excluding_lean": 167539.78906999042,
+     "solve_hours": 46.53883029721956,
+     "total_excluding_lean_hours": 46.53883029721956,
+     "total_hours": 239.15787791626718
+    },
+    "direct_solve_hours": null,
+    "high": {
+     "hours_per_page": 42.0,
+     "lean_hours": 449.4444444444444,
+     "lean_lines_per_hour": 5.4,
+     "person_years_2000h": 0.3468866517524235,
+     "seconds": 2497583.892617449,
+     "seconds_excluding_lean": 879583.8926174497,
+     "solve_hours": 244.3288590604027,
+     "total_excluding_lean_hours": 244.3288590604027,
+     "total_hours": 693.773303504847
+    },
+    "hours_per_page": {
+     "central": 8.0,
+     "high": 42.0,
+     "low": 4.1
+    },
+    "lean_lines_measured": 2427,
+    "lines_per_active_hour": {
+     "central": 12.6,
+     "fast": 15.0,
+     "slow": 5.4
+    },
+    "lines_per_paper_page": 417.2,
+    "low": {
+     "hours_per_page": 4.1,
+     "lean_hours": 161.8,
+     "lean_lines_per_hour": 15.0,
+     "person_years_2000h": 0.09282557526366252,
+     "seconds": 668344.1418983701,
+     "seconds_excluding_lean": 85864.14189837009,
+     "solve_hours": 23.851150527325025,
+     "total_excluding_lean_hours": 23.851150527325025,
+     "total_hours": 185.65115052732503
+    },
+    "pages_from_lines": 5.817353787152445,
+    "size_class": "short",
+    "solve_basis": "8 h/page x 5.8 pages",
+    "years_open_sanity_check": 95
+   }
+  },
+  "126": {
+   "compute": {
+    "alpha": 6.166617254669434,
+    "attention_context": 17266.528313074414,
+    "attention_ratio": 0.12708164838422767,
+    "compute_flops": 5.7024696e+18,
+    "compute_flops_high": 1.704575117056e+19,
+    "compute_flops_low": 1.90535353984e+18,
+    "context_high": 117708.39015713015,
+    "context_low": 12185.2356952268,
+    "counted_tokens": 8432500.0,
+    "mean_cost_usd": 211.0,
+    "mean_working_hours": 12.675,
+    "range_span": 8.94624058692614,
+    "resolutions": [
+     {
+      "alpha": 5.216535433070866,
+      "cache_read": 53000000.0,
+      "cache_write": 8300000.000000001,
+      "cost_usd": 247,
+      "counted_tokens": 10160000.0,
+      "input": 60000.0,
+      "label": "default configuration, 28 Aug 2026",
+      "output": 1800000.0,
+      "priced_over_reported": 1.001417004048583,
+      "priced_usd": 247.35000000000002,
+      "working_hours": 15.8
+     },
+     {
+      "alpha": 5.919003115264798,
+      "cache_read": 38000000.0,
+      "cache_write": 5500000.0,
+      "cost_usd": 154,
+      "counted_tokens": 6420000.0,
+      "input": 20000.0,
+      "label": "default configuration, 31 Aug 2026",
+      "output": 900000.0,
+      "priced_over_reported": 0.9866883116883116,
+      "priced_usd": 151.95,
+      "working_hours": 8.4
+     },
+     {
+      "alpha": 4.801920768307323,
+      "cache_read": 40000000.0,
+      "cache_write": 7000000.0,
+      "cost_usd": 194,
+      "counted_tokens": 8330000.0,
+      "input": 30000.0,
+      "label": "default configuration, 2 Sep 2026",
+      "output": 1300000.0,
+      "priced_over_reported": 0.9938144329896907,
+      "priced_usd": 192.8,
+      "working_hours": 9.5
+     },
+     {
+      "alpha": 8.73015873015873,
+      "cache_read": 77000000.0,
+      "cache_write": 7100000.0,
+      "cost_usd": 249,
+      "counted_tokens": 8820000.0,
+      "input": 20000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026",
+      "output": 1700000.0,
+      "priced_over_reported": 1.0078313253012048,
+      "priced_usd": 250.95,
+      "working_hours": 17.0
+     }
+    ],
+    "resolutions_without_tokens": [
+     [
+      172,
+      10
+     ]
+    ],
+    "scenarios": {
+     "cache_reads_charged_a_weights_pass": 4.08674170295879e+19,
+     "cheapest_resolution": 4.341518509576045e+18,
+     "dearest_resolution": 6.870689728550252e+18,
+     "parameter_only_no_attention": 5.0595e+18
+    }
+   },
+   "flops_per_human_second": 5256638142576.849,
+   "human": {
+    "arithmetic": "3058 lines / 417.2 = 7.3 pages, short, x 8 h/page = 59 h solve; 3058 lines / 12.6 lines/h = 243 h Lean; total 301 h",
+    "central": {
+     "hours_per_page": 8.0,
+     "lean_hours": 242.6984126984127,
+     "lean_lines_per_hour": 12.6,
+     "person_years_2000h": 0.1506684776819005,
+     "seconds": 1084813.0393096835,
+     "seconds_excluding_lean": 211098.7535953979,
+     "solve_hours": 58.63854266538831,
+     "total_excluding_lean_hours": 58.63854266538831,
+     "total_hours": 301.336955363801
+    },
+    "direct_solve_hours": null,
+    "high": {
+     "hours_per_page": 42.0,
+     "lean_hours": 566.2962962962963,
+     "lean_lines_per_hour": 5.4,
+     "person_years_2000h": 0.43707432264479246,
+     "seconds": 3146935.1230425057,
+     "seconds_excluding_lean": 1108268.456375839,
+     "solve_hours": 307.8523489932886,
+     "total_excluding_lean_hours": 307.8523489932886,
+     "total_hours": 874.1486452895849
+    },
+    "hours_per_page": {
+     "central": 8.0,
+     "high": 42.0,
+     "low": 4.1
+    },
+    "lean_lines_measured": 3058,
+    "lines_per_active_hour": {
+     "central": 12.6,
+     "fast": 15.0,
+     "slow": 5.4
+    },
+    "lines_per_paper_page": 417.2,
+    "low": {
+     "hours_per_page": 4.1,
+     "lean_hours": 203.86666666666667,
+     "lean_lines_per_hour": 15.0,
+     "person_years_2000h": 0.11695945989133909,
+     "seconds": 842108.1112176415,
+     "seconds_excluding_lean": 108188.11121764142,
+     "solve_hours": 30.052253116011507,
+     "total_excluding_lean_hours": 30.052253116011507,
+     "total_hours": 233.9189197826782
+    },
+    "pages_from_lines": 7.329817833173538,
+    "size_class": "short",
+    "solve_basis": "8 h/page x 7.3 pages",
+    "years_open_sanity_check": 92
+   }
+  },
+  "548": {
+   "compute": {
+    "alpha": 8.194343727338651,
+    "attention_context": 22944.162436548224,
+    "attention_ratio": 0.16886903553299493,
+    "compute_flops": 9.6712224e+18,
+    "compute_flops_high": 3.160036312064e+19,
+    "compute_flops_low": 3.23358557696e+18,
+    "context_high": 156413.63306744018,
+    "context_low": 16192.023205221176,
+    "counted_tokens": 13790000.0,
+    "mean_cost_usd": 363.0,
+    "mean_working_hours": 20.5,
+    "range_span": 9.772545791210678,
+    "resolutions": [
+     {
+      "alpha": 8.194343727338651,
+      "cache_read": 113000000.0,
+      "cache_write": 11500000.0,
+      "cost_usd": 363,
+      "counted_tokens": 13790000.0,
+      "input": 190000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026",
+      "output": 2100000.0,
+      "priced_over_reported": 1.0017906336088154,
+      "priced_usd": 363.65,
+      "working_hours": 20.5
+     }
+    ],
+    "resolutions_without_tokens": [],
+    "scenarios": {
+     "cache_reads_charged_a_weights_pass": 8.892054300913705e+19,
+     "cheapest_resolution": 9.6712224e+18,
+     "dearest_resolution": 9.6712224e+18,
+     "parameter_only_no_attention": 8.274e+18
+    }
+   },
+   "flops_per_human_second": 16827042354344.797,
+   "human": {
+    "arithmetic": "direct record: Riordan and Scott's eight-day window on this exact argument, anchor A2 x 1.2 = 61 h solve; 1243 lines / 12.6 lines/h = 99 h Lean; total 160 h",
+    "central": {
+     "hours_per_page": 8.0,
+     "lean_hours": 98.65079365079366,
+     "lean_lines_per_hour": 12.6,
+     "person_years_2000h": 0.07982539682539684,
+     "seconds": 574742.8571428573,
+     "seconds_excluding_lean": 219600.0,
+     "solve_hours": 61.0,
+     "total_excluding_lean_hours": 61.0,
+     "total_hours": 159.65079365079367
+    },
+    "direct_solve_hours": 61.0,
+    "high": {
+     "hours_per_page": 42.0,
+     "lean_hours": 230.18518518518516,
+     "lean_lines_per_hour": 5.4,
+     "person_years_2000h": 0.14559259259259258,
+     "seconds": 1048266.6666666666,
+     "seconds_excluding_lean": 219600.0,
+     "solve_hours": 61.0,
+     "total_excluding_lean_hours": 61.0,
+     "total_hours": 291.18518518518516
+    },
+    "hours_per_page": {
+     "central": 8.0,
+     "high": 42.0,
+     "low": 4.1
+    },
+    "lean_lines_measured": 1243,
+    "lines_per_active_hour": {
+     "central": 12.6,
+     "fast": 15.0,
+     "slow": 5.4
+    },
+    "lines_per_paper_page": 417.2,
+    "low": {
+     "hours_per_page": 4.1,
+     "lean_hours": 82.86666666666666,
+     "lean_lines_per_hour": 15.0,
+     "person_years_2000h": 0.07193333333333334,
+     "seconds": 517920.0,
+     "seconds_excluding_lean": 219600.0,
+     "solve_hours": 61.0,
+     "total_excluding_lean_hours": 61.0,
+     "total_hours": 143.86666666666667
+    },
+    "pages_from_lines": 2.979386385426654,
+    "size_class": "short",
+    "solve_basis": "direct record: Riordan and Scott's eight-day window on this exact argument, anchor A2 x 1.2",
+    "years_open_sanity_check": 64
+   }
+  },
+  "571": {
+   "compute": {
+    "alpha": 10.206896551724139,
+    "attention_context": 28579.310344827587,
+    "attention_ratio": 0.21034372413793104,
+    "compute_flops": 1.5794985600000002e+19,
+    "compute_flops_high": 5.567189922816e+19,
+    "compute_flops_low": 5.28433626624e+18,
+    "context_high": 194829.24137931035,
+    "context_low": 20168.8275862069,
+    "counted_tokens": 21750000.0,
+    "mean_cost_usd": 617.0,
+    "mean_working_hours": 41.3,
+    "range_span": 10.535268087277233,
+    "resolutions": [
+     {
+      "alpha": 10.206896551724139,
+      "cache_read": 222000000.0,
+      "cache_write": 18100000.0,
+      "cost_usd": 617,
+      "counted_tokens": 21750000.0,
+      "input": 350000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026 re-run",
+      "output": 3300000.0,
+      "priced_over_reported": 0.9995948136142626,
+      "priced_usd": 616.75,
+      "working_hours": 41.3
+     }
+    ],
+    "resolutions_without_tokens": [],
+    "scenarios": {
+     "cache_reads_charged_a_weights_pass": 1.7701276965517243e+20,
+     "cheapest_resolution": 1.5794985600000002e+19,
+     "dearest_resolution": 1.5794985600000002e+19,
+     "parameter_only_no_attention": 1.305e+19
+    }
+   },
+   "flops_per_human_second": 4254304806612.415,
+   "human": {
+    "arithmetic": "10390 lines / 417.2 = 24.9 pages, medium, x 8.3 h/page = 207 h solve; 10390 lines / 12.6 lines/h = 825 h Lean; total 1031 h",
+    "central": {
+     "hours_per_page": 8.3,
+     "lean_hours": 824.6031746031746,
+     "lean_lines_per_hour": 12.6,
+     "person_years_2000h": 0.5156536966016831,
+     "seconds": 3712706.6155321184,
+     "seconds_excluding_lean": 744135.1869606904,
+     "solve_hours": 206.70421860019178,
+     "total_excluding_lean_hours": 206.70421860019178,
+     "total_hours": 1031.3073932033662
+    },
+    "direct_solve_hours": null,
+    "high": {
+     "hours_per_page": 20.0,
+     "lean_hours": 1924.074074074074,
+     "lean_lines_per_hour": 5.4,
+     "person_years_2000h": 1.2110782642661837,
+     "seconds": 8719763.502716523,
+     "seconds_excluding_lean": 1793096.8360498564,
+     "solve_hours": 498.08245445829345,
+     "total_excluding_lean_hours": 498.08245445829345,
+     "total_hours": 2422.1565285323672
+    },
+    "hours_per_page": {
+     "central": 8.3,
+     "high": 20.0,
+     "low": 1.1
+    },
+    "lean_lines_measured": 10390,
+    "lines_per_active_hour": {
+     "central": 12.6,
+     "fast": 15.0,
+     "slow": 5.4
+    },
+    "lines_per_paper_page": 417.2,
+    "low": {
+     "hours_per_page": 1.1,
+     "lean_hours": 692.6666666666666,
+     "lean_lines_per_hour": 15.0,
+     "person_years_2000h": 0.3600306008309364,
+     "seconds": 2592220.325982742,
+     "seconds_excluding_lean": 98620.3259827421,
+     "solve_hours": 27.39453499520614,
+     "total_excluding_lean_hours": 27.39453499520614,
+     "total_hours": 720.0612016618728
+    },
+    "pages_from_lines": 24.90412272291467,
+    "size_class": "medium",
+    "solve_basis": "8.3 h/page x 24.9 pages",
+    "years_open_sanity_check": 52
+   }
+  },
+  "74": {
+   "compute": {
+    "alpha": 5.441640378548896,
+    "attention_context": 15236.593059936908,
+    "attention_ratio": 0.11214132492113564,
+    "compute_flops": 4.2305856e+18,
+    "compute_flops_high": 1.220363298816e+19,
+    "compute_flops_low": 1.41320090624e+18,
+    "context_high": 103870.03154574132,
+    "context_low": 10752.681388012617,
+    "counted_tokens": 6340000.0,
+    "mean_cost_usd": 158.83333333333334,
+    "mean_working_hours": 10.583333333333334,
+    "range_span": 8.635455110646165,
+    "resolutions": [
+     {
+      "alpha": 4.921700223713646,
+      "cache_read": 44000000.0,
+      "cache_write": 7200000.0,
+      "cost_usd": 218,
+      "counted_tokens": 8940000.0,
+      "input": 40000.0,
+      "label": "default configuration, 28 Aug 2026",
+      "output": 1700000.0,
+      "priced_over_reported": 1.0064220183486239,
+      "priced_usd": 219.4,
+      "working_hours": 14.5
+     },
+     {
+      "alpha": 11.267605633802814,
+      "cache_read": 16000000.0,
+      "cache_write": 1100000.0,
+      "cost_usd": 47,
+      "counted_tokens": 1420000.0000000002,
+      "input": 20000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026",
+      "output": 300000.0,
+      "priced_over_reported": 0.9563829787234043,
+      "priced_usd": 44.95,
+      "working_hours": 5.0
+     },
+     {
+      "alpha": 5.7324840764331215,
+      "cache_read": 18000000.0,
+      "cache_write": 2400000.0,
+      "cost_usd": 84,
+      "counted_tokens": 3139999.9999999995,
+      "input": 40000.0,
+      "label": "ReAct agent, larger budget, 26 Aug 2026 re-run",
+      "output": 700000.0,
+      "priced_over_reported": 0.9928571428571429,
+      "priced_usd": 83.4,
+      "working_hours": 5.8
+     },
+     {
+      "alpha": 4.716981132075472,
+      "cache_read": 30000000.0,
+      "cache_write": 5200000.0,
+      "cost_usd": 150,
+      "counted_tokens": 6360000.0,
+      "input": 60000.0,
+      "label": "default configuration, 2 Sep 2026",
+      "output": 1100000.0,
+      "priced_over_reported": 1.0040000000000002,
+      "priced_usd": 150.60000000000002,
+      "working_hours": 8.2
+     },
+     {
+      "alpha": 4.456094364351245,
+      "cache_read": 34000000.0,
+      "cache_write": 6100000.0,
+      "cost_usd": 183,
+      "counted_tokens": 7630000.0,
+      "input": 30000.0,
+      "label": "default configuration, 31 Aug 2026",
+      "output": 1500000.0,
+      "priced_over_reported": 1.0139344262295082,
+      "priced_usd": 185.55,
+      "working_hours": 11.5
+     },
+     {
+      "alpha": 6.161137440758294,
+      "cache_read": 65000000.0,
+      "cache_write": 8500000.0,
+      "cost_usd": 271,
+      "counted_tokens": 10550000.0,
+      "input": 50000.0,
+      "label": "default configuration, 28 Aug 2026 re-run",
+      "output": 2000000.0,
+      "priced_over_reported": 1.0027675276752768,
+      "priced_usd": 271.75,
+      "working_hours": 18.5
+     }
+    ],
+    "resolutions_without_tokens": [
+     [
+      222,
+      10
+     ]
+    ],
+    "scenarios": {
+     "cache_reads_charged_a_weights_pass": 2.7251911025867506e+19,
+     "cheapest_resolution": 9.475444088328077e+17,
+     "dearest_resolution": 7.039854586750789e+18,
+     "parameter_only_no_attention": 3.804e+18
+    }
+   },
+   "flops_per_human_second": 4739935527005.543,
+   "human": {
+    "arithmetic": "2516 lines / 417.2 = 6.0 pages, short, x 8 h/page = 48 h solve; 2516 lines / 12.6 lines/h = 200 h Lean; total 248 h",
+    "central": {
+     "hours_per_page": 8.0,
+     "lean_hours": 199.6825396825397,
+     "lean_lines_per_hour": 12.6,
+     "person_years_2000h": 0.12396399275593907,
+     "seconds": 892540.7478427613,
+     "seconds_excluding_lean": 173683.6049856184,
+     "solve_hours": 48.24544582933845,
+     "total_excluding_lean_hours": 48.24544582933845,
+     "total_hours": 247.92798551187815
+    },
+    "direct_solve_hours": null,
+    "high": {
+     "hours_per_page": 42.0,
+     "lean_hours": 465.92592592592587,
+     "lean_lines_per_hour": 5.4,
+     "person_years_2000h": 0.3596072582649764,
+     "seconds": 2589172.2595078303,
+     "seconds_excluding_lean": 911838.9261744968,
+     "solve_hours": 253.28859060402687,
+     "total_excluding_lean_hours": 253.28859060402687,
+     "total_hours": 719.2145165299528
+    },
+    "hours_per_page": {
+     "central": 8.0,
+     "high": 42.0,
+     "low": 4.1
+    },
+    "lean_lines_measured": 2516,
+    "lines_per_active_hour": {
+     "central": 12.6,
+     "fast": 15.0,
+     "slow": 5.4
+    },
+    "lines_per_paper_page": 417.2,
+    "low": {
+     "hours_per_page": 4.1,
+     "lean_hours": 167.73333333333332,
+     "lean_lines_per_hour": 15.0,
+     "person_years_2000h": 0.09622956216043464,
+     "seconds": 692852.8475551294,
+     "seconds_excluding_lean": 89012.84755512944,
+     "solve_hours": 24.725790987535955,
+     "total_excluding_lean_hours": 24.725790987535955,
+     "total_hours": 192.45912432086928
+    },
+    "pages_from_lines": 6.030680728667306,
+    "size_class": "short",
+    "solve_basis": "8 h/page x 6.0 pages",
+    "years_open_sanity_check": 44
+   }
+  }
+ }
+}

@@ -1,0 +1,19 @@
+{
+  "configuration": "Combo-6",
+  "source_origlang": "zh",
+  "beam": 8,
+  "nbest_per_system": 8,
+  "systems": 9,
+  "source_bpe_per_jieba_token": 1.1,
+  "target_bpe_per_moses_token": 1.1,
+  "nbest_decode_extra": 50,
+  "top1_decode_length_factor": 1.25,
+  "reranker_hidden": 1024,
+  "rnn_first_direction_hidden": 1024,
+  "backtranslation_beam": 8,
+  "cross_kv_each_step": true,
+  "human_seconds_round_to": 10,
+  "human_rate_transfer_factor": 1.0,
+  "human_duration_scenario_multipliers": [0.5, 1.5],
+  "interpretation": "Source-defined candidate count and architecture, T2T1.3 processing transferred to unreleased Microsoft implementation; BPE expansion, top1 stopping and reranker dimensions are explicit estimates."
+}

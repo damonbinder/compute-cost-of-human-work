@@ -1,0 +1,67 @@
+[
+  {
+    "file": "paper.pdf",
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2018/03/final-achieving-human.pdf",
+    "sha256": "8fa6f825107f8ae7f1b2cba76b88d2eecb045ea99936023b8094f066c6b617f9"
+  },
+  {
+    "file": "data.zip",
+    "url": "https://github.com/MicrosoftTranslator/Translator-HumanParityData/tree/52e67aefc6a703d589cbe468f4935ac350d264fa",
+    "sha256": "12b3acc3150c6b3d8514f2aa186ea24c7adfe7313c6aa058eea36178265d9cdf"
+  },
+  {
+    "file": "wmt17-test.tgz",
+    "url": "https://data.statmt.org/wmt17/translation-task/test.tgz",
+    "sha256": "aa1a76f61c0ca68fbf62233ee90ea9ebe2b01b43323092728510037e05e73d8d"
+  },
+  {
+    "file": "toral2018.pdf",
+    "url": "https://aclanthology.org/W18-6312.pdf",
+    "sha256": "47b9b18a56a36b13f1299b7f190ae4573e1f243ef6840e0999d6e4930b8bdebf"
+  },
+  {
+    "file": "laubli2018.pdf",
+    "url": "https://aclanthology.org/D18-1512.pdf",
+    "sha256": "18a458e9ba5a586c51b7c99237678b4308a57730882ab7598e159683a5a774b7"
+  },
+  {
+    "file": "weng2026.xml",
+    "url": "https://doi.org/10.1371/journal.pone.0352322",
+    "sha256": "75c37560a7ed302c255837a513b72b2e5f8fa8daf62321118edc430ce737c252"
+  },
+  {
+    "file": "weng2026-data.xlsx",
+    "url": "https://zenodo.org/api/records/20415080/files/Data.Rhythm_updated.xlsx/content",
+    "sha256": "4d51f85f52e20f235f65f0848a343e66bb16f33f2fa29a8a6ec0c6abf714c3a1"
+  },
+  {
+    "file": "cet6-tables.zip",
+    "url": "https://critt.as.kent.edu/tpr/studies/api/workflow/public/CET6/download/tables/",
+    "sha256": "145b857ccb94a12072ac0ccf321c584cb00bc8559c67104e5a55bd0bcccc4466"
+  },
+  {
+    "file": "productivity2023.pdf",
+    "url": "https://arxiv.org/pdf/2312.12660",
+    "sha256": "13f865f0652ee20f9f1252214a46572283881fd6daa3f1921feac0c99a7286e5"
+  },
+  {
+    "file": "t2t130-transformer.py",
+    "url": "https://raw.githubusercontent.com/tensorflow/tensor2tensor/v1.3.0/tensor2tensor/models/transformer.py",
+    "sha256": "8574f0cdeed7f63e0d3a78943cb10030090fa8e81c51999c0e59136a90aa3d0d"
+  },
+  {
+    "file": "t2t130-attention.py",
+    "url": "https://raw.githubusercontent.com/tensorflow/tensor2tensor/v1.3.0/tensor2tensor/layers/common_attention.py",
+    "sha256": "39661885816613cc012bd3be03739c0b0d9b36555cf8702fe7861824c223d6ef"
+  },
+  {
+    "file": "t2t130-beam.py",
+    "url": "https://raw.githubusercontent.com/tensorflow/tensor2tensor/v1.3.0/tensor2tensor/utils/beam_search.py",
+    "sha256": "85966cdd4b26194bac1344e4a4192b7cbd80818919ba16ec8156a44016e45d3f"
+  },
+  {
+    "file": "t2t130-decoding.py",
+    "url": "https://raw.githubusercontent.com/tensorflow/tensor2tensor/v1.3.0/tensor2tensor/utils/decoding.py",
+    "sha256": "a5c93877729191c2d200012361a8467f2f4c04b4f22bdc0fe345fb6c0d1b98ea"
+  }
+]

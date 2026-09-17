@@ -1,0 +1,64 @@
+{
+  "_about": "Inputs for research/monorace/gatenet_flops.py. Every value is either quoted from arXiv:2601.15222v1 (field `reported`) or an explicit modelling assumption (field `assumed`). Provenance for each is in research/monorace.md.",
+  "gatenet": {
+    "input_height": 384,
+    "input_width": 384,
+    "input_channels": 3,
+    "input_channels_basis": "assumed: an RGB IMX219 rolling-shutter camera with HSV colour augmentation in training implies a 3-channel input; the paper does not state the channel count",
+    "channel_scale_f": 4,
+    "base_channels": {
+      "inc": 64,
+      "down1": 128,
+      "down2": 256,
+      "down3": 512,
+      "down4": 512,
+      "up1": 256,
+      "up2": 128,
+      "up3": 64,
+      "up4": 64
+    },
+    "channels_basis": "reported: the encoder/decoder/outputs diagram in the GateNet Network subsection, with f=4",
+    "conv_kernel": 3,
+    "conv_kernel_basis": "reported: 'Each block consists of double 3x3 convolutional layers with batch normalization and ReLU'",
+    "upsample_kernel": 2,
+    "upsample_stride": 2,
+    "upsample_basis": "assumed: 'a transposed convolution' with no kernel size given; 2x2 stride-2 is the standard channel-preserving choice and is the assumption the dataset's Swift row already uses",
+    "skip_mode": "add",
+    "skip_mode_basis": "reported: 'followed by adding the skip connections from the corresponding encoder layer'",
+    "output_heads": [
+      {"name": "outc0", "from": "down4", "kernel": 1},
+      {"name": "outc1", "from": "up1", "kernel": 1},
+      {"name": "outc2", "from": "up2", "kernel": 1},
+      {"name": "outc3", "from": "up3", "kernel": 1},
+      {"name": "outc4", "from": "up4", "kernel": 1}
+    ],
+    "output_heads_basis": "reported: 'outc-1 denotes a 1x1 convolution mapping to a single output channel'; deployment uses only the highest-resolution map y4, and the other four heads together are 0.03% of the network",
+    "call_rate_hz": 90,
+    "call_rate_basis": "reported: images captured at 90 Hz and cropped to 384x384 'to reduce computational load and enable real-time processing on the Jetson Orin NX at 90 Hz'; Fig. 5 labels the segmentation branch 90 Hz"
+  },
+  "gcnet": {
+    "layer_widths": [24, 64, 64, 64, 4],
+    "layer_widths_basis": "reported: 'a three-layer fully connected network with ReLU activation functions and 64 neurons per layer'; 'The policy takes in 24 observations'; four motor commands out. Fig. 5 draws the input as 20, which is also what the listed observation components sum to; the difference moves the total by 3e-6 relative",
+    "call_rate_hz": 500,
+    "call_rate_basis": "reported: 'This small network runs on the flight controller at 500 Hz'"
+  },
+  "race": {
+    "ai_completion_seconds_organizer": 16.59,
+    "ai_completion_seconds_onboard": 16.56,
+    "ai_time_basis": "reported: Fig. 1D organizer VTx RF timing, semi-final heat 6, MAVLAB M16; the paper's own onboard state-estimation timing for the same run is 16.56 s",
+    "human_best_completions_seconds": {
+      "PLATONAIR": 19.14,
+      "KILLIAN": 19.71,
+      "YUKI": 20.74
+    },
+    "human_all_completions_seconds": [24.07, 23.06, 26.01, 20.74, 19.71, 19.14],
+    "human_basis": "reported: Fig. 1D organizer VTx RF timing across the quarter-finals, semi-finals, final and runner-up heats; VICENT recorded no completion",
+    "laps_per_race": 2,
+    "unit_basis": "reported: 'The objective was to complete two laps in minimal time' and 'the completion time as the interval from the first passage of Gate 1 to the second passage of Gate 11'"
+  },
+  "scenarios": {
+    "input_channels_grayscale": 1,
+    "upsample_kernel_large": 4,
+    "skip_mode_concat": "concatenate the encoder skip onto the channel-preserving transposed-convolution output, doubling the first convolution's input channels in every decoder block"
+  }
+}

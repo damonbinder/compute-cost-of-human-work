@@ -1,0 +1,2 @@
+model_id,model,company,model_release_date,model_release_source,flops_per_token,flops_per_token_method,active_parameters,active_parameters_basis,encoder_parameters,encoder_parameters_basis,decoder_parameters,decoder_parameters_basis,parameter_source,notes
+llama-3.1-8b-instruct,Llama-3.1-8B-Instruct,Meta,2024-07-23,https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct,16000000000.0,two_active_parameters,8000000000.0,reported,not_applicable,not_applicable,not_applicable,not_applicable,https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct,

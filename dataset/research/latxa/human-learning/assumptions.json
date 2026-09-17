@@ -1,0 +1,47 @@
+{
+  "learner_population": "Ordinary literate Spanish-speaking adult with negligible prior Basque, no specialist language-learning selection; active study using ordinary instruction, references and practice, without AI or access to held-out test answers.",
+  "chance_accuracy": 0.25,
+  "source_question_count": 5169,
+  "components_hours": {
+    "foundation": 300,
+    "intermediate_written_recognition": 200,
+    "additional_advanced_reading_usage": 500
+  },
+  "heoc_incremental_planning_hours": {
+    "A1": 200,
+    "A2": 300,
+    "B1": 400,
+    "B2": 600,
+    "C1": 750
+  },
+  "targets": {
+    "13b": {
+      "start_accuracy": 0.2590443025730315,
+      "end_accuracy": 0.4501837879667247,
+      "central_hours": 500,
+      "sensitivity_hours": [
+        250,
+        1000
+      ],
+      "components": [
+        "foundation",
+        "intermediate_written_recognition"
+      ]
+    },
+    "70b": {
+      "start_accuracy": 0.2416328109885858,
+      "end_accuracy": 0.6061133681563166,
+      "central_hours": 1000,
+      "sensitivity_hours": [
+        500,
+        2000
+      ],
+      "components": [
+        "foundation",
+        "intermediate_written_recognition",
+        "additional_advanced_reading_usage"
+      ]
+    }
+  },
+  "sensitivity_meaning": "Alternative learning-route assumptions, not a confidence interval or empirically fitted curve."
+}

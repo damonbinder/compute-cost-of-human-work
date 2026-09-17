@@ -1,0 +1,38 @@
+{
+  "benchmark": "ARC-AGI-1 public evaluation",
+  "test_selection": "First test input only, identified from actual prompt grids; two recoverable AI responses.",
+  "human_endpoint": "Up to two submitted grids, stopping on success. First explanation remains in task clock; final post-grid explanation excluded.",
+  "weighting": "One reference observation per H-ARC participant-task session; identical weights for AI compute, both scores and human duration.",
+  "configurations": [
+    {
+      "point_id": "reas-arcagi-v1-qwq32b",
+      "source_directory": "QwQ-32B-Fireworks",
+      "endpoint": "accounts/fireworks/models/qwq-32b",
+      "model_id": "qwq-32b"
+    },
+    {
+      "point_id": "reas-arcagi-v1-dsv32",
+      "source_directory": "deepseek-v3.2",
+      "endpoint": "accounts/fireworks/models/deepseek-v3p2",
+      "model_id": "deepseek-v3.2"
+    },
+    {
+      "point_id": "reas-arcagi-v1-sonnet45-32k",
+      "source_directory": "claude-sonnet-4-5-20250929-thinking-32k",
+      "endpoint": "claude-sonnet-4-5-20250929",
+      "model_id": "claude-sonnet-4-5"
+    },
+    {
+      "point_id": "reas-arcagi-v1-gpt52-high",
+      "source_directory": "gpt-5-2-2025-12-11-thinking-high",
+      "endpoint": "gpt-5.2-2025-12-11",
+      "model_id": "gpt-5.2-2025-12-11"
+    },
+    {
+      "point_id": "reas-arcagi-v1-gemini3pro",
+      "source_directory": "gemini-3-pro-preview",
+      "endpoint": "gemini-3-pro-preview",
+      "model_id": "gemini-3-pro"
+    }
+  ]
+}

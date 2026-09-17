@@ -1,0 +1,42 @@
+{
+  "book": "a-heart-that-works.epub",
+  "nonfinal_gpt2_tokens": 4080,
+  "final_gpt2_tokens": 2048,
+  "discarded_hierarchical_work_fraction": 0.05,
+  "chat_framing_tokens_per_call": 7,
+  "flops_per_token": 550000000000,
+  "human_reading_wpm": 238,
+  "human_estimated_component_minutes": {
+    "select_and_order_events": 15,
+    "draft": 25,
+    "check_and_revise": 15
+  },
+  "human_rounding_minutes": 10,
+  "human_sensitivity_minutes": [
+    150,
+    300
+  ],
+  "model": {
+    "model_id": "gpt-4-original-unspecified",
+    "model": "GPT-4 (original public model, snapshot unspecified)",
+    "company": "OpenAI",
+    "model_release_date": "2023-03-14",
+    "model_release_source": "https://openai.com/index/gpt-4-research/",
+    "flops_per_token": "550000000000",
+    "flops_per_token_method": "two_active_parameters",
+    "active_parameters": "275000000000",
+    "active_parameters_basis": "estimated",
+    "active_parameters_low": "200000000000",
+    "active_parameters_high": "350000000000",
+    "encoder_parameters": "not_applicable",
+    "encoder_parameters_basis": "not_applicable",
+    "decoder_parameters": "not_applicable",
+    "decoder_parameters_basis": "not_applicable",
+    "parameter_source": "research/exams-knowledge/exams-knowledge.md#models; research/attention-correction.md#model-architectures",
+    "notes": "Original public GPT-4 family, with no specific API snapshot established. Release date refers to initial family availability; the compute coefficient is a shared architecture estimate.",
+    "attention_layers": "73",
+    "attention_width": "14336",
+    "attention_basis": "estimated"
+  },
+  "attention_family_share": 0.65
+}

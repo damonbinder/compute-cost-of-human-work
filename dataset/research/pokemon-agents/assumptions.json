@@ -1,0 +1,36 @@
+{
+  "point_id": "game-pokemon-crystal-gemini3pro-red",
+  "author_reported_total_tokens": 1880000000,
+  "author_reported_turns": 24178,
+  "race_start_utc": "2025-11-19T22:26:32Z",
+  "finish_commit": "f80ac9b2fac095ce81eb3797e46c257090b06861",
+  "active_parameters": 100000000000,
+  "images_per_primary_turn": 1,
+  "image_accounting_units_per_image": 1120,
+  "physical_visual_positions_per_image": 1024,
+  "frontend_views_per_image": 4,
+  "central_reported_total_includes_helper_calls": true,
+  "central_cache_reads_removed": 0,
+  "central_missing_completed_retry_allowance_tokens": 0,
+  "human_hours": 12,
+  "human_hours_sensitivity": [
+    9,
+    18
+  ],
+  "human_longplayarchive_stop_seconds": 31847,
+  "human_longplayarchive_first_credits_seconds": 200,
+  "human_wol_end_credits_allowance_seconds": 180,
+  "human_wol_first_credits_allowance_seconds": 200,
+  "human_extra_navigation_and_puzzle_hours": 1.5,
+  "human_extra_team_training_hours": 1,
+  "missing_helper_scenario_tokens_per_available_turn": 12000,
+  "missing_completed_retry_scenario_primary_equivalents": 0.02,
+  "cache_sensitivity_fractions_of_author_total": [
+    0.5,
+    0.9
+  ],
+  "active_parameter_sensitivity": [
+    30000000000,
+    300000000000
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "source_sentence": "For an example , if exercising is helpful for family potential disease , we can always look for more chances for the family to go exercise .",
+  "correction": "For example , if exercise is helpful in preventing potential family diseases , we can always look for more opportunities for the family to exercise .",
+  "instruction": "Do grammatical error correction on all the following sentences I type in the conversation.",
+  "estimated_system_and_chat_framing_tokens": 32,
+  "estimated_unprinted_response_tokens": 10,
+  "tokenizer_pattern": "'(?i:[sdmt]|ll|ve|re)|[^\\r\\n\\p{L}\\p{N}]?+\\p{L}++|\\p{N}{1,3}+| ?[^\\s\\p{L}\\p{N}]++[\\r\\n]*+|\\s++$|\\s*[\\r\\n]|\\s+(?!\\S)|\\s"
+}

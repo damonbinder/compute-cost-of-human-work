@@ -1,0 +1,57 @@
+# FAIR negotiation inference
+
+The work unit is one participant completing one negotiation over books, hats and balls, given private per-item values, through a final allocation or failure to agree. The other participant is external input, not AI helper work. Internal imagined partners in rollout search are part of the AI's work. Both observations concern inference; reinforcement learning used beforehand is excluded.
+
+Original paper: [Lewis et al., Deal or No Deal?](https://arxiv.org/abs/1706.05125), retained v1, 16 June 2017. Table 1 reports actual human-versus-model utility, including failed agreements as zero. Table 2 describes human-human dialogue lengths. Original code and data are pinned to [2017 revision 9a39ade](https://github.com/facebookresearch/end-to-end-negotiator/tree/9a39ade348949a7b0b1bb1605fd901e97e0efca5). Do not substitute the substantially changed 2018 architecture in current master.
+
+## game-negotiation-fair2017-likelihood
+
+AI 4.7 versus its actual human opponents 5.8 mean utility out of 10 supports below. Agreement 76.5%is a shared outcome, not an independent human accuracy. Human-human average 6.0 is contextual evidence only; it is not substituted for the observed opponent's 5.8. The paper reports 5.3 total turns in this condition. Estimated complete inference cost is 124,483,590 FLOPs. The human participant's active effort is the task-level 74.22 seconds derived under [Human effort](#human-effort); the 5.3-turn recipe on its own gives 66.36.
+
+## game-negotiation-fair2017-rl-rollouts
+
+AI 4.6 versus actual human opponents 4.2 mean utility out of 10 is classified as broadly matching, not materially superior. The pair agrees only 57.2%of the time. Neither the agreed-only AI 8.0 score nor its self-play score is used in place of the all-dialogue human comparison. The paper reports 7.2 total turns. Estimated complete inference cost is 28,017,975,476 FLOPs. The human participant's active effort is the task-level 74.22 seconds derived under [Human effort](#human-effort); the 7.2-turn recipe on its own gives 82.08.
+
+## Models
+
+Paper§6.1 specifies 64-dimensional input embeddings/context GRU,256-dimensional word embeddings,128-dimensional dialogue GRU, bidirectional 256-dimensional selection GRUs and 256 selection hidden layer. The 2017 code confirms a shared reader/writer GRU; the writer projects 128→256→vocabulary using the tied word embedding. The selection network re-encodes the complete dialogue, concatenating each 256 word embedding with its 128 dialogue hidden state, then applies bidirectional GRUs,512→256→1 attention,576→256 selection encoding and six item-label outputs.
+
+The released training file and its actual `freq >20` rule give 463 word symbols,18 output symbols and 11 context symbols. These are reconstructed vocabulary dimensions, not a recovered historical checkpoint. Released data counts and tokenization do not exactly reproduce the paper's collection statistics; we therefore use paper dialogue lengths and disclose the vocabulary transfer. The context code permits an MLP by default; the central calculation follows the paper's explicitly stated context GRU. Context work is less than 0.3%of the direct model's total. These discrepancies do not justify claiming exact checkpoint reconstruction.
+
+Unique parameter estimate 1,643,181 includes embeddings and all heads, counting tied reader/writer weights once. LIKELIHOOD and RL have the same architecture but different weights and model IDs. No single FLOPs/token coefficient applies. A code-publication commit and a paper date do not establish the exact release date of either trained checkpoint, so model release dates remain blank.
+
+## Inference recipe
+
+The original `dialog.py` records `dialog_len=len(conv)` including the final selection turn, and `sent_len=len(out)` including EOS/selection. We apply those conventions to the paper's reported turn and 7.6 word-length summaries. This is an explicit interpretation of rounded published statistics, not native evaluation counters. If 7.6 instead means lexical words only, the direct estimate changes from 124.48 million to 118.19 millionFLOPs. Native complete human-evaluation transcripts/call counts were not found.
+
+For L reported turns, causal dialogue positions T=L×(7.6+1), adding the speaker marker per turn. Half the turns belong to each participant in expectation. Generated output positions are L×7.6/2; reader/writer positions include both sides and special markers. Original writer code consumes the final EOS after generation; that work is included in T. The 6numerical goal symbols are processed separately and are not mixed into the dialogue token field.
+
+A GRU with inputd and hiddenh costs approximately 6h(d+h)+12h per position: matrix multiply-add=2 FLOPs, with a small explicit allowance for gates/bias/scalars. Each generated position additionally costs 2×128×256+2×256×463 plus a small softmax allowance. The selection bidirectional GRUs cost twice the GRU(384,256)work per dialogue position; attention/weighted pooling and all six selection heads are included. Tiny feasible-allocation enumeration and scalar control costs are omitted from this dominant-operation estimate. The calculator retains each component. The vocabulary/output softmax is counted only on generated tokens, not incoming partner tokens.
+
+### Rollout workload assumption
+
+Original `LstmRolloutAgent.write` samples 10 candidate utterances, each with 5 continuations, at each AI turn. It reuses the current dialogue hidden state for each candidate: no repeated full-prefix causal pass is charged. Each continuation simulates BOTH speakers internally. Every candidate/continuation invokes the selection encoder over real history+candidate+imagined continuation, even for repeated terminal candidates. The eventual real-game selection is counted once more. No second independent neural model for the external human is charged.
+
+For 7.2 turns,3.6 own turns imply 180rollout selection calls plus the final real selection. A terminal choice occurs once across both sides, so the modeled nonterminal own-turn count is 3.1 and 155 continuations require generation. The central remaining continuation prior is half the nonterminal dialogue:3.1×8.6=26.66 positions. This uses the source's short-dialogue regime rather than the hard 100-token cap as typical behavior. It assumes the model's imagined endings have a similar total length to observed interaction. Generated alternatives can differ; this is the principal uncertainty, not a native count.
+
+Every imagined completed sequence is centrally approximated by the full 61.92-position dialogue. This averages the prefix lengths and does not claim all branches are equally long. The selection RNNs and attention account for most compute. Half remaining length gives 21.31 billionFLOPs, double gives 41.44 billion; every continuation at the 100-token cap gives 64.95 billion. These scenarios jointly change generated work and full-selection sequence length. They are sensitivity cases, not confidence bounds or a claim that all trajectories hit the cap. An independent reviewer should assess this source-based continuation prior.
+
+`tokens` counts causal dialogue positions processed, including candidate and imagined-continuation positions for the rollout system. Selection-network re-encoding is included in FLOPs as a separate head over the same text. It is not a second external text workload. Counts are estimates (`derived_assumed_inputs`), and the statistic is point_estimate rather than a measured run mean. Attempt count is not_applicable for this analytic reconstruction.
+
+## Human effort
+
+The original experiments recruited US Mechanical Turk workers with at least 5000 completed HITs and 95%approval; no specialist negotiation expertise is specified. Typical refers to such ordinary participants, not professional diplomats. The paper gives no active timings. Payment is not used to infer duration.
+
+Five evenly spaced original held-out records were inspected and retained in `inspected-dialogues.json`, plus paper Figures 1/2/5–7. They involve checking three item counts/values, proposing bundles, small concessions and entering three allocation counts. One apparently verbal agreement has disagree labels, so unsuccessful outcomes cannot be dropped. The records are training-format perspectives, not five independent model-human trials; adjacent swapped perspectives are not double-counted as human attempts.
+
+The timing estimate allocates 20 seconds initially to read quantities/values and choose a desired bundle;5 seconds of valuation/composition per own nonterminal turn;5 seconds to enter a final allocation; plus reading the partner's words at an assumed 240 words/minute and typing one's own words at 40 words/minute. We subtract EOS/selection from the source-length interpretation for lexical words. One participant has 17.49 words in the likelihood condition or 23.76 in RL+rollouts, and the two conditions come out at 66.36 and 82.08 seconds, excluding waiting while the partner responds. Arithmetic may occur during partner typing, but it still counts as the focal person's active effort.
+
+Both rows record **74.21875 seconds**, one human time for the task. The two figures above differ only through the dialogue length each model's own games happened to run to, 5.3 turns against 7.2, and that is a property of the partner rather than of the job a human participant does. The recipe is linear in the turn count, so evaluating it at the mean of the paper's two reported lengths, 6.25 turns, is the same number as averaging the two conditions: 20 seconds of valuation, 5.15625 reading, 30.9375 typing, 13.125 planning and 5 to enter the allocation. Damon ruled on 2026-09-16 that one task carries one human time. `recompute.py` still reports the per-condition components, which are the inputs to this average; the paper's human-human dialogue length would be the better single input, but Table 2's turn count is not among the figures the retained excerpt establishes.
+
+[Dhakal et al.2018](https://userinterfaces.aalto.fi/136Mkeystrokes/resources/chi-18-analysis.pdf), retained original paper, reports roughly 52 standardized five-character words/minute in a large volunteer transcription task. It makes a 40 natural-word/minute messaging allowance plausible, but is not a measured negotiation rate or a mechanical conversion between standardized and natural words. Reading 240wpm is also an assumption. Valuation/composition and all adjustments are task-based judgments, so assumed/estimated is retained. Quick and deliberate component scenarios give 38–119 seconds for likelihood and 48–146 seconds for RL+rollouts. No matched-performance timing is fabricated.
+
+These are the two roles in the same negotiation conditions. Natural differences in achieved dialogue length are not different tasks; there is no known tool or instruction difference requiring a comparison flag. Utility comparisons use the paired human group, not a different skill baseline. Estimated timing and transferred sentence length alone do not constitute a known comparison issue.
+
+## Reproduction
+
+Run `python3 recompute.py --sources <published-source-directory> --output <new-json-path>`. Standard library only. Output must be new and outside sources. `calculations.json` retains source hashes and component/scenario arithmetic. No model execution, training or network call is made. Original repo/tree/commit data are retained with the source assets.

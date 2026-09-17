@@ -1,0 +1,122 @@
+{
+  "agen-metr3-atariepochs-dsr1": {
+    "label": "below",
+    "reason": "Exact-answer question: all four recorded humans answered correctly, while AI succeeds only in half or two-thirds of its runs; this is a substantive answer-reliability deficit."
+  },
+  "agen-metr3-atariepochs-oss120b": {
+    "label": "below",
+    "reason": "Exact-answer question: all four recorded humans answered correctly, while AI succeeds only in half or two-thirds of its runs; this is a substantive answer-reliability deficit."
+  },
+  "agen-metr3-blackboxapple-dsr1": {
+    "label": "below",
+    "reason": "Neither model reaches the success criterion; humans reach it in three of seven runs and have higher mean continuous score (0.576 versus approximately 0.38). Both endpoints support a deficit."
+  },
+  "agen-metr3-blackboxapple-oss120b": {
+    "label": "below",
+    "reason": "Neither model reaches the success criterion; humans reach it in three of seven runs and have higher mean continuous score (0.576 versus approximately 0.38). Both endpoints support a deficit."
+  },
+  "agen-metr3-blackboxcharm-dsr1": {
+    "label": "above",
+    "reason": "R1 succeeds five of eight versus one of six human attempts, and mean continuous score also favors R1 (0.819 versus 0.729). The large completion-rate advantage, supported by graded performance, supports above for these recorded baseliners."
+  },
+  "agen-metr3-blackboxcharm-oss120b": {
+    "label": "below",
+    "reason": "OSS has no successful run and continuous mean 0.417, versus one of six human successes and mean 0.729; substantial score deficit supports below even though both binary rates are low."
+  },
+  "agen-metr3-broccollatz-dsr1": {
+    "label": "below",
+    "reason": "The coding solution passes in one or two AI runs, versus five of six human runs. This large difference supports below on the same program-correctness criterion."
+  },
+  "agen-metr3-broccollatz-oss120b": {
+    "label": "below",
+    "reason": "The coding solution passes in one or two AI runs, versus five of six human runs. This large difference supports below on the same program-correctness criterion."
+  },
+  "agen-metr3-ecombiggest-dsr1": {
+    "label": "match",
+    "reason": "All three humans and every AI run answer the data question correctly."
+  },
+  "agen-metr3-ecombiggest-oss120b": {
+    "label": "match",
+    "reason": "All three humans and every AI run answer the data question correctly."
+  },
+  "agen-metr3-envsci3-dsr1": {
+    "label": "match",
+    "reason": "Both human runs and every AI run score approximately 0.99\u20131.0 continuously. The human one-of-two binary result reflects a tight threshold, not a substantive prediction-quality deficit."
+  },
+  "agen-metr3-envsci3-oss120b": {
+    "label": "match",
+    "reason": "Both human runs and every AI run score approximately 0.99\u20131.0 continuously. The human one-of-two binary result reflects a tight threshold, not a substantive prediction-quality deficit."
+  },
+  "agen-metr3-envsci6-dsr1": {
+    "label": "below",
+    "reason": "Humans score about 0.667 on average and two of three succeed; AI means are 0 or 0.166 with zero or one success. Binary and continuous evidence agree."
+  },
+  "agen-metr3-envsci6-oss120b": {
+    "label": "below",
+    "reason": "Humans score about 0.667 on average and two of three succeed; AI means are 0 or 0.166 with zero or one success. Binary and continuous evidence agree."
+  },
+  "agen-metr3-luhndigits-dsr1": {
+    "label": "match",
+    "reason": "R1 passes seven of eight runs and humans three of four; both usually deliver valid outputs. This limited sample does not suggest a material capability difference."
+  },
+  "agen-metr3-luhndigits-oss120b": {
+    "label": "below",
+    "reason": "OSS passes only three of six versus three of four human attempts. Half of model outputs fail the validity target, giving a tentative reliability deficit rather than treating selected successful human timings as perfect reliability."
+  },
+  "agen-metr3-mungetraj-dsr1": {
+    "label": "below",
+    "reason": "Both models fail every run whereas two of three human attempts pass the conversion scorer."
+  },
+  "agen-metr3-mungetraj-oss120b": {
+    "label": "below",
+    "reason": "Both models fail every run whereas two of three human attempts pass the conversion scorer."
+  },
+  "agen-metr3-mysteryfn4-dsr1": {
+    "label": "match",
+    "reason": "All three humans and most AI runs identify the correct hypothesis (seven of eight or five of six). Occasional errors in these small samples do not establish a noticeably different problem-solving level."
+  },
+  "agen-metr3-mysteryfn4-oss120b": {
+    "label": "match",
+    "reason": "All three humans and most AI runs identify the correct hypothesis (seven of eight or five of six). Occasional errors in these small samples do not establish a noticeably different problem-solving level."
+  },
+  "agen-metr3-mysteryfn8-dsr1": {
+    "label": "below",
+    "reason": "All three humans identify the hypothesis, but each model fails roughly one-third of its runs. Relative to the small successful human sample, this is a tentative but best-supported reliability deficit."
+  },
+  "agen-metr3-mysteryfn8-oss120b": {
+    "label": "below",
+    "reason": "All three humans identify the hypothesis, but each model fails roughly one-third of its runs. Relative to the small successful human sample, this is a tentative but best-supported reliability deficit."
+  },
+  "agen-metr3-ormallbugs-dsr1": {
+    "label": "match",
+    "reason": "Humans pass 24 of 30 runs; R1 passes five of eight and OSS six of six. These modest samples span the human reliability, and the same binary code-correctness criterion is usually met. Broad comparability is more defensible than claiming a distinct capability level."
+  },
+  "agen-metr3-ormallbugs-oss120b": {
+    "label": "match",
+    "reason": "Humans pass 24 of 30 runs; R1 passes five of eight and OSS six of six. These modest samples span the human reliability, and the same binary code-correctness criterion is usually met. Broad comparability is more defensible than claiming a distinct capability level."
+  },
+  "agen-metr3-ormsomebugs-dsr1": {
+    "label": "match",
+    "reason": "The models pass every small-sample run, versus 57 of 70 human attempts; the human continuous mean is 0.833. Both usually repair the library successfully; the available model samples support broad comparability without a confident advantage claim."
+  },
+  "agen-metr3-ormsomebugs-oss120b": {
+    "label": "match",
+    "reason": "The models pass every small-sample run, versus 57 of 70 human attempts; the human continuous mean is 0.833. Both usually repair the library successfully; the available model samples support broad comparability without a confident advantage claim."
+  },
+  "agen-metr3-tex33b65b-dsr1": {
+    "label": "below",
+    "reason": "R1 answers correctly in two of eight runs, versus all five humans; the large exact-answer reliability deficit supports below."
+  },
+  "agen-metr3-tex33b65b-oss120b": {
+    "label": "match",
+    "reason": "All OSS runs and all recorded human attempts answer the lookup question correctly."
+  },
+  "agen-metr3-texarreport-dsr1": {
+    "label": "below",
+    "reason": "R1 answers correctly in two of eight runs, versus all four humans; the large exact-answer reliability deficit supports below."
+  },
+  "agen-metr3-texarreport-oss120b": {
+    "label": "match",
+    "reason": "All OSS runs and all recorded human attempts answer the lookup question correctly."
+  }
+}

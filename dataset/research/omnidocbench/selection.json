@@ -1,0 +1,18 @@
+{
+  "seed": "omnidocbench-gpt4o-pilot-2026-09-12",
+  "selection_rule": "First 10 SHA256(seed + | + image_path) values among original v1 pages labelled English; no content/score filter",
+  "source_pages": 981,
+  "english_pages": 290,
+  "image_paths": [
+    "docstructbench_llm-raw-scihub-o.O-j.chroma.2005.03.134.pdf_6.jpg",
+    "yanbaor2_yanbaoPPT_5627.jpg",
+    "jiaocaineedrop_Evans_PDE_Solution_Chapter_6_Second-Order_Elliptic_Equations.pdf_5.jpg",
+    "docstructbench_llm-raw-scihub-o.O-s00348-005-0004-x.pdf_3.jpg",
+    "docstructbench_llm-raw-scihub-o.O-hup.777.pdf_7.jpg",
+    "docstructbench_llm-raw-the-eye-o.O-Chapter14.pdf_2.jpg",
+    "docstructbench_llm-raw-scihub-o.O-j.jcrimjus.2010.04.003.pdf_8.jpg",
+    "docstructbench_llm-raw-scihub-o.O-dneu.20833.pdf_13.jpg",
+    "docstructbench_llm-raw-the-eye-o.O-Dragon%20Magazine%20-%20030.pdf_5.jpg",
+    "jiaocaineedrop_biz-96816.pdf_48.jpg"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "purpose": "Independent estimates of human learning effort; no inherited human estimates were inspected before selecting these budgets.",
+  "units": "active learner hours; seconds = hours * 3600",
+  "evidence": "All route durations are assumptions informed by inspected task content. Recorded learning studies are plausibility checks, not measured target-endpoint calibration.",
+  "assessment": {
+    "tasks": 164,
+    "benchmark": "original HumanEval",
+    "target": "one unaided first submitted function per unseen problem; all original tests must pass",
+    "training": "instruction, ordinary Python documentation, executing and debugging practice code, and human or deterministic feedback; no generative-AI assistance",
+    "excluded": "previous learning, breaks, background elapsed time, and separate endpoint-assessment time"
+  },
+  "inspection_ids": [
+    0,
+    1,
+    2,
+    5,
+    8,
+    10,
+    14,
+    20,
+    24,
+    32,
+    35,
+    43,
+    52,
+    63,
+    72,
+    79,
+    80,
+    88,
+    96,
+    104,
+    112,
+    115,
+    120,
+    128,
+    129,
+    136,
+    144,
+    152,
+    160
+  ],
+  "routes": [
+    {
+      "point_id": "agen-codexfer-codex300m",
+      "model": "Codex 300M",
+      "start_pass1_percent": "near 0",
+      "target_pass1_percent": 13.17,
+      "starting_cohort": "No prior programming; ordinary English reading, numeracy and computer use.",
+      "target_repertoire": "Scalar expressions, returns, conditionals, simple list/string operations and single-pass loops.",
+      "components_hours": {
+        "instruction_and_worked_example_tracing": 12,
+        "writing_debugging_varied_practice": 18,
+        "delayed_retrieval_and_first_submission_review": 5
+      },
+      "scenario_hours": {
+        "efficient_targeted_learning": 12,
+        "central": 35,
+        "slow_or_less_well_matched_learning": 100
+      },
+      "rationale": "A narrow first-function route. Twelve hours of guided instruction and tracing, eighteen hours writing/debugging basic variations, and five hours delayed retrieval and error review. Reaching this low aggregate target does not require solving the hard algorithmic tail."
+    },
+    {
+      "point_id": "agen-codexfer-codex2p5b",
+      "model": "Codex 2.5B",
+      "start_pass1_percent": "near 0",
+      "target_pass1_percent": 21.36,
+      "starting_cohort": "No prior programming; ordinary English reading, numeracy and computer use.",
+      "target_repertoire": "Broader list/string manipulation, conversion, accumulators, filtering, common built-ins and explicit boundary cases.",
+      "components_hours": {
+        "instruction_and_worked_example_tracing": 20,
+        "writing_debugging_varied_practice": 40,
+        "delayed_retrieval_and_first_submission_review": 10
+      },
+      "scenario_hours": {
+        "efficient_targeted_learning": 25,
+        "central": 70,
+        "slow_or_less_well_matched_learning": 200
+      },
+      "rationale": "Adds collection fluency and more independent function practice to the beginner foundation. The forty-hour practice allowance is near the order of the observed 46.6-hour novice homework sum, but neither the duration nor benchmark endpoint is copied from that course."
+    },
+    {
+      "point_id": "agen-codexfer-codex12b",
+      "model": "Codex 12B",
+      "start_pass1_percent": "near 0",
+      "target_pass1_percent": 28.81,
+      "starting_cohort": "No prior programming; ordinary English reading, numeracy and computer use.",
+      "target_repertoire": "Combining two or three transformations, nested iteration, simple counting/search, parsing and multi-condition specifications.",
+      "components_hours": {
+        "instruction_and_worked_example_tracing": 26,
+        "writing_debugging_varied_practice": 66,
+        "delayed_retrieval_and_first_submission_review": 18
+      },
+      "scenario_hours": {
+        "efficient_targeted_learning": 40,
+        "central": 110,
+        "slow_or_less_well_matched_learning": 350
+      },
+      "rationale": "Increases independent implementation and delayed mixed practice. Extra time is for selecting and combining operations without execution feedback at the final assessment, not a complete algorithms or software-engineering course."
+    },
+    {
+      "point_id": "agen-codexfer-codellama7b",
+      "model": "Code Llama 7B",
+      "start_pass1_percent": 12.2,
+      "target_pass1_percent": 33.5,
+      "starting_cohort": "Already writes basic Python functions using scalar operations, branches and simple loops; assumed 12.2% first-submission HumanEval accuracy.",
+      "target_repertoire": "Broader collection operations, composed functions, simple search/counting and consistent handling of empty inputs, duplicates and boundaries.",
+      "components_hours": {
+        "instruction_and_worked_example_tracing": 14,
+        "writing_debugging_varied_practice": 56,
+        "delayed_retrieval_and_first_submission_review": 20
+      },
+      "scenario_hours": {
+        "efficient_targeted_learning": 30,
+        "central": 90,
+        "slow_or_less_well_matched_learning": 300
+      },
+      "rationale": "An additional-learning route from existing elementary Python, so it excludes editor setup and initial syntax acquisition. Fifty-six hours of varied implementation plus twenty hours of delayed mixed practice address weak independent transfer, rather than relearning the entire beginner foundation.",
+      "starting_repertoire_short": "elementary scalar, branch and loop functions"
+    },
+    {
+      "point_id": "agen-codexfer-codellama34b",
+      "model": "Code Llama 34B",
+      "start_pass1_percent": 22.6,
+      "target_pass1_percent": 48.8,
+      "starting_cohort": "Already uses Python functions, loops and common list/string operations; assumed 22.6% first-submission HumanEval accuracy, with gaps in composition and unfamiliar specifications.",
+      "target_repertoire": "Reliable multi-step specification translation, nested data, state tracking, simple algorithmic patterns and mixed first-submission problem solving.",
+      "components_hours": {
+        "instruction_and_worked_example_tracing": 24,
+        "writing_debugging_varied_practice": 86,
+        "delayed_retrieval_and_first_submission_review": 30
+      },
+      "scenario_hours": {
+        "efficient_targeted_learning": 50,
+        "central": 140,
+        "slow_or_less_well_matched_learning": 450
+      },
+      "rationale": "An additional-learning route from a broader elementary repertoire. The larger practice budget covers multiple solution patterns and alternative formulations; it does not require mastery of every HumanEval task or general professional software development.",
+      "starting_repertoire_short": "functions, loops and common list/string operations"
+    }
+  ]
+}

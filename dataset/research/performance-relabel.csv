@@ -1,0 +1,133 @@
+point_id,old_label,new_label,action,reason
+game-balrog-crafter-deepseekr1,below,below,relabel,Coordinator ruling 2026-09-13: ratio 0.49 is within its own standard error of the 0.5 guide and two rows at 0.51 are kept; kept as below.
+game-balrog-crafter-llama32-1b,below,below,exclude,"Crafter progression 12.73% against the human expert 63.18%, 0.04 of the human above the 10.4% random floor"
+game-balrog-crafter-llama32-3b,below,below,exclude,"Crafter progression 17.27% against the human expert 63.18%, 0.13 of the human above the 10.4% random floor"
+game-balrog-crafter-llama31-8b,below,below,exclude,"Crafter progression 25.45% against the human expert 63.18%, 0.29 of the human above the 10.4% random floor"
+game-balrog-crafter-claude35sonnet,below,below,exclude,"Crafter progression 32.73% against the human expert 63.18%, 0.42 of the human above the 10.4% random floor"
+game-balrog-crafter-qwen25-7b,below,below,exclude,"Crafter progression 16.36% against the human expert 63.18%, 0.11 of the human above the 10.4% random floor"
+game-balrog-crafter-claude35haiku,below,below,exclude,"Crafter progression 26.36% against the human expert 63.18%, 0.30 of the human above the 10.4% random floor"
+game-balrog-crafter-mistralnemo,below,below,exclude,"Crafter progression 27.73% against the human expert 63.18%, 0.33 of the human above the 10.4% random floor"
+game-balrog-crafter-llama33-70b,below,below,exclude,"Crafter progression 28.64% against the human expert 63.18%, 0.35 of the human above the 10.4% random floor"
+game-balrog-crafter-phi4,below,below,exclude,"Crafter progression 13.64% against the human expert 63.18%, 0.06 of the human above the 10.4% random floor"
+game-balrog-crafter-r1distillqwen32b,below,below,exclude,"Crafter progression 15.00% against the human expert 63.18%, 0.09 of the human above the 10.4% random floor"
+game-balrog-crafter-rekaflash3,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.440 is within one standard error (0.067) of the 0.5 guide. Crafter progression 33.64% against the human expert 63.18%, 0.44 of the human above the 10.4% random floor"
+game-balrog-crafter-grok3,below,below,exclude,"Crafter progression 25.00% against the human expert 63.18%, 0.28 of the human above the 10.4% random floor"
+game-balrog-crafter-claudehaiku45,below,below,exclude,"Crafter progression 24.09% against the human expert 63.18%, 0.26 of the human above the 10.4% random floor"
+game-vgb-civ1-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 1.99% of the walkthrough, 0.02 of the completing human"
+game-vgb-civ1-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.91% of the walkthrough, 0.01 of the completing human"
+game-vgb-civ1-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.18% of the walkthrough, 0.00 of the completing human"
+game-vgb-civ1-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 1.02% of the walkthrough, 0.01 of the completing human"
+game-vgb-civ1-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.00% of the walkthrough, 0.00 of the completing human"
+game-vgb-nfs-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 0.67% of the walkthrough, 0.01 of the completing human"
+game-vgb-nfs-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.07% of the walkthrough, 0.00 of the completing human"
+game-vgb-nfs-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.39% of the walkthrough, 0.00 of the completing human"
+game-vgb-nfs-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 0.07% of the walkthrough, 0.00 of the completing human"
+game-vgb-nfs-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.52% of the walkthrough, 0.01 of the completing human"
+game-vgb-tim-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 0.00% of the walkthrough, 0.00 of the completing human"
+game-vgb-tim-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.10% of the walkthrough, 0.00 of the completing human"
+game-vgb-tim-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.00% of the walkthrough, 0.00 of the completing human"
+game-vgb-tim-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 0.00% of the walkthrough, 0.00 of the completing human"
+game-vgb-tim-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.00% of the walkthrough, 0.00 of the completing human"
+game-vgb-doom2-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 0.12% of the walkthrough, 0.00 of the completing human"
+game-vgb-doom2-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.13% of the walkthrough, 0.00 of the completing human"
+game-vgb-doom2-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.17% of the walkthrough, 0.00 of the completing human"
+game-vgb-doom2-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 0.12% of the walkthrough, 0.00 of the completing human"
+game-vgb-doom2-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.12% of the walkthrough, 0.00 of the completing human"
+game-vgb-crystal-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 1.04% of the walkthrough, 0.01 of the completing human"
+game-vgb-crystal-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.37% of the walkthrough, 0.00 of the completing human"
+game-vgb-crystal-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.37% of the walkthrough, 0.00 of the completing human"
+game-vgb-crystal-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 0.37% of the walkthrough, 0.00 of the completing human"
+game-vgb-crystal-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.48% of the walkthrough, 0.00 of the completing human"
+game-vgb-kirby-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 2.89% of the walkthrough, 0.03 of the completing human"
+game-vgb-kirby-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 5.07% of the walkthrough, 0.05 of the completing human"
+game-vgb-kirby-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 5.07% of the walkthrough, 0.05 of the completing human"
+game-vgb-kirby-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 2.45% of the walkthrough, 0.02 of the completing human"
+game-vgb-kirby-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 2.89% of the walkthrough, 0.03 of the completing human"
+game-vgb-zelda-gpt4o,below,below,exclude,"criterion is completing the game and the run reached 0.65% of the walkthrough, 0.01 of the completing human"
+game-vgb-zelda-sonnet37,below,below,exclude,"criterion is completing the game and the run reached 0.85% of the walkthrough, 0.01 of the completing human"
+game-vgb-zelda-gemini25pro,below,below,exclude,"criterion is completing the game and the run reached 0.85% of the walkthrough, 0.01 of the completing human"
+game-vgb-zelda-llama4mav,below,below,exclude,"criterion is completing the game and the run reached 0.65% of the walkthrough, 0.01 of the completing human"
+game-vgb-zelda-gemini20flash,below,below,exclude,"criterion is completing the game and the run reached 0.65% of the walkthrough, 0.01 of the completing human"
+work-rli-gpt5-cli,below,below,exclude,automation rate 1.67% against 100% of the paid human deliverables meeting the same bar by construction
+work-rli-gpt5-cua,below,below,exclude,automation rate 0.83% against 100% of the paid human deliverables meeting the same bar by construction
+work-rli-sonnet45,below,below,exclude,automation rate 2.08% against 100% of the paid human deliverables meeting the same bar by construction
+work-rli-grok4,below,below,exclude,automation rate 2.08% against 100% of the paid human deliverables meeting the same bar by construction
+work-rli-gemini25pro,below,below,exclude,automation rate 0.83% against 100% of the paid human deliverables meeting the same bar by construction
+agen-mirrorcode-gotree-py-opus4,below,below,exclude,"episodes passed 1.2/15.3/9.8% of 2,001 cases, mean 8.8%, against a complete-pass criterion the run never met"
+agen-mirrorcode-gotree-py-opus41,below,below,exclude,"episodes passed 15.8/23.5/7.6% of 2,001 cases, mean 15.6%, against a complete-pass criterion the run never met"
+agen-mirrorcode-gotree-py-opus45,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.381 is within one standard error (0.178) of the 0.5 guide. episodes passed 47.3/3.7/63.2% of 2,001 cases, mean 38.1%, against a complete-pass criterion the run never met"
+agen-mirrorcode-pkl-c-opus46,below,below,exclude,"passed 41.7% of 770 cases against a complete-pass criterion, with pkl reported unsolved under the budget"
+agen-mirrorcode-pkl-py-opus46,below,below,exclude,"scoring pass crashed, so the disposition transfers from the same model and budget in C and Rust at 41.7% and 35.5% against a complete-pass criterion"
+agen-mirrorcode-pkl-rust-opus46,below,below,exclude,"passed 35.5% of 770 cases against a complete-pass criterion, with pkl reported unsolved under the budget"
+perc-hourvideo-gemini15pro-tasklevel,below,below,exclude,"38.9% against three human experts at 85.0%, 0.29 of the human above the 20% guessing floor"
+perc-hourvideo-gemini15pro-individual,below,below,exclude,"36.8% against three human experts at 85.0%, 0.26 of the human above the 20% guessing floor"
+work-apex-agents-gemini35flash,below,below,exclude,"pass@1 47.1% against an expert-written gold arm passing by construction No criterion-level score is published for this model on any board, so it is judged on pass@1 under the rule; models with a criterion score are judged on that instead."
+work-apex-agents-kimik3,below,below,relabel,Coordinator ruling 2026-09-13: Mercor criterion-level mean pass rate 0.554 of the human 1.0 baseline; the job is done at lower quality; kept as below.
+work-apex-agents-gpt56terra,below,below,exclude,"pass@1 38.9% against an expert-written gold arm passing by construction No criterion-level score is published for this model on any board, so it is judged on pass@1 under the rule; models with a criterion score are judged on that instead."
+work-apex-agents-gpt55,below,below,relabel,Coordinator ruling 2026-09-13: Mercor criterion-level mean pass rate 0.555 of the human 1.0 baseline; the job is done at lower quality; kept as below.
+work-apex-agents-gpt56luna,below,below,exclude,"pass@1 35.8% against an expert-written gold arm passing by construction No criterion-level score is published for this model on any board, so it is judged on pass@1 under the rule; models with a criterion score are judged on that instead."
+work-apex-agents-glm52,below,below,relabel,Coordinator ruling 2026-09-13: Mercor criterion-level mean pass rate 0.522 of the human 1.0 baseline; the job is done at lower quality; kept as below.
+work-apex-agents-gpt54,below,below,relabel,Coordinator ruling 2026-09-13: Mercor criterion-level mean pass rate 0.527 of the human 1.0 baseline; the job is done at lower quality; kept as below.
+work-apex-agents-opus46,below,below,relabel,Coordinator ruling 2026-09-13: Mercor criterion-level mean pass rate 0.484 (within half a standard error of the 0.5 guide) of the human 1.0 baseline; the job is done at lower quality; kept as below.
+work-apex-agents-gptoss120b,below,below,exclude,pass@1 3.1% against an expert-written gold arm passing by construction
+agen-epoch-swebench-dsv4promax-1h4h,below,below,exclude,bin solve rate 36.6% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-dsv4promax-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini25pro-1h4h,below,below,exclude,bin solve rate 21.4% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini25pro-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini31pro-ct-1h4h,below,below,exclude,bin solve rate 40.5% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini31pro-ct-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gemini35flash-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.476 is within one standard error (0.077) of the 0.5 guide. bin solve rate 47.6% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gemini35flash-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gemini3flash-1h4h,below,below,exclude,bin solve rate 23.8% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini3flash-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gemini3pro-1h4h,below,below,exclude,bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gemini3pro-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-glm5-1h4h,below,below,exclude,bin solve rate 41.5% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-glm5-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-glm52max-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.452 is within one standard error (0.077) of the 0.5 guide. bin solve rate 45.2% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-glm52max-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt41-15m1h,below,below,exclude,bin solve rate 41.7% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt41-1h4h,below,below,exclude,bin solve rate 12.2% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt41-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt4o1120-lt15m,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.492 is within one standard error (0.037) of the 0.5 guide. bin solve rate 49.2% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt4o1120-15m1h,below,below,exclude,bin solve rate 22.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt4o1120-1h4h,below,below,exclude,bin solve rate 7.1% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt4o1120-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt51codex-1h4h,below,below,exclude,bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt51codex-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt51high-1h4h,below,below,exclude,bin solve rate 28.6% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt51high-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt52high-1h4h,below,below,exclude,bin solve rate 38.1% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt52high-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt53codex-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.476 is within one standard error (0.077) of the 0.5 guide. bin solve rate 47.6% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt53codex-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt54high-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt5high-1h4h,below,below,exclude,bin solve rate 35.7% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt5high-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-gpt5med-1h4h,below,below,exclude,bin solve rate 38.1% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt5med-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt5mini-1h4h,below,below,exclude,bin solve rate 16.7% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-gpt5mini-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-kimik25-1h4h,below,below,exclude,bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-kimik25-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-kimik26-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.452 is within one standard error (0.077) of the 0.5 guide. bin solve rate 45.2% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-kimik26-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-o3med-1h4h,below,below,exclude,bin solve rate 21.4% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-o3med-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-opus4-1h4h,below,below,exclude,bin solve rate 35.7% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-opus4-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus41-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.476 is within one standard error (0.077) of the 0.5 guide. bin solve rate 47.6% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus41-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus45-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.452 is within one standard error (0.077) of the 0.5 guide. bin solve rate 45.2% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus45-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus46-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.452 is within one standard error (0.077) of the 0.5 guide. bin solve rate 45.2% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus46-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-opus46cc-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-qwen37max-1h4h,below,below,exclude,bin solve rate 40.5% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-qwen37max-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-sonnet37-1h4h,below,below,exclude,bin solve rate 19.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-sonnet37-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-sonnet45-1h4h,below,below,exclude,bin solve rate 35.7% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-sonnet45-gt4h,below,below,exclude,bin solve rate 0.0% against a complete correct patch by a human given the bin's own time estimate
+agen-epoch-swebench-sonnet46-1h4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.429 is within one standard error (0.076) of the 0.5 guide. bin solve rate 42.9% against a complete correct patch by a human given the bin's own time estimate"
+agen-epoch-swebench-sonnet46-gt4h,below,below,relabel,"Coordinator ruling 2026-09-13, close call at the exclusion line: ratio 0.333 is within one standard error (0.272) of the 0.5 guide. bin solve rate 33.3% against a complete correct patch by a human given the bin's own time estimate"

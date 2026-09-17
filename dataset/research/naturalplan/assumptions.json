@@ -1,0 +1,44 @@
+{
+  "model_id": "gemini-1.5-pro-naturalplan",
+  "active_parameters": 100000000000,
+  "message_and_stop_allowance_tokens": 12,
+  "human_reported_seconds": 110,
+  "human": {
+    "central": {
+      "orientation": 12,
+      "per_interval_read_mark": 2.5,
+      "per_person_day_context": 2,
+      "per_preference_interpret": 6,
+      "slot_scan_fixed": 10,
+      "slot_scan_per_day": 4,
+      "verify_fixed": 5,
+      "verify_per_person": 3,
+      "verify_per_preference": 2,
+      "write_answer": 6
+    },
+    "faster": {
+      "orientation": 8,
+      "per_interval_read_mark": 1.5,
+      "per_person_day_context": 1,
+      "per_preference_interpret": 4,
+      "slot_scan_fixed": 6,
+      "slot_scan_per_day": 2,
+      "verify_fixed": 3,
+      "verify_per_person": 2,
+      "verify_per_preference": 1,
+      "write_answer": 5
+    },
+    "slower": {
+      "orientation": 20,
+      "per_interval_read_mark": 4,
+      "per_person_day_context": 3,
+      "per_preference_interpret": 10,
+      "slot_scan_fixed": 15,
+      "slot_scan_per_day": 6,
+      "verify_fixed": 10,
+      "verify_per_person": 5,
+      "verify_per_preference": 3,
+      "write_answer": 10
+    }
+  }
+}

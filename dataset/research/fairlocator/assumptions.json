@@ -1,0 +1,19 @@
+{
+  "primary_model_id": "gpt-4o-2024-05-13",
+  "helper_model_id": "gpt-4o-2024-08-06",
+  "active_parameters": 50000000000,
+  "message_allowance_tokens_per_call": 12,
+  "primary_output_tokens": 400,
+  "helper_output_tokens": 40,
+  "invalid_pair_probability": 0.05,
+  "maximum_pairs": 5,
+  "visual_patch_positions_per_view": 256,
+  "human_seconds": {
+    "amortized_instruction_reading": 3,
+    "scene_inspection": 20,
+    "memory_and_choice": 15,
+    "enter_answers_and_advance": 7
+  },
+  "human_faster_seconds": 20,
+  "human_slower_seconds": 90
+}

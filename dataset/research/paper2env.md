@@ -1,0 +1,33 @@
+# Paper2Env: APT adapter implementation
+
+## coding-paper2env-apt-sonnet37
+
+This candidate covers one successful research-code implementation in an existing repository. It does not cover training APT, reproducing its performance benchmarks or rebuilding its full paper.
+
+Primary evidence is [the published trajectory dataset](https://huggingface.co/datasets/thibble/paper2env-trajectories), train row 3 as retrieved September 15, 2026. Identity is the combination of trajectory `adaptive-pruning/adaptive-pruning/openrouter/anthropic/claude-3.7-sonnet/0`, source evaluation `claude-3_7-sonnet_20260403_154753` and creation timestamp `2026-04-03T16:03:04.713766+00:00`. The trajectory ID repeats in other evaluations, so it is not sufficient alone. The complete selected record is retained in `paper2env-inputs.json`, and a readable rendering in `paper2env-apt-trajectory.md` includes the original task, paper excerpts, supplied source context, every edit, test execution and final verifier output.
+
+The [current task collection](https://huggingface.co/datasets/thibble/paper2env-paperbench) has UUID task IDs for its APT subtasks and does not expose this same old task ID. I did not join a current task by paper name and pretend it was the original. The recorded run itself contains the actual 22-line task specification and all implementation edits, enough to assess the work. Its paper is APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference, ICML 2024; the original repository identified inside the paper is [ROIM1998/APT](https://github.com/ROIM1998/APT).
+
+## What was done and checked
+
+The input is an approximately 875-line `loralib/layers.py` with prepared TODOs plus detailed guidance. Four methods in `PruningLinear` must be completed: forward evaluation of a masked low-rank adapter; creation of input/output/bottleneck masks; merging its low-rank matrices into the base matrix for evaluation; and undoing that merge for training. The surrounding classes, retained-index helpers and dependencies are supplied. The task points directly to the relevant paper equation and lists the required behavior, so the human comparison must not include rediscovering the method or building the repository.
+
+I inspected all four implementation edits and the later corrective edit. They implement masked `lora_A`/`lora_B` matrix products, selected input/output indices, optional ReLU, scaling and merge state. The agent writes small synthetic tests, runs them, revises the unmerge code, and reruns them. The smoke tests alone are weak (several only check shapes and print state), but the independent task verifier checks against reference outputs and reports 10/10: no masks, all-one masks, partial masks, mask metadata/dimensions, train/eval merge equivalence and ReLU. No evaluator tampering or retrieval of a reference solution appears in the trace. No installation or generic environment-building is the substantive work.
+
+The source's `resolved` flag alone would be insufficient: it means positive reward, not full success. This selected record actually has reward 1.0 and the complete verifier breakdown. Other sampled records with only 0.5 or 0.6 rewards were not treated as full solutions. This selection yields a successful example, not a model-wide success rate. Earlier separate evaluations in the source are different runs; the row counts the full selected run and does not estimate expected cost until success.
+
+## Human time
+
+**Two hours of active expert work**, by judgment, for a PyTorch/LoRA-familiar programmer working from the same task, paper and prepared code without AI. Approximately 25 minutes reading the relevant equation and surrounding tensor-shape conventions, 55 implementing the four related methods, and 40 writing/running tests and resolving shape or merge-state errors. The harder part is consistency across masked forward computation, retained indices and folded weights, not typing a formula. Existing TODO guidance and ready dependencies materially reduce effort relative to reproducing an ML paper. The bounds re-run the three components. With no shape or merge-state errors, 20 minutes reading, 45 implementing and 25 testing gives 90 minutes. One full debug cycle on the merge-and-unmerge consistency named above as the hard part adds an hour to the central, 180 minutes. Neither is a measured interval or donor timing. The baseline targets the tested behavior achieved by this implementation, not a fully validated training system. No human attempts were recorded.
+
+## Compute
+
+The source names `openrouter/anthropic/claude-3.7-sonnet`; use the released shared `claude-3-7-sonnet` model prior, without inventing a more precise API snapshot. Its current assumed parameters are 100B active, 50–250B sensitivity; central attention shape 56 layers × 10,240 query width. There is no helper LLM in the recorded tool sequence.
+
+Native total input is 405,556 tokens; output is 6,657; total 412,213 over 34 recorded turns. The source exports no cache breakdown or per-call usage, and no separate reasoning counter. Count output once, without adding inferred hidden reasoning. The source's readable trajectory is consistent with a continuing conversational coding harness, but it does not expose cache-control requests. Use explicitly assumed full-prefix processing rather than pretending cumulative input is new content. Equal call lengths give Q=(412213/34+1)/2=6062.455882. Call-length variation and unreported cache reuse are real uncertainties not covered by the parameter bar.
+
+LLM FLOPs are 2NP+4LWQP. Add 100,000 operations as a rounded estimate for the visible tiny-layer neural tests (batch 5, 10 inputs, 20 outputs, rank 4; two test-script executions with small forward and merge operations). This addition is negligible at displayed precision, but keeps the neural-testing work within scope. The external final verifier is assessment work and excluded. No weight-update training experiment or large-model inference occurs in the submitted program. `operation_count` covers the LLM token calculation plus this small non-token neural component.
+
+At parameter endpoints, use continuous dense=(N/196608)^(1/3), L=0.70*dense, W=128*dense; keep Q fixed. The result is approximately 8.8175e16 FLOPs. The retained calculator rebuilds the CSV using explicit input/header/output paths, refuses to overwrite input files and requires only Python's standard library. It never executes the recorded agent's code.
+
+The source cost is zero despite positive paid-model token counts. Treat it as unavailable, not a free run or an observed invoice. The elapsed agent runtime of about 462 seconds is neither human active time nor a FLOP measurement.

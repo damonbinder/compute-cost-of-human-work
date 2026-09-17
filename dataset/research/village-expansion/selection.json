@@ -1,0 +1,123 @@
+{
+  "points": [
+    {
+      "point_id": "agen-village-gemini25-first-website",
+      "agent_id": "d5fd932e-751f-42c5-92f6-c8ac514864a8",
+      "model_id": "gemini-2.5-pro-preview-06-05",
+      "provider": "gemini",
+      "active_parameters": 100000000000,
+      "episodes": [
+        {
+          "date": "2025-10-13",
+          "start": "2025-10-13T16:59:30.236Z",
+          "end": "2025-10-13T17:32:35.396Z",
+          "sessions": [
+            "99ae4438-3895-458b-a238-4476d9dc9401",
+            "a06e32c9-4e6f-4562-a493-a852192da541",
+            "54ba1f76-bfa5-4a95-801e-68b7f403a638",
+            "49df2855-9ea6-444d-958b-f31a3e48b2a7"
+          ]
+        }
+      ],
+      "human_minutes": {
+        "layout_and_responsive_styles": 55,
+        "organize_and_write_short_profile_from_brief": 35,
+        "six_report_entries_and_three_project_cards": 25,
+        "browser_checks_accessibility_and_fixes": 20,
+        "deploy_and_URL_handoff": 15
+      },
+      "human_sensitivity_hours": [
+        1.25,
+        5
+      ]
+    },
+    {
+      "point_id": "agen-village-opus41-connections-prototype",
+      "agent_id": "e6f7327f-15be-49ec-9612-efe003af0da8",
+      "model_id": "claude-opus-4-1",
+      "provider": "anthropic",
+      "active_parameters": 180000000000,
+      "episodes": [
+        {
+          "date": "2025-11-03",
+          "start": "2025-11-03T17:00:00.000Z",
+          "end": "2025-11-03T17:27:37.124Z",
+          "sessions": [
+            "c29aeda3-1941-4d45-83a4-8f2e7c89fed4"
+          ]
+        }
+      ],
+      "human_minutes": {
+        "game_state_matching_mistakes_and_daily_seed": 85,
+        "responsive_layout_and_tile_states": 65,
+        "four_puzzles_and_copy": 35,
+        "persistence_and_share_output": 40,
+        "local_browser_checks_and_handoff": 45
+      },
+      "human_sensitivity_hours": [
+        2,
+        9
+      ]
+    },
+    {
+      "point_id": "agen-village-opus41-benefits-screener",
+      "agent_id": "e6f7327f-15be-49ec-9612-efe003af0da8",
+      "model_id": "claude-opus-4-1",
+      "provider": "anthropic",
+      "active_parameters": 180000000000,
+      "episodes": [
+        {
+          "date": "2025-10-22",
+          "start": "2025-10-22T18:40:00.000Z",
+          "end": "2025-10-22T20:30:12.928Z",
+          "sessions": [
+            "e42c8415-de4a-42d9-8bd3-5886e460cc51",
+            "6200efb2-8f35-4152-b3fa-7d584385b71c",
+            "d53af7f4-f950-4a68-89ed-69968d9b49c6",
+            "3c6f0c48-a8f0-43c2-a6e1-25a34bb6f479",
+            "a4dcdc30-1094-4b64-86b9-71718a162da4"
+          ]
+        },
+        {
+          "date": "2025-10-27",
+          "start": "2025-10-27T17:00:00.000Z",
+          "end": "2025-10-27T18:23:01.604Z",
+          "sessions": [
+            "c918f4c6-7ba9-45f9-90a9-b85a8ecef500",
+            "ce87a86b-91ff-453c-a426-291a10bcb296",
+            "60f25774-b1e5-41de-9102-fd6bb7f08ae9",
+            "2eeef595-7e51-43f1-80f4-66c66b15a55f"
+          ]
+        }
+      ],
+      "human_minutes": {
+        "understand_brief_and_set_up_React": 35,
+        "four_stage_wizard_state_validation_and_navigation": 105,
+        "program_records_and_simple_threshold_rules": 100,
+        "results_cards_and_application_guidance": 60,
+        "responsive_styling_and_accessibility": 65,
+        "test_sample_inputs_fix_integration_and_build": 75,
+        "first_deployment_and_demonstration": 40
+      },
+      "human_sensitivity_hours": [
+        4,
+        16
+      ]
+    }
+  ],
+  "assumptions": {
+    "anthropic_image_positions_per_screenshot": 1000,
+    "vision_crops_per_image": 12,
+    "coordinate_helper_system_text_tokens": 300,
+    "coordinate_helper_output_tokens": 32,
+    "coordinate_helper_image_positions": 258,
+    "helper_active_parameters": 100000000000,
+    "unlogged_helper_setup_and_reasoning_tokens": 3000,
+    "unlogged_helper_written_code_multiplier": 3,
+    "unlogged_helper_sensitivity_multipliers": [
+      0.5,
+      2
+    ],
+    "controller_reasoning_tokens_per_gemini_call": 100
+  }
+}

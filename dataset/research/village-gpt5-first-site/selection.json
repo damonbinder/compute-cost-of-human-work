@@ -1,0 +1,192 @@
+{
+  "point_id": "agen-village-gpt5-first-site",
+  "agent_id": "cc22ce71-2feb-4b8c-a1be-a3abf2abf010",
+  "native_model": "gpt-5-2025-08-07",
+  "session_ids": [
+    "f61bbbb9-3992-4bb9-a114-d52ac4f4e299",
+    "62ec567d-47da-4518-8946-3711f1373c14",
+    "3a2a3dac-8c67-480b-b7ef-e1b167f3d200",
+    "89ddbdb9-c790-44a3-88d9-0ac505089b76",
+    "7ed47b90-9c8e-471b-8f19-d38e90500b24"
+  ],
+  "active_parameters": 100000000000,
+  "helper_active_parameters": 100000000000,
+  "function_framing_tokens": 8,
+  "result_framing_tokens": 30,
+  "image_base_tokens": 70,
+  "image_tile_tokens": 140,
+  "image_tail_tokens": 64,
+  "vision_crops": 5,
+  "cache_case": "static_prefix",
+  "memory_calls_per_reset": 1,
+  "memory_wrapper_tokens": 200,
+  "helper_wrapper_tokens": 4000,
+  "helper_reasoning_tokens": 1000,
+  "helper_attempts": [
+    {
+      "turn_id": "d488d717-dd69-45a0-acf5-382033795897",
+      "eligible_for_processing": true,
+      "error_contains": "timed out: bash"
+    },
+    {
+      "turn_id": "57957735-b063-4c04-b121-f202ac6314de",
+      "eligible_for_processing": false,
+      "error_contains": "previous bash command timed out"
+    },
+    {
+      "turn_id": "f4420848-43fc-4406-a2c3-b02b23c5a0c7",
+      "eligible_for_processing": true,
+      "error_contains": "timed out: bash"
+    }
+  ],
+  "human_minutes": [
+    {
+      "component": "Choose the compact layout and draft the short identity/project copy from supplied agent background",
+      "minutes": 8
+    },
+    {
+      "component": "Implement the single static page, four anchor sections and basic responsive styling",
+      "minutes": 17
+    },
+    {
+      "component": "Check the displayed page, links, contact address and narrow layout",
+      "minutes": 6
+    },
+    {
+      "component": "Create the hosting project with the supplied account, upload and verify its URL",
+      "minutes": 10
+    },
+    {
+      "component": "Send the URL and redirect request and confirm the sent message",
+      "minutes": 4
+    }
+  ],
+  "human_time_scenarios_minutes": [
+    25,
+    90
+  ],
+  "scenarios": [
+    {
+      "name": "all input treated as newly processed; no cache reuse",
+      "changes": {
+        "cache_case": "none"
+      }
+    },
+    {
+      "name": "1024-token static prefix",
+      "changes": {
+        "static_prefix_tokens": 1024
+      }
+    },
+    {
+      "name": "4096-token static prefix",
+      "changes": {
+        "static_prefix_tokens": 4096
+      }
+    },
+    {
+      "name": "initial computer prompt reused within each session",
+      "changes": {
+        "cache_case": "initial_prefix"
+      }
+    },
+    {
+      "name": "append-only within-session prompt reuse",
+      "changes": {
+        "cache_case": "append_only"
+      }
+    },
+    {
+      "name": "equal-step interpolation between observed context counters",
+      "changes": {
+        "input_interpolation": "equal_steps"
+      }
+    },
+    {
+      "name": "unanchored Gmail session initial context 20 percent smaller",
+      "changes": {
+        "unanchored_initial_scale": 0.8
+      }
+    },
+    {
+      "name": "unanchored Gmail session initial context 20 percent larger",
+      "changes": {
+        "unanchored_initial_scale": 1.2
+      }
+    },
+    {
+      "name": "unobserved reasoning residual half central",
+      "changes": {
+        "reasoning_scale": 0.5
+      }
+    },
+    {
+      "name": "unobserved reasoning residual twice central",
+      "changes": {
+        "reasoning_scale": 2
+      }
+    },
+    {
+      "name": "no separate memory writer",
+      "changes": {
+        "memory_calls_per_reset": 0
+      }
+    },
+    {
+      "name": "memory update plus an equal-cost compression pass",
+      "changes": {
+        "memory_calls_per_reset": 2
+      }
+    },
+    {
+      "name": "both timed-out helper commands incurred no model work",
+      "changes": {
+        "helper_forward_multiplier": 0
+      }
+    },
+    {
+      "name": "three helper forwards per timed-out command",
+      "changes": {
+        "helper_forward_multiplier": 3
+      }
+    },
+    {
+      "name": "visual physical positions half billing units",
+      "changes": {
+        "visual_position_multiplier": 0.5
+      }
+    },
+    {
+      "name": "visual physical positions twice billing units",
+      "changes": {
+        "visual_position_multiplier": 2
+      }
+    },
+    {
+      "name": "vision frontend cached after first encoding, omitted repeated frontend allowance",
+      "changes": {
+        "frontend_scale": 0
+      }
+    },
+    {
+      "name": "three times the proxy vision frontend arithmetic",
+      "changes": {
+        "frontend_scale": 3
+      }
+    },
+    {
+      "name": "50B active size for both GPT-5 models",
+      "changes": {
+        "size_scale": 0.5
+      }
+    },
+    {
+      "name": "200B active size for both GPT-5 models",
+      "changes": {
+        "size_scale": 2
+      }
+    }
+  ],
+  "static_prefix_tokens": 2048,
+  "cache_max_gap_seconds": 300
+}

@@ -1,0 +1,80 @@
+{
+  "human_seconds": 4,
+  "human_scenario_seconds": [
+    2,
+    8
+  ],
+  "models": {
+    "Claude Opus 4.1": {
+      "model_id": "claude-opus-4-1",
+      "point_id": "reas-strawberry-opus41",
+      "parameter_scenario_active": [
+        90000000000.0,
+        280000000000.0
+      ]
+    },
+    "Claude Sonnet 4": {
+      "model_id": "claude-sonnet-4",
+      "point_id": "reas-strawberry-sonnet4",
+      "parameter_scenario_active": [
+        50000000000.0,
+        200000000000.0
+      ]
+    },
+    "GPT-5 Chat": {
+      "model_id": "gpt-5-chat",
+      "point_id": "reas-strawberry-gpt5-chat",
+      "parameter_scenario_active": [
+        30000000000.0,
+        300000000000.0
+      ]
+    },
+    "GPT-5 Mini": {
+      "model_id": "gpt-5-mini-2025-08-07",
+      "point_id": "reas-strawberry-gpt5-mini",
+      "parameter_scenario_active": [
+        10000000000.0,
+        40000000000.0
+      ]
+    },
+    "GPT-5 Nano": {
+      "model_id": "gpt-5-nano",
+      "point_id": "reas-strawberry-gpt5-nano",
+      "parameter_scenario_active": [
+        1000000000.0,
+        20000000000.0
+      ]
+    },
+    "Gemini 2.5 Flash": {
+      "model_id": "gemini-2.5-flash",
+      "point_id": "reas-strawberry-gemini25-flash",
+      "parameter_scenario_active": [
+        10000000000.0,
+        150000000000.0
+      ]
+    },
+    "Gemini 2.5 Pro": {
+      "model_id": "gemini-2.5-pro",
+      "point_id": "reas-strawberry-gemini25-pro",
+      "parameter_scenario_active": [
+        30000000000.0,
+        300000000000.0
+      ]
+    },
+    "Kimi K2": {
+      "model_id": "kimi-k2-instruct",
+      "point_id": "reas-strawberry-kimi-k2",
+      "parameter_scenario_active": []
+    },
+    "gpt-oss-120b": {
+      "model_id": "gpt-oss-120b",
+      "point_id": "reas-strawberry-gpt-oss120b",
+      "parameter_scenario_active": []
+    },
+    "gpt-oss-20b": {
+      "model_id": "gpt-oss-20b",
+      "point_id": "reas-strawberry-gpt-oss20b",
+      "parameter_scenario_active": []
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "policy_parameters": 55000000,
+  "training_parameters": 139000000,
+  "entity_slots": 512,
+  "entity_input_width": 3585,
+  "location_head_fraction": 1,
+  "selected_units_unroll": 64,
+  "forward_other_operations_fraction": 0.03,
+  "training_to_forward_ratio": 3,
+  "league_learners": 12,
+  "league_days": 44,
+  "learner_processed_steps_per_second": 50000,
+  "learner_rate_fraction": 1,
+  "replay_uses_per_generated_step": 2,
+  "opponent_steps_per_home_step": 1,
+  "teacher_steps_per_home_step": 1,
+  "evaluator_tasks": 6000,
+  "training_game_tasks_per_learner": 16000,
+  "evaluator_progress_relative_to_training": 1,
+  "supervised_replays": 971000,
+  "players_per_supervised_replay": 2,
+  "fine_tuning_winning_replays": 16000,
+  "supervised_steps_per_player_replay": 1635,
+  "supervised_passes": 10,
+  "fine_tuning_passes": 10,
+  "held_out_policy_training_allowance_sl_copies": 1,
+  "human_specialists_required": 3,
+  "human_selected_league": 7,
+  "tpu_v3_cores_per_learner": 128,
+  "tpu_v3_cores_per_actor_group": 128,
+  "tpu_v3_teraflops_per_core": 61.5,
+  "scenarios": {
+    "compact_execution": {
+      "entity_slots": 128,
+      "entity_input_width": 1800,
+      "location_head_fraction": 0.25,
+      "selected_units_unroll": 8,
+      "forward_other_operations_fraction": 0
+    },
+    "large_execution": {
+      "entity_slots": 512,
+      "entity_input_width": 4500,
+      "location_head_fraction": 1,
+      "selected_units_unroll": 64,
+      "forward_other_operations_fraction": 0.1
+    },
+    "low_training": {
+      "learner_rate_fraction": 0.8,
+      "training_to_forward_ratio": 2.5,
+      "replay_uses_per_generated_step": 3,
+      "opponent_steps_per_home_step": 0.5,
+      "evaluator_progress_relative_to_training": 0.5,
+      "supervised_passes": 1,
+      "fine_tuning_passes": 1,
+      "held_out_policy_training_allowance_sl_copies": 0,
+      "supervised_steps_per_player_replay": 800
+    },
+    "high_training": {
+      "learner_rate_fraction": 1.2,
+      "training_to_forward_ratio": 3.5,
+      "replay_uses_per_generated_step": 2,
+      "opponent_steps_per_home_step": 2,
+      "evaluator_progress_relative_to_training": 2,
+      "supervised_passes": 100,
+      "fine_tuning_passes": 100,
+      "held_out_policy_training_allowance_sl_copies": 3,
+      "supervised_steps_per_player_replay": 5000
+    }
+  }
+}

@@ -1,0 +1,55 @@
+# ModelAngelo: initial partial model of sialin, 8DWI
+
+## sci-cryoem-model-build
+
+Original sources: [ModelAngelo paper](https://www.nature.com/articles/s41586-024-07215-4), [released output archive](https://doi.org/10.6084/m9.figshare.25218434), [8DWI deposition](https://www.rcsb.org/structure/8DWI), and [original experimental study](https://pmc.ncbi.nlm.nih.gov/articles/PMC9858498/). The supplied map is 3.4 Å and protein sequence 495 residues. The deposited author model has 424 modeled residues. The original authors used AlphaFold plus sequence predictors to guide Coot construction, and supplied no manual duration; their deposited work is not treated as a measured unaided-human baseline.
+
+I fetched the paper's original 152.9 MB output archive, verified its supplied MD5, and inspected `modelangelo_results/proteins/pred/8dwi.pdb`. It contains 2787 ATOM records and **358 distinct C-alpha residues**, in output fragments a 185,b 168,c 5. The header identifies REFMAC refinement. Accordingly, the output used to anchor quantity is 358 residues, not 424 or 495, and quality evaluation follows common refinement; the 2 minute reported ModelAngelo runtime is not described as including later refinement.
+
+Work unit: build an initial, sequence-assigned partial atomic model with the same 358-residue coverage as this ModelAngelo output from the density and known sequence. Exclude experimental map production, later structural interpretation and final validation/refinement from both sides. The human target is explicitly comparable initial-model completeness and local fitting quality, not the complete published structure. This is a matched-output estimate, not observed expert timing. Benchmark-wide ModelAngelo geometry similarity is context only; no aggregate 77% completeness is assigned to 8DWI.
+
+## Human active-work estimate
+
+A **professional structural biologist using ordinary Coot-style model-building tools, but no predicted structural model or AI**, is the target. Estimate **8 hours active work**, with bounds of 5.75 and 12 hours. The map is a compact predominantly helical membrane protein; fitting recognizable helices in groups is faster than independently positioning every atom, but sequence-register choices, loops, sidechains and correcting ambiguous density consume substantial time. An explicit work plan is:
+
+- Inspect map, identify major helical density and choose initial sequence anchors:45 min.
+- Place/register roughly a dozen helical stretches, with repeated local fit checks:180 min.
+- Connect or terminate visible fragments and trace remaining loop/irregular density:120 min.
+- Inspect sidechain/register consistency, correct clashes and gross geometry in the 358-residue partial model:105 min.
+- Review/save the initial partial model:30 min.
+
+These quantities are task-analysis assumptions, not time observations or a claim of an exact number of visible helices in the released fragments. They sum 480 min. The low runs the same plan where the helices place cleanly in groups and the register is unambiguous, 45, 120, 90, 60 and 30 minutes, 345 minutes in all. The high is the Afp 5 builder's 12 hours of screen work placing a protein from density, cited below; it bounds this row from above because that build was a whole protein with weaker tools, against a partial predominantly helical target here. The comparison intentionally permits an incomplete model: tracing the absent residues or producing a publication-ready validated structure would add work outside the AI target.
+
+For an external active-work anchor I inspected the [Foldit cryo-EM paper](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000472) and its [original S2 testimonials](https://doi.org/10.1371/journal.pbio.3000472.s029), saved under agent-work/sources/. The Afp 5 builder reports 12–16 hours of screen work placing a protein from density, separately from subsequent overnight scripts. Another builder describes eight hands-on sessions while recipes ran unattended. These are experienced citizen modelers on different proteins/tools; they establish that active work can be many hours but are **not** directly scaled by residue count into 8DWI. The 48-hour collaborative elapsed claim and 24-hour algorithm runs are not counted as human active time. The central 8 h estimate is lower than the Afp 5 testimony because the target is a partial, predominantly helical initial model and professional model-building tools support helix placement, while its wide range acknowledges density/register ambiguity. This remains human_time_evidence=assumed and method=estimated, not transferred measured timing.
+
+## AI computation: revised component calculation
+
+The initial generic FP32 utilization estimate is withdrawn. The original paper reports two minutes on one A100, but that duration is now only a consistency check. The new estimate counts the historical model architecture and inference calls, including repeated evaluation.
+
+### Historical implementation and precision
+
+Freshly cloned [original repository](https://github.com/3dem/model-angelo), pinned to the last commit on publication day, `6fdad9b47a0a2abb86990803f243ef028197a04d` (26 February 2024). Its default `nucleotides` bundle is the [original v1.0.0 archive](https://zenodo.org/records/7942241), published 17 May 2023. The archive is over 2 GB; HTTP byte ranges retrieved the central directory and the complete compressed configuration and two architecture files, which were decompressed locally. The small original files and directory metadata are preserved under `agent-work/sources/robotics-science/bundle-config/` and `agent-work/sources/robotics-science/bundle-directory.json`. No weight download or GPU rerun was necessary.
+
+The bundle explicitly sets `fp16=false`, but the historical `gnn/inference.py` enables both CUDA matmul and cuDNN TF32. The single-device wrapper keeps float32 tensors, with its optional half path disabled. Therefore ordinary 19.5 TFLOP/s FP32 throughput is not the appropriate ceiling: compatible dense tensor-core operations may use the A100's 156 TFLOP/s TF32 path. This observation does not assume every operation achieves tensor-core throughput. Direct mathematical FLOPs are independent of this throughput ambiguity.
+
+### Initial map CNN
+
+The [primary EMDB metadata for EMD-27755](https://www.ebi.ac.uk/emdb/api/entry/map/EMD-27755) gives a 320³ grid, 0.83000004 Å voxel spacing and 265.6 Å cell dimensions. Historical preprocessing resamples the cubic grid to the nearest even dimension at about 1.5 Å, giving 178³. No automatic bounding-box crop is applied by the selected standard configuration. The released settings use 64³ tiles with stride 16, giving `(floor((178−64)/16)+1)³ = 512` overlapping calls. This assumes the paper's 8DWI run used the deposited map and standard public configuration; the precise run command is not archived.
+
+The released model is a modified inverted Retina feature-pyramid network with 64 base features and bottleneck block counts [10, 50, 20, 2]. `count_modelangelo.py` loads this original architecture with shape-only PyTorch meta tensors, and counts each convolution/linear layer as two operations per multiply-add. Its detailed layer input/output shapes and operation counts are saved in `research/modelangelo-operations.json`. The total is **5,758,494,179,328 FLOPs per tile**, or **2,948,349,019,815,936 FLOPs** over 512 tiles. This dominates the pipeline. Normalization, activation, interpolation and ordinary map preprocessing are omitted as smaller terms.
+
+### GNN and sequence embeddings
+
+The released bundle has eight GNN layers, width 256, eight attention heads, 20 neighbours, 23³ local density cubes and 7×3×3 edge rectangles. It executes three global refinement rounds. Each crop contains up to 200 residues; inference runs two complete eight-layer recycles, then accepts only the central 50 predictions when the model has more than 200 residues. Sequence key/value projections are cached across crop calls within a round. The code is explicit about these repeats; a single forward pass per output residue would substantially undercount this component.
+
+Exact provisional node counts and overlapping crop selections were not released for 8DWI. Assume **500 provisional nodes and a 1.5-fold crop-overlap overhead**, giving 15 crops per round, rather than pretending the final 358 residues were the full initial graph. Shape-counted local CNN work is 603,546,496 FLOPs per residue per layer. The script additionally counts all graph linear layers at their per-node or per-edge multiplicity, sequence cross-attention, spatial value aggregation, shared output heads and cached sequence projections. The resulting graph estimate is **117,068,717,260,800 FLOPs**. Varying provisional nodes from 358 to 1,000 and overlap overhead from 1 to 2 gives roughly 8–40 calls per round; this is a limited contribution beside the map CNN.
+
+The [original ESM model table](https://github.com/facebookresearch/esm#pre-trained-models) identifies ESM-1b as 33 layers with width 1,280. Count its width-5,120 feedforward and full attention over the 495-residue sequence plus two special tokens: `33 × (8LD² + 4L²D + 4LDF)`, with L=497, D=1280, F=5120. This gives 686,648,202,240 FLOPs per embedding. The historical build reinitializes from a coordinate file and computes embeddings in each of its three GNN rounds; include **2,059,944,606,720 FLOPs**. Small language-model heads and normalization are omitted.
+
+Total central estimate: **3,067,477,681,683,456 FLOPs**, approximately **3.07 quadrillion FLOPs**. Evidence remains `derived_assumed_inputs`; method changes to `operation_count`. The two-minute runtime implies about 25.6 TFLOP/s across all work, or 16.4% of dense A100 TF32 peak: plausible for the heavily convolutional implementation with graph/CPU overhead, without choosing a utilization factor to generate the estimate.
+
+The dominant uncertainty is the exact map tiling/configuration used in the paper, not the GNN node count. A hypothetical tight 128³ map would yield 125 tiles and about 0.84 quadrillion FLOPs with the same GNN estimate; the public 178³ map gives 3.07 quadrillion. The central value uses the actual deposited map and default historical configuration because neither primary source reports a tight input crop. A broad 0.8–3.5 quadrillion sensitivity covers this possible unreported crop and graph/omitted-operation variation; it is not a confidence interval. Training, downloaded-weight setup and downstream conventional refinement are excluded.
+
+## Model release provenance
+
+Zenodo record 7942241 was created and published on **17 May 2023**, identifies version v1.0.0, and contains the exact architecture/configuration bundle linked by the historical publication-day code. Git tag v1.0.0 dates to 16 May 2023. Use 2023-05-17 as the public release date for this bundle, rather than the February 2024 journal publication date. The exact execution command/checkpoint selection for the paper's individual timing remains an explicit configuration assumption.

@@ -1,0 +1,14 @@
+{
+  "input_uncached": 10314143,
+  "cache_read": 465753216,
+  "output": 2108208,
+  "active_parameters": 300000000000.0,
+  "human_time_hours": 120,
+  "source": "https://www.aiformortals.co/blog/gpt-6-astra-blender-fallingwater",
+  "active_parameters_low": 100000000000.0,
+  "active_parameters_high": 600000000000.0,
+  "assumed_image_sends": 173,
+  "assumed_image_width": 1280,
+  "assumed_image_height": 720,
+  "image_billing_multiplier": 1.2
+}

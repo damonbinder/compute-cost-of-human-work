@@ -1,0 +1,338 @@
+{
+  "source_hashes": {
+    "qwen-null-generations.json": "17c27bc89d75167c9a5c45b0cc4f525981a7daf443140433b0ff312cb6f6b702",
+    "qwen-null-results.json": "3c720e6c64e8ac780bc7b29e7634fea210257b13434ece0716adedce2b627732",
+    "gpt4o-evalperf-brief.json": "99a93384aac93f02dc8b371186057d2b72babcd5ac3858440ea96ac8e47381ae",
+    "qwen-tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "qwen-tokenizer_config.json": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4",
+    "qwen-config.json": "c0242402ad6a13b331ea320feea8c7e3776ffb7a4eff0757b9cd667e116d9a28",
+    "qwen-model-info.json": "b9080c09c27452a2351ef9aec3234eb7a05f4fd5651e880e0856d2c8bdc89baa",
+    "partialorder-2-evaluation-code-generation-generations-generate_python.py": "fc9954deabd59369de3c9ef3bc0533aa2732f7105ac112593610b4eb66f54a8e",
+    "HumanEvalPlus-v0.1.10.jsonl.gz": "272720b90ac375502c8ed23cd791c2a93dfb22a911641a494da74a426c09f101",
+    "model-inputs.csv": "68b194834af44d63db1ac1e30d1abf62b67406ff0c183259457b7e263280f478"
+  },
+  "qwen_parameters": 7615616512,
+  "selection": [
+    26,
+    59,
+    119
+  ],
+  "scope": "One retained function attempt per row; GPT4o uses first retained successful profile, not the 100-sample mean.",
+  "rows": [
+    {
+      "point_id": "code-function-duplicate-filter-qwen25coder7b",
+      "source_id": "humaneval_26",
+      "model_id": "qwen2.5-coder-7b-instruct",
+      "input_tokens": 164,
+      "retained_body_tokens": 35,
+      "fenced_response_plus_eos_tokens": 41,
+      "assumed_extra_output_tokens": 25,
+      "tokens": 230,
+      "flops": 3513846999040.0,
+      "human_seconds": 180,
+      "source_status": "Exception",
+      "source_stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpplrrg80c.py\", line 32, in <module>\n    check(remove_duplicates)\n  File \"/tmp/tmpplrrg80c.py\", line 29, in check\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 205.0,
+          "attention_context": 103.0,
+          "weights_flops": 3122402769920.0,
+          "attention_flops": 8475729920.0,
+          "attention_ratio": 0.0027144896237128176,
+          "flops": 3130878499840.0
+        },
+        "more_omitted_text": {
+          "positions": 305.0,
+          "attention_context": 153.0,
+          "weights_flops": 4645526072320.0,
+          "attention_flops": 18731704320.0,
+          "attention_ratio": 0.004032203033282147,
+          "flops": 4664257776640.0
+        },
+        "full_prefill": {
+          "positions": 230.0,
+          "attention_context": 115.5,
+          "weights_flops": 3503183595520.0,
+          "attention_flops": 10663403520.0,
+          "attention_ratio": 0.0030439179761051495,
+          "flops": 3513846999040.0
+        }
+      },
+      "positions": 230.0,
+      "attention_context": 115.5,
+      "weights_flops": 3503183595520.0,
+      "attention_flops": 10663403520.0,
+      "attention_ratio": 0.0030439179761051495,
+      "flops_low": null,
+      "flops_high": null
+    },
+    {
+      "point_id": "code-function-duplicate-filter-gpt4o",
+      "source_id": "HumanEval/26",
+      "model_id": "gpt-4o-2024-08-06",
+      "input_tokens": 121,
+      "allocated_input_tokens": 3.78125,
+      "assumed_shared_choices": 32,
+      "retained_code_tokens": 159,
+      "fenced_response_plus_eos_tokens": 164,
+      "assumed_extra_output_tokens": 40,
+      "tokens": 207.78125,
+      "flops": 20838727924592.0,
+      "human_seconds": 180,
+      "source_profile_index": 0,
+      "source_retained_profiles": 20,
+      "source_all_sample_pass_percent": 100.0,
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 167.78125,
+          "attention_context": 200.28850810206742,
+          "weights_flops": 16778125000000.0,
+          "attention_flops": 44442023472.0,
+          "attention_ratio": 0.0026488075081095176,
+          "flops": 16822567023472.0
+        },
+        "more_omitted_text": {
+          "positions": 327.78125,
+          "attention_context": 280.9332634188197,
+          "weights_flops": 32778125000000.0,
+          "attention_flops": 121781589552.0,
+          "attention_ratio": 0.003715331171383354,
+          "flops": 32899906589552.0
+        },
+        "full_prefill": {
+          "positions": 325.0,
+          "attention_context": 163.0,
+          "weights_flops": 32500000000000.0,
+          "attention_flops": 70059225600.0,
+          "attention_ratio": 0.00215566848,
+          "flops": 32570059225600.0
+        },
+        "four_prefills_per_100": {
+          "positions": 208.84,
+          "attention_context": 219.7339590116836,
+          "weights_flops": 20884000000000.0,
+          "attention_flops": 60688336343.04001,
+          "attention_ratio": 0.0029059728185711555,
+          "flops": 20944688336343.04
+        }
+      },
+      "positions": 207.78125,
+      "attention_context": 220.54278838923148,
+      "weights_flops": 20778125000000.0,
+      "attention_flops": 60602924592.0,
+      "attention_ratio": 0.0029166695547360507,
+      "flops_low": 10426602058400.0,
+      "flops_high": 41653852851840.0
+    },
+    {
+      "point_id": "code-function-prime-factor-qwen25coder7b",
+      "source_id": "humaneval_59",
+      "model_id": "qwen2.5-coder-7b-instruct",
+      "input_tokens": 149,
+      "retained_body_tokens": 119,
+      "fenced_response_plus_eos_tokens": 125,
+      "assumed_extra_output_tokens": 25,
+      "tokens": 299,
+      "flops": 4572141822976.0,
+      "human_seconds": 420,
+      "source_status": "Exception",
+      "source_stderr": "  File \"/tmp/tmp7y4qecfm.py\", line 11\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\nIndentationError: unexpected indent\n",
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 274.0,
+          "attention_context": 137.5,
+          "weights_flops": 4173357848576.0,
+          "attention_flops": 15123046400.0,
+          "attention_ratio": 0.0036237118763156545,
+          "flops": 4188480894976.0
+        },
+        "more_omitted_text": {
+          "positions": 374.0,
+          "attention_context": 187.5,
+          "weights_flops": 5696481150976.0,
+          "attention_flops": 28148736000.0,
+          "attention_ratio": 0.004941425285884983,
+          "flops": 5724629886976.0
+        },
+        "full_prefill": {
+          "positions": 299.0,
+          "attention_context": 150.0,
+          "weights_flops": 4554138674176.0,
+          "attention_flops": 18003148800.0,
+          "attention_ratio": 0.0039531402287079865,
+          "flops": 4572141822976.0
+        }
+      },
+      "positions": 299.0,
+      "attention_context": 150.0,
+      "weights_flops": 4554138674176.0,
+      "attention_flops": 18003148800.0,
+      "attention_ratio": 0.0039531402287079865,
+      "flops_low": null,
+      "flops_high": null
+    },
+    {
+      "point_id": "code-function-prime-factor-gpt4o",
+      "source_id": "HumanEval/59",
+      "model_id": "gpt-4o-2024-08-06",
+      "input_tokens": 100,
+      "allocated_input_tokens": 3.125,
+      "assumed_shared_choices": 32,
+      "retained_code_tokens": 216,
+      "fenced_response_plus_eos_tokens": 222,
+      "assumed_extra_output_tokens": 40,
+      "tokens": 265.125,
+      "flops": 26592922056288.0,
+      "human_seconds": 420,
+      "source_profile_index": 0,
+      "source_retained_profiles": 20,
+      "source_all_sample_pass_percent": 86.0,
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 225.125,
+          "attention_context": 209.26513048306495,
+          "weights_flops": 22512500000000.0,
+          "attention_flops": 62303861088.0,
+          "attention_ratio": 0.0027675229800333146,
+          "flops": 22574803861088.0
+        },
+        "more_omitted_text": {
+          "positions": 385.125,
+          "attention_context": 289.54446608244075,
+          "weights_flops": 38512500000000.0,
+          "attention_flops": 147472603488.0,
+          "attention_ratio": 0.003829213982161636,
+          "flops": 38659972603488.0
+        },
+        "full_prefill": {
+          "positions": 362.0,
+          "attention_context": 181.5,
+          "weights_flops": 36200000000000.0,
+          "attention_flops": 86891954688.0,
+          "attention_ratio": 0.00240033024,
+          "flops": 36286891954688.0
+        },
+        "four_prefills_per_100": {
+          "positions": 266.0,
+          "attention_context": 228.7781954887218,
+          "weights_flops": 26600000000000.0,
+          "attention_flops": 80480494080.0,
+          "attention_ratio": 0.0030255824842105265,
+          "flops": 26680480494080.0
+        }
+      },
+      "positions": 265.125,
+      "attention_context": 229.36657237152286,
+      "weights_flops": 26512500000000.0,
+      "attention_flops": 80422056288.0,
+      "attention_ratio": 0.0030333637449504952,
+      "flops_low": 13306066217600.0,
+      "flops_high": 53154522165760.0
+    },
+    {
+      "point_id": "code-function-parentheses-qwen25coder7b",
+      "source_id": "humaneval_119",
+      "model_id": "qwen2.5-coder-7b-instruct",
+      "input_tokens": 248,
+      "retained_body_tokens": 107,
+      "fenced_response_plus_eos_tokens": 112,
+      "assumed_extra_output_tokens": 25,
+      "tokens": 385,
+      "flops": 5893851335680.0,
+      "human_seconds": 300,
+      "source_status": "OK",
+      "source_stderr": "",
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 360.0,
+          "attention_context": 180.5,
+          "weights_flops": 5483243888640.0,
+          "attention_flops": 26083491840.0,
+          "attention_ratio": 0.004756945408545278,
+          "flops": 5509327380480.0
+        },
+        "more_omitted_text": {
+          "positions": 460.0,
+          "attention_context": 230.5,
+          "weights_flops": 7006367191040.0,
+          "attention_flops": 42561290240.0,
+          "attention_ratio": 0.006074658818114607,
+          "flops": 7048928481280.0
+        },
+        "full_prefill": {
+          "positions": 385.0,
+          "attention_context": 193.0,
+          "weights_flops": 5864024714240.0,
+          "attention_flops": 29826621440.0,
+          "attention_ratio": 0.00508637376093761,
+          "flops": 5893851335680.0
+        }
+      },
+      "positions": 385.0,
+      "attention_context": 193.0,
+      "weights_flops": 5864024714240.0,
+      "attention_flops": 29826621440.0,
+      "attention_ratio": 0.00508637376093761,
+      "flops_low": null,
+      "flops_high": null
+    },
+    {
+      "point_id": "code-function-parentheses-gpt4o",
+      "source_id": "HumanEval/119",
+      "model_id": "gpt-4o-2024-08-06",
+      "input_tokens": 202,
+      "allocated_input_tokens": 6.3125,
+      "assumed_shared_choices": 32,
+      "retained_code_tokens": 296,
+      "fenced_response_plus_eos_tokens": 301,
+      "assumed_extra_output_tokens": 40,
+      "tokens": 347.3125,
+      "flops": 34900309581712.0,
+      "human_seconds": 300,
+      "source_profile_index": 0,
+      "source_retained_profiles": 20,
+      "source_all_sample_pass_percent": 94.0,
+      "scenarios": {
+        "no_omitted_text": {
+          "positions": 307.3125,
+          "attention_context": 347.83394346146025,
+          "weights_flops": 30731250000000.0,
+          "attention_flops": 141366515472.0,
+          "attention_ratio": 0.004600089988920073,
+          "flops": 30872616515472.0
+        },
+        "more_omitted_text": {
+          "positions": 467.3125,
+          "attention_context": 428.52206767420085,
+          "weights_flops": 46731250000000.0,
+          "attention_flops": 264834742032.0,
+          "attention_ratio": 0.0056671872041085996,
+          "flops": 46996084742032.0
+        },
+        "full_prefill": {
+          "positions": 543.0,
+          "attention_context": 272.0,
+          "weights_flops": 54300000000000.0,
+          "attention_flops": 195327369216.0,
+          "attention_ratio": 0.00359718912,
+          "flops": 54495327369216.0
+        },
+        "four_prefills_per_100": {
+          "positions": 349.08,
+          "attention_context": 366.7157098659333,
+          "weights_flops": 34908000000000.0,
+          "attention_flops": 169296839147.52,
+          "attention_ratio": 0.004849800594348573,
+          "flops": 35077296839147.52
+        }
+      },
+      "positions": 347.3125,
+      "attention_context": 368.06541299262193,
+      "weights_flops": 34731250000000.0,
+      "attention_flops": 169059581712.0,
+      "attention_ratio": 0.004867650364210905,
+      "flops_low": 17470346382400.0,
+      "flops_high": 69734775594240.0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "point_id": "reas-epoch-gpqa-r1",
+    "identifier": "DeepSeek-R1",
+    "model_id": "deepseek-r1",
+    "tokenizer": "deepseek-tokenizer.json",
+    "legacy_id": "reas-gpqa-r1-meas"
+  },
+  {
+    "point_id": "reas-epoch-gpqa-v3",
+    "identifier": "DeepSeek-V3",
+    "model_id": "deepseek-v3",
+    "tokenizer": "deepseek-tokenizer.json",
+    "legacy_id": "reas-gpqa-v3-meas"
+  },
+  {
+    "point_id": "reas-epoch-gpqa-r1distill70b",
+    "identifier": "DeepSeek-R1-Distill-Llama-70B",
+    "model_id": "deepseek-r1-distill-llama-70b",
+    "tokenizer": "r1distill-tokenizer.json",
+    "legacy_id": "reas-gpqa-distill70b-meas"
+  },
+  {
+    "point_id": "reas-epoch-gpqa-llama31-405b",
+    "identifier": "Llama-3.1-405B-Instruct",
+    "model_id": "llama-3.1-405b-instruct",
+    "tokenizer": "llama31-tokenizer.json",
+    "legacy_id": "reas-gpqa-llama405-meas"
+  }
+]

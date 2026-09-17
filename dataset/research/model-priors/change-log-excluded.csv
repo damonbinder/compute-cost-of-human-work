@@ -1,0 +1,2 @@
+point_id,old_compute_flops,new_compute_flops,method
+game-balrog-crafter-claudehaiku45,17528584000000000,35057168000000000,params_tokens

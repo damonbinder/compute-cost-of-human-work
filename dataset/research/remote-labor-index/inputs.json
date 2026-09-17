@@ -1,0 +1,144 @@
+{
+ "_comment": "Configuration for price_to_flops.py. Every number here is read off arXiv:2510.26787v1 or the Scale leaderboard; see research/remote-labor-index.md for the citation of each.",
+ "projects_in_benchmark": 240,
+ "paper_share_with_cost": 0.95,
+ "paper_share_with_time": 0.84,
+ "human_mean_hours": 28.9,
+ "human_median_hours": 11.5,
+ "pooled_mean_cost_usd": 2.34,
+ "histogram_axis_labels": {
+  "_comment": "Tick labels are read off the rendered figures; only the labels are needed, since the script derives the scales from the tick positions in figure-bar-geometry.json.",
+  "fig12_costs": {
+   "y_tick_step": 20,
+   "x_major_values": [
+    0.1,
+    1.0,
+    10.0
+   ]
+  },
+  "fig4_cost": {
+   "y_tick_step": 10,
+   "x_major_values": [
+    10.0,
+    100.0,
+    1000.0,
+    10000.0
+   ]
+  },
+  "fig4_time": {
+   "y_tick_step": 5,
+   "x_major_values": [
+    1.0,
+    10.0,
+    100.0
+   ]
+  }
+ },
+ "central_scenario": "input_9_to_1",
+ "input_share_scenarios": {
+  "input_4_to_1": 0.8,
+  "input_9_to_1": 0.9,
+  "input_50_to_1": 0.9803921568627451,
+  "input_150_to_1": 0.9933774834437086,
+  "_comment": "Share of billed positions that are input rather than output. 9:1 is the central choice for a multi-turn agent scaffold; 4:1 is the ratio the dataset's GDPval rows use for a single-shot deliverable; the two high ratios bracket long-horizon agent traffic."
+ },
+ "agent_configurations": [
+  {
+   "point_id": "work-rli-gpt5-cli",
+   "label": "GPT-5 (CLI)",
+   "scaffold": "OpenHands command-line environment with gpt-image-1, openai/tts-1 and veo-3.0-generate-preview available as tools",
+   "model_id": "gpt-5",
+   "price_key": "gpt-5",
+   "automation_successes": 4,
+   "automation_rate_printed": "1.7%",
+   "elo": 436.7,
+   "dollars_earned_usd": 1180,
+   "context_window_tokens": 400000
+  },
+  {
+   "point_id": "work-rli-gpt5-cua",
+   "label": "GPT-5 (CUA)",
+   "scaffold": "Scale AI computer-use environment: remote Ubuntu VM via the Scrapybara API, MCP computer-use, file-editor and bash tools, default one-hour session timeout. Appendix B.6 does not extend the multimedia tools to this environment.",
+   "model_id": "gpt-5",
+   "price_key": "gpt-5",
+   "automation_successes": 2,
+   "automation_rate_printed": "0.8%",
+   "elo": 431.6,
+   "dollars_earned_usd": 858,
+   "context_window_tokens": 400000
+  },
+  {
+   "point_id": "work-rli-sonnet45",
+   "label": "Claude Sonnet 4.5",
+   "scaffold": "Scale AI computer-use environment, with an extended prompt asking for screenshot-based visual verification and with application-level context management above 1M tokens. Appendix B.6 does not extend the multimedia tools to this environment.",
+   "model_id": "claude-sonnet-4-5",
+   "price_key": "claude-sonnet-4-5",
+   "automation_successes": 5,
+   "automation_rate_printed": "2.1%",
+   "elo": 441.7,
+   "dollars_earned_usd": 1280,
+   "context_window_tokens": 200000
+  },
+  {
+   "point_id": "work-rli-grok4",
+   "label": "Grok 4",
+   "scaffold": "OpenHands command-line environment with gpt-image-1, openai/tts-1 and veo-3.0-generate-preview available as tools",
+   "model_id": "grok-4",
+   "price_key": "grok-4",
+   "automation_successes": 5,
+   "automation_rate_printed": "2.1%",
+   "elo": 468.2,
+   "dollars_earned_usd": 858,
+   "context_window_tokens": 256000
+  },
+  {
+   "point_id": "work-rli-gemini25pro",
+   "label": "Gemini 2.5 Pro",
+   "scaffold": "OpenHands command-line environment with gpt-image-1, openai/tts-1 and veo-3.0-generate-preview available as tools",
+   "model_id": "gemini-2.5-pro-preview-06-05",
+   "price_key": "gemini-2.5-pro",
+   "automation_successes": 2,
+   "automation_rate_printed": "0.8%",
+   "elo": 411.8,
+   "dollars_earned_usd": 210,
+   "context_window_tokens": 1048576
+  }
+ ],
+ "total_project_value_usd": 143991,
+ "central_input_share": "input_9_to_1",
+ "branch_b_model_calls": 40,
+ "_branch_b_comment": "Model calls per deliverable in the idealized full-prefix-reuse branch. Not reported by the source. The branch fixes the mean and final context and the per-call increment, and price_to_flops.py reports all three. The final context first clears a context window at N=3 on Gemini 2.5 Pro, 6 on Grok 4, 8 on GPT-5 and 9 on Sonnet 4.5; the per-call increment first falls under 1,000 tokens, less than one screenshot or one tool result plus one model turn, at N=44 on Grok 4, 48 on Sonnet 4.5 and 61 on GPT-5 and Gemini 2.5 Pro. So the band is roughly 9 to 44 and 40 sits near its upper edge. Little turns on the choice: relative to N=40 the central is 1.10-1.11x at N=20 and 0.93-0.94x at N=80.",
+ "cache_hit_scenarios": [
+  0.0,
+  0.3,
+  0.5,
+  0.7,
+  0.85,
+  0.95
+ ],
+ "_cache_comment": "Cache-read share of input positions. Caching is on by default at the OpenAI and Google endpoints and applied to Anthropic models by OpenHands, so zero is a bound rather than a baseline. Cache reads are paid for and excluded from the parameter-multiplication term by COLUMNS.",
+ "attention_architectures": [
+  {
+   "label": "l64_d8192",
+   "layers": 64,
+   "d_model": 8192
+  },
+  {
+   "label": "l80_d10240",
+   "layers": 80,
+   "d_model": 10240
+  },
+  {
+   "label": "l96_d12288",
+   "layers": 96,
+   "d_model": 12288
+  }
+ ],
+ "attention_context_tokens": [
+  10000,
+  20000,
+  50000,
+  100000
+ ],
+ "_attention_comment": "Bracketing decoder shapes for the 4*L*d_model*N_context term the 2*active_parameters convention omits, following the recipe DECISIONS.md carries over from the dataset's RULER row. No architecture is disclosed for any of these four models."
+}

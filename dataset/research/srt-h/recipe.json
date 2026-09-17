@@ -1,0 +1,302 @@
+{
+  "study": "SRT-H autonomous cholecystectomy (Kim et al., Science Robotics 2025)",
+  "convention": {
+    "flops_per_multiply_add": 2,
+    "elementwise_ops_per_activation_element": 3,
+    "elementwise_note": "Two operations for a normalization affine transform and one for the nonlinearity, applied once per produced activation element of every counted linear/convolution layer. Attention adds one operation per score element for the softmax. This is an arithmetic convention, not a kernel measurement."
+  },
+  "high_level_policy": {
+    "source": "arXiv:2505.10251v2 'Model architecture' (HL), 'Inference' (HL), Supplementary 'High-level policy training configuration'",
+    "inference_period_s": 3.0,
+    "history_past_frames": 4,
+    "current_frame": 1,
+    "views_per_frame": 2,
+    "views_note": "Each endoscope frame is preprocessed into a 224x224 global view and a 224x224 resize of the fixed 432x480 center crop.",
+    "image_size": 224,
+    "encoder": {
+      "name": "Swin-Transformer tiny (Swin-T), ImageNet-pretrained",
+      "patch_size": 4,
+      "embed_dim": 96,
+      "depths": [
+        2,
+        2,
+        6,
+        2
+      ],
+      "num_heads": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "window_size": 7,
+      "mlp_ratio": 4,
+      "classifier_classes": 1000,
+      "classifier_executed": false,
+      "output_tokens": 49,
+      "output_width": 768
+    },
+    "decoder": {
+      "layers": 6,
+      "heads": 8,
+      "queries": 3,
+      "d_model": 384,
+      "ffn_dim": 1536,
+      "input_width": 768,
+      "head_classes": [
+        17,
+        2,
+        18
+      ],
+      "d_model_basis": "Not published. Pinned by inverting the reported 16M shared by the Transformer decoder and MLP heads: a 6-layer decoder with 8d^2 + 2*d*ffn parameters per layer gives 14.2M at d=384/ffn=1536 and 25.2M at d=512/ffn=2048."
+    }
+  },
+  "low_level_policy": {
+    "source": "arXiv:2505.10251v2 'Model architecture' (LL), 'Training' (LL), 'Inference' (LL); configuration lineage from arXiv:2407.12998v1 Table 3 and arXiv:2403.12910v1 Section IV-B",
+    "action_hz": 30,
+    "chunk_size": 60,
+    "execution_horizon_default_steps": 20,
+    "execution_horizon_grasp_steps": 30,
+    "images_per_call": 3,
+    "image_size": 224,
+    "action_dimension": 20,
+    "vision_backbone": {
+      "name": "EfficientNet-B3",
+      "width_coefficient": 1.2,
+      "depth_coefficient": 1.4,
+      "depth_divisor": 8,
+      "se_ratio": 0.25,
+      "reference_resolution": 300,
+      "classifier_classes": 1000,
+      "classifier_executed": false,
+      "shared_across_cameras": true,
+      "blocks": [
+        {
+          "kernel": 3,
+          "stride": 1,
+          "expand": 1,
+          "in": 32,
+          "out": 16,
+          "repeats": 1
+        },
+        {
+          "kernel": 3,
+          "stride": 2,
+          "expand": 6,
+          "in": 16,
+          "out": 24,
+          "repeats": 2
+        },
+        {
+          "kernel": 5,
+          "stride": 2,
+          "expand": 6,
+          "in": 24,
+          "out": 40,
+          "repeats": 2
+        },
+        {
+          "kernel": 3,
+          "stride": 2,
+          "expand": 6,
+          "in": 40,
+          "out": 80,
+          "repeats": 3
+        },
+        {
+          "kernel": 5,
+          "stride": 1,
+          "expand": 6,
+          "in": 80,
+          "out": 112,
+          "repeats": 3
+        },
+        {
+          "kernel": 5,
+          "stride": 2,
+          "expand": 6,
+          "in": 112,
+          "out": 192,
+          "repeats": 4
+        },
+        {
+          "kernel": 3,
+          "stride": 1,
+          "expand": 6,
+          "in": 192,
+          "out": 320,
+          "repeats": 1
+        }
+      ],
+      "stem_filters": 32,
+      "head_filters": 1280
+    },
+    "film": {
+      "conditioning_width": 768,
+      "sites": "block_outputs",
+      "note": "One scale/shift generator per MBConv block output, driven by the DistilBERT sentence embedding, following the RT-1 FiLM-EfficientNet construction adopted by YAY Robot."
+    },
+    "language_encoder": {
+      "name": "DistilBERT base uncased (frozen)",
+      "layers": 6,
+      "d_model": 768,
+      "ffn_dim": 3072,
+      "heads": 12,
+      "vocab_file": "distilbert-base-uncased-vocab.txt",
+      "vocab_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "special_tokens_per_sequence": 2,
+      "recomputed_every_low_level_call": true
+    },
+    "action_transformer": {
+      "name": "ACT (action chunking with transformers)",
+      "encoder_layers": 4,
+      "decoder_layers": 7,
+      "heads": 8,
+      "d_model": 512,
+      "ffn_dim": 3200,
+      "extra_encoder_tokens": 2,
+      "extra_encoder_tokens_note": "ACT prepends a style-variable token and a proprioception token to the flattened visual features. The training-only variational encoder is not executed at inference.",
+      "basis": "Not published in the SRT-H paper. Taken from the same first author's dVRK predecessor (arXiv:2407.12998v1 Table 3: 4 encoder layers, 7 decoder layers, feedforward 3200, hidden 512) and cross-checked against the reported 72M low-level total."
+    }
+  },
+  "instructions": {
+    "task_instructions_verbatim": [
+      "grabbing gallbladder",
+      "clip duct",
+      "clipping second clip left tube",
+      "clipping third clip right tube",
+      "going back from the first clip left tube",
+      "going to the cutting position on the right tube"
+    ],
+    "corrective_instructions_verbatim": [
+      "close left gripper",
+      "close right gripper",
+      "open left gripper",
+      "open right gripper",
+      "move left arm to the left",
+      "move left arm to the right",
+      "move left arm towards me",
+      "move left arm away from me",
+      "move left arm higher",
+      "move left arm lower",
+      "move right arm to the left",
+      "move right arm to the right",
+      "move right arm towards me",
+      "move right arm away from me",
+      "move right arm higher",
+      "move right arm lower",
+      "close both grippers",
+      "open both grippers"
+    ],
+    "central_rule": "mean_task_instruction_positions",
+    "note": "The paper does not publish the full list of 17 task instructions. These are the task instructions quoted verbatim in the main text and Fig. 2B, and the complete list of 18 corrective instructions from the Supplementary Methods."
+  },
+  "work_units": [
+    {
+      "point_id": "robo-cholecystectomy-srth",
+      "label": "Complete clipping-and-cutting phase, 17 tasks",
+      "ai_duration_s": 317.0,
+      "grasp_phase_fraction": 0.058823529411764705,
+      "grasp_phase_fraction_basis": "One of the 17 tasks is 'grabbing gallbladder', the only phase the paper gives a 30-step execution horizon. Its share of the recorded duration is not published; 1/17 is an equal-share allocation.",
+      "ai_attempts": 8,
+      "statistic": "mean",
+      "ai_duration_s_basis": "Table 1 mean over the eight recorded procedures. Not in the deposit, which covers Fig. 6 only."
+    },
+    {
+      "point_id": "robo-clip-artery-first-srth",
+      "label": "Apply the first clip to the cystic artery",
+      "grasp_phase_fraction": 0.0,
+      "ai_attempts": 1,
+      "statistic": "point_estimate",
+      "deposit_task_index": 10,
+      "deposit_task_label": "clipping first clip right tube",
+      "ai_record": "kinematics_psm1_psm2_10_clipping_first_clip_right_tube_recovery-SRT.csv",
+      "human_record": "kinematics_psm1_psm2_10_clipping_first_clip_right_tube_recovery-Jeff.csv",
+      "published_trajectory_length_mm": {
+        "ai": 31.387,
+        "human": 54.005
+      }
+    },
+    {
+      "point_id": "robo-clip-artery-third-srth",
+      "label": "Apply the third clip to the cystic artery",
+      "grasp_phase_fraction": 0.0,
+      "ai_attempts": 1,
+      "statistic": "point_estimate",
+      "deposit_task_index": 14,
+      "deposit_task_label": "clipping third clip right tube",
+      "ai_record": "kinematics_psm1_psm2_14_clipping_third_clip_right_tube_recovery-SRT.csv",
+      "human_record": "kinematics_psm1_psm2_14_clipping_third_clip_right_tube_recovery-Jeff.csv",
+      "published_trajectory_length_mm": {
+        "ai": 43.45,
+        "human": 63.072
+      }
+    },
+    {
+      "point_id": "robo-cut-artery-srth",
+      "label": "Go to the cutting position on the cystic artery",
+      "grasp_phase_fraction": 0.0,
+      "ai_attempts": 1,
+      "statistic": "point_estimate",
+      "deposit_task_index": 16,
+      "deposit_task_label": "go to the cutting position right tube",
+      "ai_record": "kinematics_psm1_psm2_16_go_to_the_cutting_position_right_tube_recovery-SRT.csv",
+      "human_record": "kinematics_psm1_psm2_16_go_to_the_cutting_position_right_tube_recovery-Jeff.csv",
+      "published_trajectory_length_mm": {
+        "ai": 44.384,
+        "human": 47.348
+      }
+    }
+  ],
+  "human_durations_s": {
+    "basis": "Derived from the deposit records named in work_units, not read off Fig. 6C. The figure's integers are those values rounded.",
+    "figure_6c_published_integers": {
+      "robo-clip-artery-first-srth": 12,
+      "robo-clip-artery-third-srth": 19,
+      "robo-cut-artery-srth": 13
+    }
+  },
+  "scenarios": {
+    "hl_encoder_passes": [
+      5,
+      6,
+      8,
+      10
+    ],
+    "hl_decoder_parameter_multiplication_upper_bound_parameters": 16000000,
+    "ll_action_transformer_low": {
+      "d_model": 384,
+      "ffn_dim": 1536,
+      "encoder_layers": 4,
+      "decoder_layers": 7
+    },
+    "grasp_phase_fraction_alternatives": [
+      0.0,
+      0.11764705882352941
+    ],
+    "language_cached_per_high_level_step": true,
+    "hl_frame_cache_encoder_passes": 6,
+    "hl_frame_cache_note": "Consecutive high-level calls are 3 s apart over five frames spaced 1 s apart, so two of the five are shared with the previous call. Caching those embeddings re-encodes three frames in two views, six passes, while the decoder still attends to all 490 memory tokens.",
+    "human_per_task_rate_transfer_tasks": 17
+  },
+  "deposit": {
+    "archive": "science_robotics_figure_files.zip",
+    "archive_sha256": "9570e9df75cc4d6b9ee2a6df4e00033e73ba39fc4a7bf71daf194beb9cf654ae",
+    "record": "https://zenodo.org/records/15637074 (10.5281/zenodo.15637074, CC-BY-4.0, issued 2025-06-11)",
+    "member_prefix": "science_robotics_figure_files/fig6_trajectoryplots/script_and_data/",
+    "sample_rate_hz": 30,
+    "duration_rule": "(samples - 1) / 30. The paper samples both video and kinematic streams at 30 FPS; elapsed time over n samples is (n-1)/30. Taking n/30 adds 0.033 s to every duration and changes no row by more than 0.2%.",
+    "position_columns": [
+      [
+        0,
+        3
+      ],
+      [
+        7,
+        10
+      ]
+    ],
+    "position_units": "metres; trajectory length is reported in millimetres",
+    "trajectory_length_tolerance_mm": 0.001
+  }
+}

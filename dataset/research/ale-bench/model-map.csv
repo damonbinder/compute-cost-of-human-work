@@ -1,0 +1,55 @@
+leaderboard_config,config_model_name,model_id,slug,registry,effort_note
+claude-4-sonnet,anthropic/claude-sonnet-4,claude-sonnet-4,sonnet4,codex,extended thinking on; 32000-token budget
+claude-4.1-opus,anthropic/claude-opus-4.1,claude-opus-4-1,opus41,codex,extended thinking on; 16000-token budget
+claude-4.5-haiku,anthropic/claude-haiku-4.5,claude-haiku-4-5,haiku45,claude-rows,extended thinking on; 16000-token budget
+claude-4.5-opus,anthropic/claude-opus-4.5,claude-opus-4-5,opus45,codex,extended thinking on; 16000-token budget
+claude-4.5-sonnet,anthropic/claude-sonnet-4.5,claude-sonnet-4-5,sonnet45,codex,extended thinking on; 32000-token budget
+claude-4.6-opus-no-thinking,claude-opus-4-6,claude-opus-4-6,opus46nothink,codex,thinking disabled
+claude-4.6-sonnet-medium,anthropic/claude-sonnet-4.6,claude-sonnet-4-6,sonnet46med,codex,reasoning on; medium verbosity
+claude-4.7-opus-no-thinking,claude-opus-4-7,claude-opus-4-7,opus47nothink,codex,thinking disabled
+claude-4.8-opus-high,claude-opus-4-8,claude-opus-4-8,opus48high,codex,adaptive thinking; high effort
+claude-4.8-opus-no-thinking,claude-opus-4-8,claude-opus-4-8,opus48nothink,codex,thinking disabled
+claude-opus-5-high,claude-opus-5,claude-opus-5,opus5high,codex,adaptive thinking; high effort
+deepseek-r1-0528,deepseek/deepseek-r1-0528,deepseek-r1-0528,dsr10528,claude-rows,reasoning on
+gemini-2.5-flash-thinking,gemini-2.5-flash,gemini-2.5-flash,gemini25flash,codex,thinking budget 24576
+gemini-2.5-pro-thinking,gemini-2.5-pro,gemini-2.5-pro,gemini25pro,codex,thinking budget 32768
+gemini-3-flash-preview-high,gemini-3-flash-preview,gemini-3-flash-preview,gemini3flash,codex,thinking level high
+gemini-3-pro-preview-high,gemini-3-pro-preview,gemini-3-pro-preview,gemini3pro-high,new,thinking level high
+gemini-3-pro-preview-low,gemini-3-pro-preview,gemini-3-pro-preview,gemini3pro-low,new,thinking level low
+gemini-3.1-flash-lite-preview-high,gemini-3.1-flash-lite-preview,gemini-3.1-flash-lite-preview,gemini31flashlite,claude-rows,thinking level high
+gemini-3.1-pro-preview-high,gemini-3.1-pro-preview,gemini-3.1-pro-preview,gemini31pro-high,codex,thinking level high
+gemini-3.1-pro-preview-low,gemini-3.1-pro-preview,gemini-3.1-pro-preview,gemini31pro-low,codex,thinking level low
+gemini-3.5-flash-high,gemini-3.5-flash,gemini-3.5-flash,gemini35flash,codex,thinking level high
+glm-4.7,z-ai/glm-4.7,glm-4.7,glm47,codex,reasoning on
+glm-5,z-ai/glm-5,glm-5,glm5,codex,reasoning on
+glm-5.2-high,z-ai/glm-5.2,glm-5.2,glm52high,codex,reasoning effort high
+glm-5.2-max,z-ai/glm-5.2,glm-5.2,glm52max,codex,reasoning effort xhigh
+gpt-4.1,gpt-4.1-2025-04-14,gpt-4.1-2025-04-14,gpt41,codex,no reasoning
+gpt-5,gpt-5-2025-08-07,gpt-5,gpt5minimal,codex,reasoning effort minimal
+gpt-5-mini-thinking,gpt-5-mini-2025-08-07,gpt-5-mini-2025-08-07,gpt5mini,codex,reasoning effort high
+gpt-5-nano-thinking,gpt-5-nano-2025-08-07,gpt-5-nano,gpt5nano,codex,reasoning effort high
+gpt-5-thinking,gpt-5-2025-08-07,gpt-5-high,gpt5high,codex,reasoning effort high
+gpt-5.1-thinking,gpt-5.1-2025-11-13,gpt-5.1-2025-11-13,gpt51high,codex,reasoning effort high
+gpt-5.2-high,gpt-5.2-2025-12-11,gpt-5.2-2025-12-11,gpt52high,codex,reasoning effort high
+gpt-5.2-medium,gpt-5.2-2025-12-11,gpt-5.2-2025-12-11,gpt52med,codex,reasoning effort medium
+gpt-5.4-high,gpt-5.4-2026-03-05,gpt-5.4-2026-03-05,gpt54high,codex,reasoning effort high
+gpt-5.4-medium,gpt-5.4-2026-03-05,gpt-5.4-2026-03-05,gpt54med,codex,reasoning effort medium
+gpt-5.4-none,gpt-5.4-2026-03-05,gpt-5.4-2026-03-05,gpt54none,codex,reasoning effort none
+gpt-5.5-medium,gpt-5.5-2026-04-23,gpt-5-5,gpt55med,claude-rows,reasoning effort medium
+gpt-5.5-none,gpt-5.5-2026-04-23,gpt-5-5,gpt55none,claude-rows,reasoning effort none
+gpt-5.5-xhigh,gpt-5.5-2026-04-23,gpt-5-5,gpt55xhigh,claude-rows,reasoning effort xhigh
+gpt-5.6-luna-max,gpt-5.6-luna,gpt-5-6-luna,luna56max,claude-rows,reasoning effort max
+gpt-5.6-sol-max,gpt-5.6-sol,gpt-5-6-sol,sol56max,codex,reasoning effort max
+gpt-5.6-terra-max,gpt-5.6-terra,gpt-5-6-terra,terra56max,claude-rows,reasoning effort max
+gpt-6-astra-max,gpt-6-astra,gpt-6-astra,astra6max,claude-rows,reasoning effort max
+gpt-oss-120b,openai/gpt-oss-120b,gpt-oss-120b,gptoss120b,codex,reasoning effort high
+gpt-oss-20b,openai/gpt-oss-20b,gpt-oss-20b,gptoss20b,codex,reasoning effort high
+grok-4.20-beta,x-ai/grok-4.20-beta,grok-4.20-beta-0309b-reasoning,grok420,codex,reasoning on
+kimi-k2.5,moonshotai/kimi-k2.5,kimi-k2.5,kimik25,codex,reasoning on
+kimi-k2.6,moonshotai/kimi-k2.6,kimi-k2.6,kimik26,codex,reasoning on
+kimi-k3-max,moonshotai/kimi-k3,kimi-k3,kimik3max,claude-rows,reasoning effort max
+llama-4-maverick,meta-llama/llama-4-maverick,llama-4-maverick,llama4maverick,codex,no reasoning
+o3-high,o3-2025-04-16,o3-2025-04-16,o3high,codex,reasoning effort high
+o4-mini-high,o4-mini-2025-04-16,o4-mini-2025-04-16,o4minihigh,codex,reasoning effort high
+qwen3.6-plus,qwen/qwen3.6-plus,qwen3.6-plus,qwen36plus,codex,reasoning on
+qwen3.7-max,qwen/qwen3.7-max,qwen3.7-max,qwen37max,codex,reasoning on

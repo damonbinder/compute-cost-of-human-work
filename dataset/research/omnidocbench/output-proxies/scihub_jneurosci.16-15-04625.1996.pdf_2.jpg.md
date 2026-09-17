@@ -1,0 +1,307 @@
+<table>
+<thead>
+<tr>
+ <th colspan="10">Table 1. Recording solutions<br></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td></td>
+ <td>Intracellular solutions</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td>Solution</td>
+ <td>$K^{+}$</td>
+ <td>$Na^{+}$</td>
+ <td>$Cs^{+}$</td>
+ <td>$Ca^{2+}$</td>
+ <td>$Mg^{2+}$</td>
+ <td>$Ch_{3}SO_{4}^{-}$</td>
+ <td>EGTA</td>
+ <td>EDTA</td>
+ <td>ATP</td>
+</tr>
+<tr>
+ <td>$K_{{in}^{1}}$</td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td>0.1</td>
+ <td>4</td>
+ <td></td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$K_{{in}^{2}}$</td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>4</td>
+ <td></td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$K_{{in}^{3}}$</td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>4</td>
+ <td>135</td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$K_{{in}^{4*}}$</td>
+ <td>130</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>6</td>
+ <td>125</td>
+ <td>0.5</td>
+ <td></td>
+ <td>4</td>
+</tr>
+<tr>
+ <td>$K_{patch}$</td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>0.5</td>
+ <td></td>
+</tr>
+<tr>
+ <td>$Cs_{{in}^{2}}$</td>
+ <td></td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td>4</td>
+ <td></td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$Cs_{{in}^{3}}$</td>
+ <td></td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td>4</td>
+ <td>135</td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$Cs_{{in}^{4*}}$</td>
+ <td></td>
+ <td></td>
+ <td>130</td>
+ <td></td>
+ <td>6</td>
+ <td>125</td>
+ <td>0.5</td>
+ <td></td>
+ <td>4</td>
+</tr>
+<tr>
+ <td>$Na_{in}$</td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td>4</td>
+ <td>140</td>
+ <td>0.5</td>
+ <td></td>
+ <td>2</td>
+</tr>
+<tr>
+ <td>$Na_{patch}$</td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>0.5</td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td colspan="9">Extracellular solutions</td>
+</tr>
+<tr>
+ <td>Solution</td>
+ <td>$K^{+}$</td>
+ <td>$Na^{+}$</td>
+ <td>$NMDG^{+}$</td>
+ <td>$TEA^{+}$</td>
+ <td>$Ba^{2+}$</td>
+ <td>$Ca_{2+}$</td>
+ <td>$Mg_{2+}$</td>
+ <td>$Ch_{3}SO_{4}^{-}$</td>
+ <td>Dextrose</td>
+</tr>
+<tr>
+ <td>Tyrode's</td>
+ <td>5</td>
+ <td>140</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td></td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$Ba_{{out}^{1}}$</td>
+ <td></td>
+ <td></td>
+ <td>110</td>
+ <td>10</td>
+ <td>20</td>
+ <td></td>
+ <td></td>
+ <td>150</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$K_{{out}^{1}}$</td>
+ <td>5</td>
+ <td></td>
+ <td>140</td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td></td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$K_{{out}^{2}}$</td>
+ <td>5</td>
+ <td></td>
+ <td>140</td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td>145</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$K_{{out}^{3}}$</td>
+ <td>20</td>
+ <td></td>
+ <td>125</td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td>145</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$K_{{out}^{4}}$</td>
+ <td>20</td>
+ <td>125</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td>145</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$Na_{{out}^{1}}$</td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>2</td>
+ <td>1</td>
+ <td>145</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$Na_{{out}^{2}}$</td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>0.05</td>
+ <td>0.1</td>
+ <td>145</td>
+ <td>10</td>
+</tr>
+<tr>
+ <td>$Na_{{out}^{3}}$</td>
+ <td></td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td>Nystl</td>
+ <td>145</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td>5</td>
+ <td></td>
+ <td>5</td>
+ <td>70</td>
+ <td></td>
+</tr>
+</tbody>
+</table>
+
+All solutions contained HEPES at (extracellular solutions)or (intracellular solutions)and were adjusted to pH 7.4. $ \mathrm{C l}^{-} $ was the major anion in all solutions except those containing methane sulfonate $ (\mathrm{C H_{3} S O_{4}^{-} }) $ where $ \mathrm{C l}^{-} $ was at a concentration of 14 or 9mM for $ \mathbf{K}_{\mathrm{i n}^{3}} / \mathbf{C} \mathrm{s}_{\mathrm{i n}^{3}} $ and $ \mathbf{K}_{\mathrm{i n}^{4}} / \mathbf{C} \mathrm{s}_{\mathrm{i n}^{4}} $ respectively,and 10 or for $ Ba_{{\mathrm{o u t}}^{1}} $ and $ \mathrm{K}_{\mathrm{o u t}^{2}} / \mathrm{K}_{\mathrm{o u t}^{3}} / \mathrm{K}_{\mathrm{o u t}^{4}} / \mathrm{N} \mathrm{a}_{\mathrm{o u t}^{1}} $ respectively. $ \mathrm{^* K_{i n^{4} / C s_{i n^{4}}}} $ also contained GTP and phosphocreatine. Concentrations given are in millimolars.
+
+epithelium labeled with an anti-OMP antibody.Labeling is seen of cells in the deeper layers of the epithelium,the location of sensory neurons, and not of cells in the most lumenal layer, the location of supporting cells. The spotty labeling is similar to what has been shown previously (Graziadei et al., 1980).Labeling is also present at the lumen of the epithelium and likely corresponds to the labeling of dendritic processes of VNO sensory neurons (Johnson et al.,1993).
+
+To obtain dissociated VNO neurons, the VNO and its bony encasing were removed from the nasal cavity and the epithelium was dissected free.At this anterior position in the nasal cavity,the OE is dorsal to theVNO and lies outside the bony encasing（Fig. 1), and thus no contamination of VNO neurons by olfactory neurons is expected.Formostexperiments,dissociated cellswere prepared by incubating the epithelium in divalent-free solution containing trypsin and collagenase and then triturating gently. Dissociation using either of the two enzymes alone, or no enzyme, did not produce as many healthy-looking cells. To determine whether the enzymatic treatment altered theproperties of the ion channels, some experiments were done without the use of enzymes; these experiments are explicitly stated as such.A population of cells were identified as sensory neurons by morphological criteria.Thesecellshad anovoidcell bodywith ameandiameter along the shorter axis of $ 11.1 \pm 1.4 $ (mean $ \pm $ SD; n=12) and a dendritic process that varied in length and could be >40 $ \mu\mathrm{m}. $ Some short dendrites were probably the result of retraction during the dissociation process. This identification was confirmed by labelingwithanti-OMPantibody (Fig.2A,B) and by the detection of action potentials in these cells (see next section). Two typical
+
+cells are shown in Figure 2, C and D,as visualized with differential interference contrast microscopy.Cells used for electrophysiology all had a similar appearance, with a clearly identifiable dendrite bearing microvilli. Mouse olfactory neurons were also dissociated for comparative experiments, and a typical cell is shown in Figure 2E at the same magnification.Note that VNO neurons are several times larger than olfactory neurons.
+
+# Action potentials in responseto current injections
+
+The electrical properties of VNO neurons were examined by whole-cell patch-clamp recording.The resting potential $ (V_{m}) $ of VNO neurons was $ -58.3 \pm 2.7 mV $ (mean $ \pm $ SEM unless otherwise noted;range - 43 to -70 mV ; n = 9; $ K_{i n^2} $ and Tyrode's solutions),which was significantly more depolarized than the resting potential of olfactory neurons measured under similar conditions $ -81.8 \pm 2.1 mV $ n=6). The input resistance of $ 3.3 $ $ \pm1. 0 \; \mathrm{G} \Omega $ (n=7） was similar to that for olfactory neurons $ 2.9 \pm $ $ 0. 8 \mathrm{~ G} \Omega $ n =8) and the capacitance $ 8.8 \pm 0.3 pF $ n=39) was several times larger than that of olfactory neurons $ (1.8 \pm 0.2 pF; $ n=7). .The responses of a VNO neuron to current injections of - 4to4pA are shown inFigure 3A. .The response to hyperpolarizing current injectionsgave a membrane time constant of $ 15.3 \pm $ $ 2.2 msec $ (n=7). .VNO neurons showed a remarkable sensitivity to small current injections, firing repetitive action potentials with injections of 1-2pA. This sensitivity was also observed in cellattached patch-clamp recordings, in which we were routinely able to elicit action potentials in response to depolarization of the patch
+
+VNO neurons fired repetitively with no sign of adaptation
+
+Liman and Corey · lonic Currents of Vomeronasal Neurons
+
+J.Neurosci.,August1,1996,16(15):4625-4637 4627

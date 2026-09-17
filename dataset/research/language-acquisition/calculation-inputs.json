@@ -1,0 +1,99 @@
+{
+  "models": {
+    "elcbert100m": {
+      "kind": "elc",
+      "config_file": "elc-upload-config.json",
+      "reported_parameters": 98000000,
+      "training_steps": 15625,
+      "training_tokens": 65536000000,
+      "sequence_lengths": [
+        128,
+        512
+      ],
+      "token_phase_weights": [
+        0.9,
+        0.1
+      ],
+      "source": "ELC-BERT Appendix A/Table 4; elc-train.py final 10% sequence-length transition."
+    },
+    "gptbert100m": {
+      "kind": "gpt",
+      "config_file": "gpt-corrected-release-config.json",
+      "reported_parameters": 119000000,
+      "training_steps": 15625,
+      "training_tokens": 31250000000,
+      "sequence_lengths": [
+        128,
+        256,
+        512
+      ],
+      "token_phase_weights": [
+        0.574,
+        0.272,
+        0.154
+      ],
+      "source": "GPT-BERT section 3/Appendix A: approximate reported average 2M tokens per update. Token phase weights approximate the changing batch schedule; retained nominal-batch sensitivity is 2.62144M/2M."
+    },
+    "gptbert10m": {
+      "kind": "gpt",
+      "config_file": "gpt-small-upload-config.json",
+      "reported_parameters": 30000000,
+      "training_steps": 7812,
+      "training_tokens": 15624000000,
+      "sequence_lengths": [
+        128,
+        256,
+        512
+      ],
+      "token_phase_weights": [
+        0.574,
+        0.272,
+        0.154
+      ],
+      "source": "GPT-BERT section 3/Appendix A, small-model run; same batch and phase assumptions as base."
+    }
+  },
+  "lstm": {
+    "hidden_size": 650,
+    "vocabulary": 50000,
+    "layers": 2,
+    "epochs": 40,
+    "training_tokens_per_epoch": 83000000,
+    "validation_tokens_per_epoch": 10000000,
+    "test_tokens": 10000000,
+    "batch": 128,
+    "bptt": 35,
+    "source": "Gulordava original paper/supplement; corpus/held-out sizes are source-rounded."
+  },
+  "assumptions": {
+    "masked_fraction_elc": 0.15,
+    "masked_fraction_gpt": 0.21,
+    "gpt_causal_fraction": 0.0625,
+    "relative_projection_microbatch": 128,
+    "blimp_pairs": 67000,
+    "blimp_sentence_positions": 20,
+    "gpt_validation_workers": 128,
+    "gpt_validation_batch": 128,
+    "gpt_validation_sequence": 128,
+    "gpt_validation_interval": 1000,
+    "elc_optimizer_ops": 20,
+    "gpt_optimizer_ops": 23,
+    "lstm_optimizer_ops": 5,
+    "gpt_nominal_batch_ratio": 1.31072
+  },
+  "assumption_basis": "The linked language-acquisition.md explains sparse heads, forward/backward approximation, BLiMP monitoring, periodic validation and scalar-operation allowances. No new workload estimate is introduced by this portable version.",
+  "source_files": {
+    "elc-upload-config.json": "24c8b389be264f684d7ba111aa7b8cf6e9a64a5fe4587bbb05ebe801dcb971ee",
+    "gpt-corrected-release-config.json": "c61b0c9ddd9e8eb44418b84d8b46d080dc84894b3902b69538186ccfca99ff93",
+    "gpt-small-upload-config.json": "b0f5e01b8aa4e1fc931486a707fa94b7ae91a001e5df8a05367c3c568d03806a",
+    "elc-train.py": "c1174e56686257346d45bbff25a529c393be5bde7354b5a132cf414a8964f88b",
+    "elc-model.py": "0af3b2489d61b3ea0d4c30f0db85869a9592b4d45e1336e3796d1db0b3a776da",
+    "gpt-model-extra.py": "1e5692891244f919f61bf299ef16f46714c71f7d4585b195c211b991e5e47039",
+    "gpt-train100.py": "9b6496bac4631187e717ae2d78f0d9d4985334ec99a2de66fa4e6e2110b1613a",
+    "gpt-train10.py": "5c30d54219599e6b0b0583e3df7501b4873d1e4642ac6eeb927ba49d6c893ed4",
+    "gpt-blimp-score.py": "c729cf2451cd98b1d4aed98773ec43cc6ead26bebcbd4009ecd7e2559208bb29",
+    "gulordava-supp.txt": "1aec71123b2da0a2a6593006bae7c08897a74098a4f686819ec55d9979f8b49f",
+    "gulordava-main.py": "78b7ff2b59743b151bc2e1cf704f87c53751bf1e301b69c3d39f1e067e2ddc1c",
+    "gulordava-model.py": "4d816c0e716a042ded3ad38e8ec58717a815303a386c723a6575777cb49b687c"
+  }
+}

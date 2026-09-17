@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "point_id": "reas-arcagi-v1-opus46-low",
+      "model_id": "claude-opus-4-6",
+      "endpoint": "claude-opus-4-6",
+      "source_directory": "v1/claude-opus-4-6-thinking-120K-low"
+    },
+    {
+      "point_id": "reas-arcagi-v1-opus48-max",
+      "model_id": "claude-opus-4-8",
+      "endpoint": "claude-opus-4-8",
+      "source_directory": "v1/claude-opus-4-8-max"
+    }
+  ]
+}

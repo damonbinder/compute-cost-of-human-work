@@ -1,0 +1,1418 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compute cost of human work</title>
+<style>
+  :root {
+    --page: #f4f3ef;
+    --card: #ffffff;
+    --line: #e3e0d8;
+    --rule: #3a3733;
+    --grid: #eceae4;
+    --ink: #1c1c1a;
+    --mid: #6f6c65;
+    --faint: #9a968d;
+    --mute: #d7d4cc;
+    --accent: #c2410c;
+    --serif: "Latin Modern Roman", "CMU Serif", "STIX Two Text", "Times New Roman", Times, serif;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  /* The gutter is always reserved, so a record appearing cannot change the
+     width the figure is sized from. */
+  html { height: 100%; overflow-y: scroll; scrollbar-gutter: stable; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 13.5px/1.5 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  #app {
+    display: grid; gap: 14px; min-height: 100%; align-content: start;
+    grid-template-rows: auto auto auto auto;
+    max-width: 1420px; margin: 0 auto; padding: 22px 26px 26px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: 0 1px 2px rgba(28,28,26,.04);
+  }
+
+  input[type=search] {
+    width: 100%; min-width: 0; padding: 4px 8px; font: inherit; font-size: 13px;
+    border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink);
+  }
+  input[type=search]:focus { outline: none; border-color: var(--faint); }
+  button.ghost {
+    font: inherit; font-size: 12.5px; color: var(--mid); cursor: pointer;
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px;
+  }
+  button.ghost:hover { color: var(--ink); border-color: var(--faint); }
+
+  /* Flex, not grid: a cell too wide for the room left wraps whole, so the two
+     toggles never end up stacked on top of each other. */
+  #bar {
+    display: flex; flex-wrap: wrap; align-items: start; position: relative;
+    gap: 11px 18px; padding: 10px 16px 12px;
+  }
+  #bar .field { flex: 1 1 168px; min-width: 168px; margin-bottom: 0; }
+  #bar .field.show { flex: 0 1 268px; min-width: 268px; }
+  #bar .field.find { flex: 1 1 230px; min-width: 210px; }
+  #bar .toggles { display: flex; flex-wrap: nowrap; gap: 16px; padding-top: 4px; }
+  #bar .find .row { display: flex; gap: 8px; }
+  #bar .find .row button { flex: none; }
+  #bar .count { color: var(--faint); font-size: 11.5px; margin-top: 3px; }
+  header { display: flex; align-items: center; gap: 11px; padding: 0 2px; }
+  h1 { margin: 0; font-size: 21px; font-weight: 620; letter-spacing: -0.015em; }
+  header #aboutopen { margin-left: auto; padding: 5px 13px; font-size: 13.5px; }
+  #side .count {
+    color: var(--faint); font-size: 12px; padding-bottom: 9px; margin-bottom: 11px;
+    border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums;
+  }
+
+  /* About, over everything. */
+  #about {
+    position: fixed; inset: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(28, 28, 26, .22); padding: 24px;
+  }
+  #about[hidden] { display: none; }
+  #about .sheet {
+    position: relative; max-width: 620px; max-height: 100%; overflow-y: auto;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(28, 28, 26, .16);
+    padding: 26px 30px 24px; color: var(--mid); font-size: 13.5px; line-height: 1.6;
+  }
+  #about h2 {
+    margin: 0 0 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line);
+    font-size: 17px; font-weight: 620; line-height: 1.2; color: var(--ink);
+  }
+  #about p { margin: 0 0 11px; }
+  #about p:last-child { margin-bottom: 0; }
+  #about .more { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); }
+  #about a { color: var(--mid); text-underline-offset: 2px; }
+  #about a:hover { color: var(--accent); }
+  #about .x {
+    position: absolute; top: 8px; right: 10px; width: 24px; height: 24px;
+    font: inherit; font-size: 19px; line-height: 1; color: var(--faint);
+    background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  #about .x:hover { color: var(--ink); }
+  #bar .toggles label {
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
+    font-size: 12.5px; color: var(--mid);
+    text-transform: none; letter-spacing: 0; margin-bottom: 0; white-space: nowrap;
+  }
+  #secondfield.off label, #secondfield.off select { opacity: .45; }
+  #legend { margin-top: 2px; }
+  #legend .show-all {
+    font: inherit; font-size: 11.5px; color: var(--mid); background: none;
+    border: 0; padding: 0; cursor: pointer; margin-top: 4px;
+  }
+  #legend .show-all:hover { color: var(--accent); }
+  #main {
+    display: grid; grid-template-columns: minmax(0,1fr) 212px;
+    gap: 14px; min-height: 0; position: relative;
+  }
+  /* Collapsed, the panel keeps a rail wide enough for its own arrow. */
+  #main.wide { grid-template-columns: minmax(0,1fr) 22px; }
+  #main.wide #side { padding: 0; }
+  #main.wide #side > * { display: none; }
+  #main.wide .collapse { transform: translateY(-50%) rotate(180deg); }
+  /* A handle on the seam between the two panels, which is where a reader
+     looks for one, styled like the zoom control so it reads as a button. */
+  .collapse {
+    position: absolute; top: 50%; right: 205px; z-index: 5;
+    transform: translateY(-50%);
+    width: 22px; height: 38px; padding: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font: inherit; font-size: 15px; line-height: 1; color: var(--mid);
+    background: var(--card); border: 1px solid var(--line); border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(28, 28, 26, .05);
+  }
+  .collapse:hover { color: var(--ink); border-color: var(--faint); }
+  #main.wide .collapse { right: 16px; }
+
+  /* The grab cursor only where a drag would actually move something. */
+  #chart.pannable { cursor: grab; }
+  #chart {
+    /* A grid item's automatic minimum is its content's min-content height, so
+       the SVG's intrinsic size kept the panel taller than its row and it
+       painted over the record below. */
+    min-height: 0; min-width: 0; overflow: hidden;
+    position: relative; padding: 14px 16px 10px;
+    background: var(--card); border-radius: var(--radius);
+    user-select: none; -webkit-user-select: none;
+  }
+  svg { width: 100%; height: 100%; min-height: 0; display: block; }
+  .frame { fill: none; stroke: var(--rule); stroke-width: 0.9; shape-rendering: crispEdges; }
+  .tickmark { stroke: var(--rule); stroke-width: 0.9; shape-rendering: crispEdges; }
+  .tickmark.minor { stroke-opacity: .55; }
+  .tick.minor { fill: var(--mid); font-size: 13px; }
+  .tick {
+    fill: var(--ink); font-family: var(--serif); font-size: 16px;
+  }
+  .axis-title { fill: var(--ink); font-family: var(--serif); font-size: 17.5px; }
+  .refline { stroke: var(--faint); stroke-width: 0.8; stroke-dasharray: 1.5 4; stroke-opacity: .75; }
+  .marktext { fill: var(--mid); font-family: var(--serif); font-size: 15px; }
+  .reftext { fill: var(--faint); font-family: var(--serif); font-size: 13px; }
+  circle.pt { pointer-events: none; }
+  circle.sel { stroke: #fff; stroke-width: 1.6; }
+
+  /* Bottom right: the top strip carries the duration labels and the right edge
+     the reference-line labels. */
+  /* Inside the frame's bottom-right corner, over the plot itself. The offsets
+     are set from the current padding in render(), since the right margin grows
+     when an axis carries duration or second-scale labels. */
+  #zoom { position: absolute; z-index: 4; display: flex; flex-direction: column; gap: 5px; }
+  #zoom button {
+    width: 27px; height: 26px; padding: 0; cursor: pointer;
+    font: inherit; font-size: 17px; line-height: 1; color: var(--mid);
+    background: var(--card); border: 1px solid var(--line); border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(28, 28, 26, .05);
+  }
+  #zoom button:hover { color: var(--ink); border-color: var(--faint); }
+  #zoom button:disabled { color: var(--mute); border-color: var(--line); cursor: default; }
+  /* Reset is only ever wanted while zoomed in, so it only exists then. It sits
+     above the pair, and the stack is anchored at its bottom, so appearing and
+     disappearing never moves + or minus out from under the pointer. */
+  #zoom #zoomreset { font-size: 14px; }
+  #zoom #zoomreset[hidden] { display: none; }
+
+  #tip {
+    position: absolute; pointer-events: none; opacity: 0; z-index: 5;
+    transform: translate(-50%, -100%);
+    background: var(--ink); color: #fff; font-size: 12px;
+    padding: 4px 8px; border-radius: 5px; max-width: 320px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    transition: opacity 80ms ease;
+  }
+
+  #side { padding: 13px 13px 12px; overflow-y: auto; min-height: 0; min-width: 0; }
+  .field { margin-bottom: 11px; }
+  .field label {
+    display: block; font-size: 10.5px; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 3px;
+  }
+  select {
+    width: 100%; font: inherit; font-size: 13px; padding: 4px 6px; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px; background: var(--card);
+  }
+  select:focus { outline: none; border-color: var(--faint); }
+
+  #filterby { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 11px; }
+  #filter:not(:empty) { margin-top: 2px; }
+  #filter .clear {
+    font: inherit; font-size: 11.5px; color: var(--mid); background: none;
+    border: 0; padding: 0; cursor: pointer; margin-top: 4px;
+  }
+  #filter .clear:hover { color: var(--accent); }
+  .li .box {
+    width: 10px; height: 10px; flex: none; border: 1px solid var(--faint);
+    border-radius: 2px; background: var(--mid); box-shadow: inset 0 0 0 1.5px #fff;
+  }
+  .li.off .box { background: transparent; }
+  .legend-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .legend-head span {
+    font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: var(--faint);
+    flex: 1 1 auto; min-width: 0; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  /* Always in the layout, so toggling a group cannot reflow the heading. */
+  .legend-head button {
+    flex: none; font: inherit; font-size: 11.5px; color: var(--mid);
+    background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap;
+  }
+  .legend-head button[hidden] { display: inline; visibility: hidden; }
+  .legend-head button:hover { color: var(--accent); }
+  .legend-head button.idle { color: var(--mute); cursor: default; }
+  .legend-head button.idle:hover { color: var(--mute); }
+  .li {
+    display: flex; align-items: center; gap: 7px; padding: 2.5px 0;
+    cursor: pointer; font-size: 12.5px; line-height: 1.3;
+  }
+  .li .sw { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .li .n { margin-left: auto; color: var(--faint); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .li.off { color: var(--mute); }
+  .li.off .sw { background: var(--mute) !important; }
+  .li.off .n { color: var(--mute); }
+  .marks { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; color: var(--faint); font-size: 11.5px; }
+  .marks label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .second { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 8px; }
+  .second .sh {
+    font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 4px;
+  }
+  line.bar { stroke-width: 1; stroke-opacity: .4; }
+
+  #detail { padding: 16px 20px 18px; color: var(--mid); }
+  #detail.blank { padding: 11px 18px; }
+  #detail .empty { color: var(--faint); }
+  #detail .task { color: var(--ink); font-weight: 620; font-size: 15px; }
+  #detail .sum { margin-top: 3px; font-size: 12.5px; }
+  #detail .sum b { color: var(--ink); font-weight: 620; font-variant-numeric: tabular-nums; }
+  #detail .lbl {
+    font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
+  }
+  #detail .desc { margin: 1px 0 0; font-size: 12.5px; max-width: 105ch; }
+  #detail .cols {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 22px;
+    margin-top: 13px; border-top: 1px solid var(--line); padding-top: 11px;
+  }
+  #detail .cols > div + div { border-left: 1px solid var(--line); padding-left: 22px; }
+  #detail .gh {
+    font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 6px;
+  }
+  #detail .r {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; font-size: 12.5px; padding: 1.5px 0;
+  }
+  #detail .r .k { color: var(--faint); white-space: nowrap; }
+  #detail .r .v { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+  #detail .prose {
+    margin-top: 13px; border-top: 1px solid var(--line); padding-top: 10px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 34px;
+  }
+  #detail .prose > div > div + div { margin-top: 1px; font-size: 12.5px; }
+  #detail .cites { margin-top: 11px; color: var(--faint); font-size: 12px; }
+  .sep { color: var(--line); padding: 0 7px; }
+  #detail a { color: var(--mid); text-underline-offset: 2px; }
+  #detail a:hover { color: var(--accent); }
+</style>
+
+<div id="app">
+  <header>
+    <h1>Compute cost of human work</h1>
+    <button class="ghost" id="aboutopen">About</button>
+  </header>
+
+  <div id="bar" class="card">
+    <div class="field"><label for="ax">X axis</label><select id="ax"></select></div>
+    <div class="field"><label for="ay">Y axis</label><select id="ay"></select></div>
+    <div class="field" id="secondfield">
+      <label for="au">Second compute scale</label><select id="au"></select>
+    </div>
+    <div class="field show">
+      <label>Show</label>
+      <div class="toggles">
+        <label title="The cheapest row of each task that reaches the human baseline">
+          <input type="checkbox" id="front" checked> cheapest per task</label>
+        <label title="Each row's own low-high bounds on compute and on human time, where its research note argues them">
+          <input type="checkbox" id="bars"> uncertainty</label>
+      </div>
+    </div>
+    <div class="field find">
+      <label for="q">Find</label>
+      <div class="row">
+        <input type="search" id="q" placeholder="Task, model, source" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <div id="about" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="About">
+      <button class="x" id="aboutclose" title="Close">&times;</button>
+      <h2>About</h2>
+      <p>Each point is a task, with an estimate of how many FLOPs an AI system
+      needs to do it and how long it takes a person to do it. Where available,
+      the dollar price for the AI to do it is also included. The estimates are
+      very crude, and the uncertainty toggle shows a plausible range for the
+      relevant values.</p>
+      <p>The cheapest-per-task toggle shows, for each task, only the model that
+      completed it at human level or better for the fewest FLOPs.</p>
+      <p>Further information is in the write-up and the full dataset on GitHub.</p>
+      <p class="more"><a href="#" id="postlink">The write-up</a>
+      &middot; <a href="https://github.com/damonbinder/ai-compute-vs-human-time"
+      target="_blank" rel="noopener">The dataset</a></p>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="chart">
+      <div id="tip"></div>
+      <div id="zoom">
+        <button id="zoomreset" title="Reset zoom">&#10227;</button>
+        <button id="zoomin" title="Zoom in">+</button>
+        <button id="zoomout" title="Zoom out">&minus;</button>
+      </div>
+    </div>
+    <button id="collapse" class="collapse" title="Hide panel" aria-pressed="false">&#8250;</button>
+    <div id="side" class="card">
+      <div class="count" id="count">__NPOINTS__ points</div>
+      <div class="field"><label for="ac">Colour</label><select id="ac"></select></div>
+      <div id="legend"></div>
+      <div class="field" id="filterby"><label for="af">Filter by</label><select id="af"></select></div>
+      <div id="filter"></div>
+    </div>
+  </div>
+
+  <div id="detail" class="card blank"><span class="empty">No point selected.</span></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+const ROWS = DATA.rows;
+const NS = "http://www.w3.org/2000/svg";
+const PAD = { l: 74, r: 20, t: 34, b: 60 };
+const DAY = 86400000;
+
+/* The eight-hue theme, then two more for the one dimension that needs ten.
+   Yellow, aqua and magenta are taken from darker steps than the theme's
+   defaults: at the theme's steps they fall under 3:1 against a white ground,
+   and a 3px mark at 55% opacity in them is invisible rather than merely low
+   contrast. Grey is reserved for a folded "Other" and is not a slot. */
+/* Ten hues, chosen by maximising the smallest OKLab separation between any
+   pair on a white ground. Slot 3 was a green that read as slot 6's green and
+   is now a cyan; red, brown and grey moved for the same reason. Worst pair is
+   12.4 where it was 7.1. Ten separable hues is past what the eight-hue theme
+   guarantees, and no ten clear the colour-blind floor at all. */
+const PALETTE = ["#2a78d6", "#eb6834", "#0b7285", "#a86f00",
+                 "#cf4d7f", "#008300", "#4a3aa7", "#b3261e",
+                 "#7a4e22", "#7b8794"];
+const OTHER = "#a8a49b";
+// One hue, light to dark, for a dimension whose values are ordered.
+const RAMP = ["#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6",
+              "#256abf", "#1c5cab", "#184f95", "#104281"];
+
+function colourOf(dim, k) {
+  if (dim.other === k) return OTHER;
+  if (!dim.ramp) return PALETTE[k];
+  const n = dim.values.length;
+  return RAMP[n < 2 ? 0 : Math.round(k * (RAMP.length - 1) / (n - 1))];
+}
+
+const COL = {};
+DATA.cols.forEach((c, i) => { COL[c] = i; });
+
+/* One cell, decoded. Columns repetitive enough to pay for it are stored as
+   indices into DATA.enc. */
+function raw(i, c) {
+  const v = ROWS[i][COL[c]];
+  return DATA.enc[c] ? DATA.enc[c][v] : v;
+}
+
+function num(i, c) {
+  const v = raw(i, c);
+  return v === "" || v === undefined ? null : Number(v);
+}
+
+/* A cell as a reader sees it: enum tokens become labels, blanks an em dash. */
+function shown(i, c) {
+  const v = raw(i, c);
+  if (!v) return "\u2014";
+  const e = DATA.enums[c];
+  return e ? v.split("; ").map(x => e[x] || x).join(", ") : v;
+}
+
+const MEASURES = [
+  { name: "Human active time", unit: "seconds", log: true, floor: 0, bounds: "time",
+    get: i => num(i, "human_time"),
+    marks: [[60, "1 min"], [3600, "1 hour"], [86400, "1 day"],
+            [2592000, "1 month"], [31536000, "1 year"]] },
+  { name: "AI compute", unit: "FLOP", log: true, bounds: "compute",
+    get: i => num(i, "compute_flops") },
+  { name: "Compute per human second", unit: "FLOP/s", log: true, bounds: "rate",
+    get: i => num(i, "compute_flops") / num(i, "human_time") },
+  { name: "AI price", unit: "USD", log: true, get: i => num(i, "ai_cost_usd") },
+  { name: "Model release", log: false, get: i => DATA.release[i], ticks: yearTicks,
+    // Four systems predate 2020 and would stretch the axis back to 1998.
+    start: (Date.UTC(2020, 0, 1) / DAY) },
+];
+
+/* Compute in other units. Each is one constant away from the FLOP figure, so
+   it is a second set of tick labels on the far side of the compute axis
+   rather than anything drawn in the plot. An H100-hour is 1e15 FLOP/s peak
+   BF16 for an hour. The FLOPs per dollar is the reader's to pick: 3x10^17 is
+   roughly what deployed systems return, and higher figures are aspirational. */
+const RATES = [
+  [1e16, "10\u00b9\u2076"], [1e17, "10\u00b9\u2077"], [1e18, "10\u00b9\u2078"],
+];
+
+/* The dollar scales sit in the same list as the other choices, so the rate is
+   on screen rather than behind a control that has to be opened. */
+function rateOf(k) { return RATES[k - 2]; }
+
+const DEFAULT_RATE = 1;   // 10^17 FLOP/$, until a dollar scale says otherwise
+
+function currentRate() { return state.u >= 2 ? rateOf(state.u) : RATES[DEFAULT_RATE]; }
+
+function dollarsPerFlop() { return currentRate()[0]; }
+
+function rateLabel() { return currentRate()[1]; }
+
+/* The second scale for a total and for a rate are different units of the same
+   two assumptions. A total of FLOPs reads as H100-hours and as dollars; FLOPs
+   per second of human time reads as H100s running and as dollars per hour of
+   that human's work. */
+function unitOf(k, rate) {
+  if (k === 1) {
+    return rate
+      ? { per: 1e15, axis: "H100s running (peak BF16)" }
+      : { per: 3.6e18, axis: "H100-hours (peak BF16)" };
+  }
+  if (k >= 2) {
+    const [r, label] = rateOf(k);
+    return rate
+      ? { per: r / 3600, money: true,
+          axis: "dollars per human hour at " + label + " FLOP/$" }
+      : { per: r, money: true, axis: "dollars at " + label + " FLOP/$" };
+  }
+  return {};
+}
+
+const COMPUTE_UNITS = ["FLOP", "FLOP/s"];
+
+/* Which axis the second scale relabels, and whether it is the rate. */
+function secondAxis(mx, my) {
+  for (const u of COMPUTE_UNITS) {
+    if (my.unit === u) return { onY: true, rate: u === "FLOP/s" };
+    if (mx.unit === u) return { onY: false, rate: u === "FLOP/s" };
+  }
+  return null;
+}
+
+const state = {
+  x: 0, y: 1, c: 0, f: -1, u: 0, q: "", sel: null, bars: false,
+  frontier: true,
+  // dimension index -> the value indices switched off in it. A filter set on
+  // one dimension stays set while you colour or filter by another.
+  hidden: new Map(), view: null, full: null,
+};
+
+function hiddenIn(d) {
+  if (!state.hidden.has(d)) state.hidden.set(d, new Set());
+  return state.hidden.get(d);
+}
+
+function filterCount() {
+  let n = 0;
+  for (const set of state.hidden.values()) n += set.size;
+  return n;
+}
+
+function clearFilters() {
+  state.hidden.clear();
+  render();
+}
+
+/* ---------- formatting ---------- */
+
+function trim(x) { return String(Number(x.toPrecision(3))); }
+
+function fmtTime(s) {
+  for (const [v, u] of [[31536000, "yr"], [2592000, "mo"], [86400, "d"], [3600, "h"], [60, "min"]]) {
+    if (s >= v) return trim(s / v) + " " + u;
+  }
+  return trim(s) + " s";
+}
+
+function fmtSci(v) {
+  const e = Math.floor(Math.log10(v));
+  return Number((v / Math.pow(10, e)).toPrecision(2)) + "e" + e;
+}
+
+function fmtMoney(v) { return "$" + (v >= 10 ? Math.round(v).toLocaleString() : Number(v.toPrecision(2))); }
+
+/* A price, where the cents are part of the figure. */
+function fmtPrice(v) {
+  if (v >= 1000) return "$" + Math.round(v).toLocaleString();
+  if (v >= 0.01) return "$" + v.toFixed(2);
+  return "$" + Number(v.toPrecision(2));
+}
+
+/* ---------- ticks ---------- */
+
+function decadeTicks(lo, hi) {
+  const step = Math.max(1, Math.ceil((hi - lo) / 9));
+  const out = [];
+  for (let e = Math.ceil(lo); e <= hi; e++) if (e % step === 0) out.push({ pos: e, exp: e });
+  return out;
+}
+
+/* Zoomed out, the decades are the whole story. Zoomed in, the decade labels are
+   too far apart to read a position off, so the intermediate steps appear: short
+   ticks over three decades or less, labelled over two. */
+function minorTicks(lo, hi) {
+  const span = hi - lo;
+  if (span > 3) return [];
+  const labelled = span <= 1.2 ? [2, 3, 4, 5, 6, 7, 8, 9] : span <= 2 ? [2, 3, 5] : [];
+  const out = [];
+  for (let e = Math.floor(lo); e <= Math.ceil(hi); e++) {
+    for (let k = 2; k <= 9; k++) {
+      const pos = e + Math.log10(k);
+      if (pos <= lo || pos >= hi) continue;
+      out.push({ pos, k, exp: e, label: labelled.includes(k) });
+    }
+  }
+  return out;
+}
+
+function yearTicks(lo, hi) {
+  const y0 = new Date(lo * DAY).getUTCFullYear(), y1 = new Date(hi * DAY).getUTCFullYear();
+  const step = Math.max(1, Math.ceil((y1 - y0) / 8));
+  const out = [];
+  for (let y = y0; y <= y1; y++) {
+    if (y % step) continue;
+    const pos = Date.UTC(y, 0, 1) / DAY;
+    if (pos >= lo && pos <= hi) out.push({ pos, label: String(y) });
+  }
+  return out;
+}
+
+/* ---------- dom helpers ---------- */
+
+function el(name, attrs, text) {
+  const n = document.createElementNS(NS, name);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+function power(x, y, anchor, e) {
+  const t = el("text", { class: "tick", x, y, "text-anchor": anchor }, "10");
+  t.appendChild(el("tspan", { "baseline-shift": "super", "font-size": "9" }, e));
+  return t;
+}
+
+function minorLabel(x, y, anchor, t) {
+  const n = el("text", { class: "tick minor", x, y, "text-anchor": anchor }, t.k + "\u00d710");
+  n.appendChild(el("tspan", { "baseline-shift": "super", "font-size": "9" }, t.exp));
+  return n;
+}
+
+/* ---------- scene ---------- */
+
+const box = document.getElementById("chart");
+const tip = document.getElementById("tip");
+const svg = el("svg", {});
+const gBack = el("g", {}), gRef = el("g", {}), gBars = el("g", {}),
+      gOn = el("g", {}), gFront = el("g", {});
+const clipRect = el("rect", {});
+const defs = el("defs", {});
+const clip = el("clipPath", { id: "plot" });
+clip.appendChild(clipRect);
+defs.appendChild(clip);
+for (const g of [gRef, gBars, gOn]) g.setAttribute("clip-path", "url(#plot)");
+svg.append(defs, gBack, gRef, gBars, gOn, gFront);
+box.appendChild(svg);
+
+const dots = ROWS.map(() => el("circle", { class: "pt", r: 3 }));
+
+/* Where every drawn point ended up, so the pointer can find the nearest one
+   rather than having to land on a 3px disc. */
+let plotted = [];
+let hover = null;
+let pointer = null;
+let frame = null;
+
+const REACH = 18;
+
+function nearest(x, y) {
+  let best = null, bestD = REACH * REACH;
+  for (const p of plotted) {
+    const dx = p.x - x, dy = p.y - y, d = dx * dx + dy * dy;
+    if (d < bestD) { bestD = d; best = p; }
+  }
+  return best;
+}
+
+function setHover(p) {
+  const was = hover;
+  hover = p;
+  if (was && was.i !== state.sel) size(dots[was.i], 2.9, 0.55);
+  if (p) {
+    if (p.i !== state.sel) size(dots[p.i], 5.2, 0.95);
+    dots[p.i].parentNode.appendChild(dots[p.i]);
+    tip.textContent = raw(p.i, "task");
+    tip.style.left = (p.x + 16) + "px";
+    tip.style.top = (p.y + 8) + "px";
+    tip.style.opacity = 1;
+    box.style.cursor = "pointer";
+  } else {
+    tip.style.opacity = 0;
+    box.style.cursor = "";
+  }
+}
+
+function size(c, r, opacity) {
+  c.setAttribute("r", r);
+  c.setAttribute("fill-opacity", opacity);
+}
+
+/* A row's own bounds on one axis, as factors either side of its value. Both
+   ranges are asserted per row: the compute bounds recomputed through the row's
+   recipe, the human bounds transcribed from the alternatives its research note
+   argues. A rate is compute over time, so its low end takes the low compute
+   against the high time and its high end the reverse. */
+function boundsOf(i, measure) {
+  const c = DATA.range[i], t = DATA.timeRange[i];
+  if (measure.bounds === "compute") return c;
+  if (measure.bounds === "time") return t;
+  if (measure.bounds === "rate") {
+    if (!c && !t) return null;
+    const [cl, ch] = c || [1, 1], [tl, th] = t || [1, 1];
+    return [cl / th, ch / tl];
+  }
+  return null;
+}
+
+/* ---------- filtering ---------- */
+
+let visible = [];
+let onAxes = [];
+const hays = [];
+
+function haystack(i) {
+  if (hays[i] === undefined) {
+    const m = DATA.models[raw(i, "model_id")] || [];
+    hays[i] = (raw(i, "task") + " " + raw(i, "task_description") + " " +
+               (m[0] || "") + " " + (m[1] || "") + " " + raw(i, "source_dataset"))
+              .toLowerCase();
+  }
+  return hays[i];
+}
+
+/* Everything except the given dimension's own filter, so a group's count says
+   what it would contribute if it were switched back on. */
+function matchesExcept(i, skip) {
+  if (!onAxes[i]) return false;
+  if (state.frontier && raw(i, "frontier") !== "yes") return false;
+  for (const [d, set] of state.hidden) {
+    if (d === skip) continue;
+    if (set.size && set.has(DATA.dims[d].idx[i])) return false;
+  }
+  return !state.q || haystack(i).includes(state.q);
+}
+
+function matches(i) {
+  if (state.frontier && raw(i, "frontier") !== "yes") return false;
+  for (const [d, set] of state.hidden) {
+    if (set.size && set.has(DATA.dims[d].idx[i])) return false;
+  }
+  if (state.q) {
+    if (!haystack(i).includes(state.q)) return false;
+  }
+  return true;
+}
+
+/* ---------- zoom bounds ---------- */
+
+function clamp(dom, full) {
+  const span = Math.min(dom[1] - dom[0], full[1] - full[0]);
+  let lo = dom[0], hi = lo + span;
+  if (dom[1] - dom[0] > span) { lo = full[0]; hi = full[1]; }
+  if (lo < full[0]) { hi += full[0] - lo; lo = full[0]; }
+  if (hi > full[1]) { lo -= hi - full[1]; hi = full[1]; }
+  dom[0] = Math.max(lo, full[0]);
+  dom[1] = Math.min(hi, full[1]);
+}
+
+function clampView() {
+  if (!state.view || !state.full) return;
+  clamp(state.view.x, state.full.x);
+  clamp(state.view.y, state.full.y);
+}
+
+/* ---------- layout ---------- */
+
+/* The figure is as wide as the column allows and no taller than a 1.5 ratio.
+   On a short window it is wider than that; on a tall one the height stops and
+   the leftover collects below the page, not as a gap around the chart. */
+const MAX_RATIO = 1.5;
+const app = document.getElementById("app");
+const main = document.getElementById("main");
+
+/* The figure is sized against the window and the empty record bar, never
+   against a selected record: clicking a point must not resize the chart. A
+   record taller than the room left over simply extends the page. */
+const BAR = 42;
+const MIN_PLOT = 240;
+
+function layout() {
+  const chrome = document.querySelector("header").offsetHeight +
+                 document.getElementById("bar").offsetHeight;
+  const avail = document.documentElement.clientHeight - 48 - chrome - BAR - 42;
+  const chartW = main.clientWidth - (main.classList.contains("wide") ? 36 : 226);
+  main.style.height = Math.max(MIN_PLOT, Math.min(avail, chartW / MAX_RATIO)) + "px";
+}
+
+/* ---------- render ---------- */
+
+function render() {
+  layout();
+  const mx = MEASURES[state.x], my = MEASURES[state.y];
+  // Named durations on the y axis are labelled outside the frame; give them room.
+  // The block is meaningless unless there is a compute axis to relabel.
+  const where = secondAxis(mx, my);
+  const field = document.getElementById("secondfield");
+  field.classList.toggle("off", !where);
+  document.getElementById("au").disabled = !where;
+  document.getElementById("au").options[1].text =
+    where && where.rate ? "H100s running" : "H100-hours";
+  const second = where && unitOf(state.u, where.rate).per;
+  PAD.r = my.marks ? 70 : (second && where.onY) ? 86 : 20;
+  PAD.t = (second && !where.onY) ? 56 : 34;
+  const w = box.clientWidth - 32, h = box.clientHeight - 24;
+  if (w <= 0 || h <= 0) return;
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+  const val = (m, i) => {
+    const v = m.get(i);
+    if (v === null || v === undefined || !isFinite(v) || (m.log && v <= 0)) return null;
+    return m.log ? Math.log10(v) : v;
+  };
+  const px = ROWS.map((r, i) => val(mx, i)), py = ROWS.map((r, i) => val(my, i));
+
+  if (!state.view) {
+    const span = (vals, log) => {
+      const f = vals.filter(v => v !== null);
+      const lo = Math.min(...f), hi = Math.max(...f);
+      const pad = (hi - lo) * 0.02 + (log ? 0.15 : 30);
+      return log ? [Math.floor(lo - pad), Math.ceil(hi + pad)] : [lo - pad, hi + pad];
+    };
+    const bound = (dom, m) => {
+      if (m.floor !== undefined) dom[0] = Math.max(dom[0], m.floor);
+      return dom;
+    };
+    state.full = { x: bound(span(px, mx.log), mx), y: bound(span(py, my.log), my) };
+    // The opening view may be narrower than the data; zooming out still reaches
+    // everything, since state.full is what the zoom clamps against.
+    const open = (dom, m) =>
+      [m.start !== undefined ? Math.max(dom[0], m.start) : dom[0], dom[1]];
+    state.view = { x: open(state.full.x, mx), y: open(state.full.y, my) };
+  }
+  const vx = state.view.x, vy = state.view.y;
+  const x0 = PAD.l, x1 = w - PAD.r, y0 = PAD.t, y1 = h - PAD.b;
+  const X = u => x0 + (u - vx[0]) / (vx[1] - vx[0]) * (x1 - x0);
+  const Y = u => y1 - (u - vy[0]) / (vy[1] - vy[0]) * (y1 - y0);
+
+  clipRect.setAttribute("x", x0); clipRect.setAttribute("y", y0);
+  clipRect.setAttribute("width", x1 - x0); clipRect.setAttribute("height", y1 - y0);
+  gBack.replaceChildren();
+  gFront.replaceChildren();
+  const xt = mx.ticks ? mx.ticks(vx[0], vx[1]) : decadeTicks(vx[0], vx[1]);
+  const yt = my.ticks ? my.ticks(vy[0], vy[1]) : decadeTicks(vy[0], vy[1]);
+
+  for (const t of yt) {
+    const y = Y(t.pos);
+    gBack.appendChild(el("line", { class: "tickmark", x1: x0, x2: x0 + 5, y1: y, y2: y }));
+    gBack.appendChild(el("line", { class: "tickmark", x1: x1, x2: x1 - 5, y1: y, y2: y }));
+    gBack.appendChild(t.exp !== undefined
+      ? power(x0 - 11, y + 5.5, "end", t.exp)
+      : el("text", { class: "tick", x: x0 - 11, y: y + 5.5, "text-anchor": "end" }, t.label));
+  }
+  for (const t of xt) {
+    const x = X(t.pos);
+    gBack.appendChild(el("line", { class: "tickmark", x1: x, x2: x, y1: y1, y2: y1 - 5 }));
+    gBack.appendChild(el("line", { class: "tickmark", x1: x, x2: x, y1: y0, y2: y0 + 5 }));
+    gBack.appendChild(t.exp !== undefined
+      ? power(x, y1 + 22, "middle", t.exp)
+      : el("text", { class: "tick", x, y: y1 + 22, "text-anchor": "middle" }, t.label));
+  }
+  if (my.log) for (const t of minorTicks(vy[0], vy[1])) {
+    const y = Y(t.pos);
+    gBack.appendChild(el("line", { class: "tickmark minor", x1: x0, x2: x0 + 3, y1: y, y2: y }));
+    gBack.appendChild(el("line", { class: "tickmark minor", x1: x1, x2: x1 - 3, y1: y, y2: y }));
+    if (t.label) gBack.appendChild(minorLabel(x0 - 11, y + 4.5, "end", t));
+  }
+  if (mx.log) for (const t of minorTicks(vx[0], vx[1])) {
+    const x = X(t.pos);
+    gBack.appendChild(el("line", { class: "tickmark minor", x1: x, x2: x, y1: y1, y2: y1 - 3 }));
+    gBack.appendChild(el("line", { class: "tickmark minor", x1: x, x2: x, y1: y0, y2: y0 + 3 }));
+    if (t.label) gBack.appendChild(minorLabel(x, y1 + 20, "middle", t));
+  }
+
+  drawUnitAxis(mx, my, X, Y, x0, x1, y0, y1);
+
+  gBack.appendChild(el("rect", { class: "frame", x: x0, y: y0, width: x1 - x0, height: y1 - y0 }));
+
+  const title = m => m.name + (m.unit ? " (" + m.unit + ")" : "");
+  gFront.appendChild(el("text", {
+    class: "axis-title", x: (x0 + x1) / 2, y: h - 8, "text-anchor": "middle",
+  }, title(mx)));
+  gFront.appendChild(el("text", {
+    class: "axis-title", "text-anchor": "middle",
+    transform: `translate(17,${(y0 + y1) / 2}) rotate(-90)`,
+  }, title(my)));
+
+  drawMarks(mx, my, X, Y, x0, x1, y0, y1);
+  drawReference(X, Y, x1, y0, y1);
+
+  gOn.replaceChildren();
+  gBars.replaceChildren();
+  plotted = [];
+  hover = null;
+  const dim = DATA.dims[state.c];
+  ROWS.forEach((r, i) => {
+    const c = dots[i];
+    if (px[i] === null || py[i] === null) return;
+    const cx = X(px[i]), cy = Y(py[i]);
+    if (cx < x0 - 4 || cx > x1 + 4 || cy < y0 - 4 || cy > y1 + 4) return;
+    if (!matches(i)) return;
+    const sel = state.sel === i;
+    c.setAttribute("cx", cx);
+    c.setAttribute("cy", cy);
+    c.setAttribute("r", sel ? 5 : 2.9);
+    const colour = sel ? "var(--accent)" : colourOf(dim, dim.idx[i]);
+    c.setAttribute("class", sel ? "pt sel" : "pt");
+    c.setAttribute("fill", colour);
+    c.setAttribute("fill-opacity", sel ? 1 : 0.55);
+    gOn.appendChild(c);
+    plotted.push({ i, x: cx, y: cy });
+
+    /* Each axis takes a bar where the row bounds that axis's value, so a row
+       bounded on both reads as a cross. */
+    if (state.bars) {
+      const bx = boundsOf(i, mx), by = boundsOf(i, my);
+      if (bx) {
+        gBars.appendChild(el("line", {
+          class: "bar", stroke: colour, y1: cy, y2: cy,
+          x1: X(px[i] + Math.log10(bx[0])), x2: X(px[i] + Math.log10(bx[1])),
+        }));
+      }
+      if (by) {
+        gBars.appendChild(el("line", {
+          class: "bar", stroke: colour, x1: cx, x2: cx,
+          y1: Y(py[i] + Math.log10(by[0])), y2: Y(py[i] + Math.log10(by[1])),
+        }));
+      }
+    }
+  });
+
+  frame = { x0, x1, y0, y1 };
+  const zoomBox = document.getElementById("zoom");
+  zoomBox.style.right = (16 + PAD.r + 16) + "px";
+  zoomBox.style.bottom = (10 + PAD.b + 16) + "px";
+  const full = atFullExtent("x") && atFullExtent("y");
+  document.getElementById("zoomout").disabled = full;
+  document.getElementById("zoomreset").hidden = full;
+  box.classList.toggle("pannable", !full);
+  onAxes = ROWS.map((r, i) => px[i] !== null && py[i] !== null);
+  if (pointer) setHover(nearest(pointer.x, pointer.y));
+
+  visible = ROWS.map((r, i) => i).filter(i => px[i] !== null && py[i] !== null && matches(i));
+  document.getElementById("count").textContent =
+    visible.length === ROWS.length
+      ? ROWS.length.toLocaleString() + " points"
+      : visible.length.toLocaleString() + " of " + ROWS.length.toLocaleString() + " points";
+
+  renderLegend();
+  renderFilter();
+}
+
+/* The same compute, read in another unit, on the far side of its own axis:
+   right of the frame when compute is on y, above it when compute is on x. */
+function drawUnitAxis(mx, my, X, Y, x0, x1, y0, y1) {
+  const where = secondAxis(mx, my);
+  if (!where) return;
+  const unit = unitOf(state.u, where.rate);
+  if (!unit.per) return;
+  const onY = where.onY;
+  const shift = Math.log10(unit.per);
+  const dom = onY ? state.view.y : state.view.x;
+
+  // A tick every decade, labelled every second one, in the same powers of ten
+  // the other axes use — dollars written out read as a different kind of
+  // quantity from the exponents beside them.
+  for (let e = Math.ceil(dom[0] - shift); e <= dom[1] - shift; e++) {
+    const pos = e + shift;
+    if (pos < dom[0] || pos > dom[1]) continue;
+    const labelled = e % 2 === 0;
+    if (onY) {
+      const y = Y(pos);
+      gBack.appendChild(el("line", { class: "tickmark", x1: x1, x2: x1 + (labelled ? 5 : 3), y1: y, y2: y }));
+      if (labelled) gBack.appendChild(power(x1 + 10, y + 5.5, "start", e));
+    } else {
+      const x = X(pos);
+      gBack.appendChild(el("line", { class: "tickmark", x1: x, x2: x, y1: y0, y2: y0 - (labelled ? 5 : 3) }));
+      if (labelled) gBack.appendChild(power(x, y0 - 11, "middle", e));
+    }
+  }
+
+  const title = el("text", { class: "axis-title", "text-anchor": "middle" }, unit.axis);
+  if (onY) {
+    title.setAttribute("transform", `translate(${x1 + 64},${(y0 + y1) / 2}) rotate(-90)`);
+  } else {
+    title.setAttribute("x", (x0 + x1) / 2);
+    title.setAttribute("y", y0 - 28);
+  }
+  gBack.appendChild(title);
+}
+
+/* Named durations, marked on whichever axis carries human time. */
+function drawMarks(mx, my, X, Y, x0, x1, y0, y1) {
+  const put = (m, axis) => {
+    if (!m.marks) return;
+    for (const [v, label] of m.marks) {
+      const p = Math.log10(v);
+      if (axis === "x") {
+        if (p <= state.view.x[0] || p >= state.view.x[1]) continue;
+        const x = X(p);
+        gFront.appendChild(el("line", { class: "tickmark", x1: x, x2: x, y1: y0, y2: y0 - 4 }));
+        gFront.appendChild(el("text", { class: "marktext", x, y: y0 - 10, "text-anchor": "middle" }, label));
+      } else {
+        if (p <= state.view.y[0] || p >= state.view.y[1]) continue;
+        const y = Y(p);
+        gFront.appendChild(el("line", { class: "tickmark", x1: x1, x2: x1 + 4, y1: y, y2: y }));
+        gFront.appendChild(el("text", { class: "marktext", x: x1 + 8, y: y + 4, "text-anchor": "start" }, label));
+      }
+    }
+  };
+  put(mx, "x");
+  put(my, "y");
+}
+
+/* Reference families. Both axes are logarithmic, so a constant ratio of the two
+   measures, or a constant product, is a straight line: log y = s * log x + k,
+   with s = +1 for a ratio and -1 for a product. A family is written for the
+   pair in one order and flipped for the other, since log y = s log x + k means
+   log x = s log y - s k. Keyed by the measure indices, lower first. */
+function power10(exp, tail) {
+  return { base: "10", exp: exp, tail: tail };
+}
+
+const FAMILIES = {
+  // human time x AI compute: FLOPs spent per second of human time
+  "0,1": [6, 9, 12, 15, 18, 21].map(e => ({ s: 1, k: e, label: power10(e, " FLOP/s") })),
+  // human time x compute per human second: the two multiply to total compute
+  "0,2": [9, 12, 15, 18, 21, 24].map(e => ({ s: -1, k: e, label: power10(e, " FLOP") })),
+  // human time x AI price: what an hour of the human's work was charged at
+  "0,3": [0.01, 0.1, 1, 10, 100, 1000].map(r =>
+    ({ s: 1, k: Math.log10(r / 3600), label: { tail: "$" + r + "/hr" } })),
+  // AI compute x compute per human second: they divide to human time
+  "1,2": [[1, "1 s"], [60, "1 min"], [3600, "1 hour"], [86400, "1 day"],
+          [31536000, "1 year"]].map(([t, l]) =>
+    ({ s: 1, k: -Math.log10(t), label: { tail: l } })),
+  // AI compute x AI price: dollars charged per FLOP delivered
+  "1,3": [12, 15, 18, 21].map(e => ({ s: 1, k: -e, label: power10(e, " FLOP/$") })),
+};
+
+function family() {
+  const a = Math.min(state.x, state.y), b = Math.max(state.x, state.y);
+  const lines = FAMILIES[a + "," + b];
+  if (!lines) return null;
+  // Written for (a on x, b on y); flip when the axes are the other way round.
+  return state.x === a ? lines
+    : lines.map(l => ({ s: l.s, k: -l.s * l.k, label: l.label }));
+}
+
+function drawReference(X, Y, x1, y0, y1) {
+  gRef.replaceChildren();
+  const lines = family();
+  if (!lines) return;
+  const vx = state.view.x, vy = state.view.y;
+  for (const l of lines) {
+    const a = l.s * vx[0] + l.k, b = l.s * vx[1] + l.k;
+    if (Math.max(a, b) < vy[0] || Math.min(a, b) > vy[1]) continue;
+    gRef.appendChild(el("line", {
+      class: "refline", x1: X(vx[0]), y1: Y(a), x2: X(vx[1]), y2: Y(b),
+    }));
+    // Label where the line leaves the frame: at the right edge if it gets
+    // there, otherwise just inside the top, where it crosses.
+    const yl = Y(b);
+    let at = null;
+    if (yl > y0 + 12 && yl < y1 - 4) {
+      at = { x: x1 - 8, y: yl - 5, anchor: "end" };
+    } else {
+      const u = (vy[1] - l.k) / l.s;
+      if (u > vx[0] && u < vx[1]) at = { x: X(u), y: y0 + 13, anchor: "middle" };
+    }
+    if (at) {
+      const t = el("text", { class: "reftext", x: at.x, y: at.y, "text-anchor": at.anchor },
+                   l.label.base || "");
+      if (l.label.exp !== undefined) {
+        t.appendChild(el("tspan", { "baseline-shift": "super", "font-size": "9.5" }, l.label.exp));
+      }
+      t.appendChild(el("tspan", {}, l.label.tail));
+      gRef.appendChild(t);
+    }
+  }
+}
+
+/* ---------- legend ---------- */
+
+/* The legend and the filter list are the same control: a row per value of a
+   dimension, clicking one switches it off. The legend does it for whatever the
+   points are coloured by; the filter list for any other dimension. */
+function groupRows(d, wrap, swatch) {
+  const dim = DATA.dims[d];
+  // Counted over the points the current axes can plot and the other filters
+  // keep. A group switched off here still shows what it would bring back.
+  const counts = dim.values.map(() => 0);
+  dim.idx.forEach((k, i) => { if (matchesExcept(i, d)) counts[k]++; });
+  const off = hiddenIn(d);
+  dim.values.forEach((v, k) => {
+    const row = document.createElement("div");
+    row.className = "li" + (off.has(k) ? " off" : "");
+    row.innerHTML = (swatch
+        ? `<span class="sw" style="background:${colourOf(dim, k)}"></span>`
+        : '<span class="box"></span>') +
+      `<span>${esc(v)}</span><span class="n">${counts[k]}</span>`;
+    row.onclick = () => {
+      off.has(k) ? off.delete(k) : off.add(k);
+      render();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+function renderLegend() {
+  const wrap = document.getElementById("legend");
+  wrap.replaceChildren();
+  groupRows(state.c, wrap, true);
+  const off = hiddenIn(state.c);
+  if (off.size) {
+    const b = document.createElement("button");
+    b.className = "show-all";
+    b.textContent = "show all";
+    b.onclick = () => { off.clear(); render(); };
+    wrap.appendChild(b);
+  }
+}
+
+function renderFilter() {
+  const wrap = document.getElementById("filter");
+  wrap.replaceChildren();
+  if (state.f >= 0) groupRows(state.f, wrap, state.f === state.c);
+  // Only when there is something to clear, and wherever it was set: a filter on
+  // a dimension no longer on screen is still reachable from here.
+  if (filterCount()) {
+    const b = document.createElement("button");
+    b.className = "clear";
+    b.textContent = "clear filters";
+    b.onclick = clearFilters;
+    wrap.appendChild(b);
+  }
+}
+
+/* ---------- detail ---------- */
+
+/* What the record shows. Two summary lines carry the magnitudes, a third the
+   money where there is any; the four columns carry provenance — how each
+   number was made and how far to trust it. Compute and human time get parallel
+   treatment, which is also what makes the asymmetry visible: compute has an
+   asserted range and human time has none. */
+
+const LINK_NAME = /([^\/]+\.(?:md|csv|pdf|jsonl|json|py|html?|txt))(?:#.*)?$/;
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+/* One short name per citation, rather than the whole URL: the file it points
+   at where it names one, otherwise the host. */
+function citation(token) {
+  const name = token.match(LINK_NAME);
+  if (token.startsWith("http")) {
+    const href = token;
+    let label = name ? name[1] : "";
+    if (!label) {
+      try {
+        const u = new URL(token);
+        const last = u.pathname.split("/").filter(Boolean).pop();
+        label = u.hostname.replace(/^www\./, "").split(".").slice(0, 2).join(".");
+        if (last && last.length <= 24) label += "/" + last;
+      } catch (e) { label = token; }
+    }
+    return `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+  }
+  if (token.startsWith("research/")) {
+    return `<a href="${DATA.blob}${esc(token)}" target="_blank" rel="noopener">` +
+           `${esc(name ? name[1] : token)}</a>`;
+  }
+  return null;
+}
+
+function row(k, v) {
+  if (!v || v === "\u2014") return "";
+  return `<div class="r"><span class="k">${k}</span><span class="v">${v}</span></div>`;
+}
+
+function column(title, rows) {
+  return rows ? `<div><div class="gh">${title}</div>${rows}</div>` : "";
+}
+
+function block(label, text) {
+  return text ? `<div><div class="lbl">${esc(label)}</div><div>${esc(text)}</div></div>` : "";
+}
+
+/* A few descriptions still open with the unit of work as a colon clause, which
+   reads better as its own field. Only clauses that actually name a unit are
+   taken: plenty of descriptions use a colon for ordinary prose, and pulling
+   "Implement match_parens" out as a unit of work would be a lie. */
+function splitUnit(text) {
+  const m = text.match(/^((?:One|A single|Each)\b[^.:]{0,80}):\s+(.+)$/s);
+  if (!m) return [null, text];
+  return [m[1], m[2].charAt(0).toUpperCase() + m[2].slice(1)];
+}
+
+function deselect() {
+  if (state.sel === null) return;
+  state.sel = null;
+  const panel = document.getElementById("detail");
+  panel.classList.add("blank");
+  panel.innerHTML = '<span class="empty">No point selected.</span>';
+  render();
+}
+
+function select(i) {
+  state.sel = i;
+  const model = DATA.models[raw(i, "model_id")] || [];
+  const flops = num(i, "compute_flops"), secs = num(i, "human_time");
+  const rate = dollarsPerFlop(), perHour = 3600 / secs;
+  const aiPrice = num(i, "ai_cost_usd"), humanPrice = num(i, "human_cost_usd");
+  const band = DATA.range[i], timeBand = DATA.timeRange[i];
+  const context = num(i, "attention_context"), ratio = num(i, "attention_ratio");
+  const [unit, desc] = splitUnit(raw(i, "task_description"));
+
+  let money = "";
+  if (aiPrice) {
+    money += `Priced at <b>${fmtPrice(aiPrice)}</b>` +
+             ` (<b>${fmtPrice(aiPrice * perHour)}</b> per human hour)`;
+  }
+  if (humanPrice) {
+    money += (money ? '<span class="sep">\u00b7</span>' : "") +
+             `the human was paid <b>${fmtPrice(humanPrice)}</b>` +
+             ` (<b>${fmtPrice(humanPrice * perHour)}</b> per human hour)`;
+  }
+
+  // Links first, then the bare identifiers a reader would only want for an audit.
+  const links = [], ids = [];
+  const seen = new Set();
+  for (const col of ["human_time_source", "compute_source", "source_record"]) {
+    for (const token of raw(i, col).split("; ")) {
+      const t = token.trim();
+      if (!t || seen.has(t)) continue;
+      seen.add(t);
+      const link = citation(t);
+      if (link) links.push(link);
+      else if (t.length <= 60) ids.push(esc(t));
+    }
+  }
+  const cites = links.concat(ids);
+
+  const panel = document.getElementById("detail");
+  panel.classList.remove("blank");
+  panel.innerHTML =
+    `<div class="task">${esc(raw(i, "task"))}</div>` +
+    `<div class="sum"><b>${fmtSci(flops)} FLOP</b> for <b>${fmtTime(secs)}</b>` +
+      ` of human time<span class="sep">\u00b7</span>` +
+      `<b>${Number((flops / 3.6e18).toPrecision(2))}</b> H100-hours</div>` +
+    `<div class="sum"><b>${fmtSci(flops / secs)}</b> FLOP per human second` +
+      `<span class="sep">\u00b7</span><b>${fmtMoney(flops / rate * perHour)}</b>` +
+      ` of compute per human hour at ${rateLabel()} FLOP/$</div>` +
+    (money ? `<div class="sum">${money}</div>` : "") +
+    `<div class="lbl" style="margin-top:11px">The task</div>` +
+    `<div class="desc">${esc(desc)}</div>` +
+    `<div class="cols">` +
+      column("The task",
+        row("Category", shown(i, "task_category")) +
+        row("Unit of work", unit ? esc(unit) : "") +
+        row("Performance", shown(i, "performance_vs_human")) +
+        row("Issues", shown(i, "comparison_issues")) +
+        row("Frontier", raw(i, "frontier") === "yes"
+          ? "Cheapest row for this task" : "")) +
+      column("The model",
+        row("Model", esc(model[0] || raw(i, "model_id"))) +
+        row("Developer", esc(model[1] || "")) +
+        row("Released", esc(model[2] || "")) +
+        row("Scope", shown(i, "compute_scope"))) +
+      column("The compute",
+        row("Range", band ? fmtSci(flops * band[0]) + "\u2013" + fmtSci(flops * band[1]) : "") +
+        row("Method", shown(i, "compute_method")) +
+        row("Evidence", shown(i, "compute_evidence")) +
+        row("Attention", ratio ? Number(ratio.toPrecision(2)) + "\u00d7 weights" : "") +
+        row("Context", context ? Math.round(context).toLocaleString() + " tokens" : "") +
+        row("Price basis", aiPrice ? shown(i, "ai_cost_basis") : "")) +
+      column("The human",
+        row("Skill", shown(i, "human_skill")) +
+        row("Covers", shown(i, "human_time_scope")) +
+        row("Evidence", shown(i, "human_time_evidence")) +
+        row("Range", timeBand
+          ? fmtTime(secs * timeBand[0]) + " to " + fmtTime(secs * timeBand[1]) : "") +
+        row("Statistic", shown(i, "human_time_statistic")) +
+        row("Attempts", shown(i, "human_attempts")) +
+        row("Price basis", humanPrice ? shown(i, "human_cost_basis") : "")) +
+    `</div>` +
+    `<div class="prose">` +
+      block("Performance evidence", raw(i, "performance_evidence")) +
+      block("Notes", raw(i, "notes")) +
+    `</div>` +
+    `<div class="cites">${esc(raw(i, "source_dataset"))}` +
+      `<span class="sep">\u00b7</span>${cites.join('<span class="sep">\u00b7</span>')}` +
+      `<span class="sep">\u00b7</span>${esc(raw(i, "point_id"))}</div>`;
+  render();
+}
+
+/* ---------- controls ---------- */
+
+function fill(id, names, sel, onchange) {
+  const s = document.getElementById(id);
+  names.forEach((n, i) => s.appendChild(new Option(n, i, false, i === sel)));
+  s.onchange = () => onchange(Number(s.value));
+}
+
+const axisNames = MEASURES.map(m => m.name + (m.unit ? " (" + m.unit + ")" : ""));
+fill("ax", axisNames, state.x, i => { state.x = i; state.view = null; render(); });
+fill("ay", axisNames, state.y, i => { state.y = i; state.view = null; render(); });
+fill("ac", DATA.dims.map(d => d.name), state.c, i => {
+  state.c = i; render();
+});
+/* The page opens filtered to inference: a training run and a task run are
+   different kinds of thing, and the training rows would otherwise sit in the
+   same cloud as the inference ones. The other scopes are one click away. */
+const SCOPE = DATA.dims.findIndex(d => d.name === "Compute scope");
+if (SCOPE >= 0) {
+  state.f = SCOPE;
+  const off = hiddenIn(SCOPE);
+  DATA.dims[SCOPE].values.forEach((v, k) => { if (v !== "Inference") off.add(k); });
+}
+
+fill("af", ["No filter"].concat(DATA.dims.map(d => d.name)), SCOPE + 1, i => {
+  state.f = i - 1; render();
+});
+fill("au", ["none", "H100-hours",
+            "dollars at 10\u00b9\u2076 FLOP/$",
+            "dollars at 10\u00b9\u2077 FLOP/$",
+            "dollars at 10\u00b9\u2078 FLOP/$"], 0, i => { state.u = i; render(); });
+
+document.getElementById("q").addEventListener("input", e => {
+  state.q = e.target.value.trim().toLowerCase();
+  render();
+});
+document.getElementById("bars").addEventListener("change", e => {
+  state.bars = e.target.checked; render();
+});
+document.getElementById("front").addEventListener("change", e => {
+  state.frontier = e.target.checked; render();
+});
+const about = document.getElementById("about");
+
+function showAbout(open) {
+  about.hidden = !open;
+}
+
+document.getElementById("aboutopen").addEventListener("click", () => showAbout(true));
+document.getElementById("aboutclose").addEventListener("click", () => showAbout(false));
+about.addEventListener("click", e => { if (e.target === about) showAbout(false); });
+addEventListener("keydown", e => { if (e.key === "Escape") showAbout(false); });
+
+const collapse = document.getElementById("collapse");
+collapse.addEventListener("click", () => {
+  const hidden = main.classList.toggle("wide");
+  collapse.title = hidden ? "Show panel" : "Hide panel";
+  collapse.setAttribute("aria-pressed", String(hidden));
+  render();
+});
+
+/* ---------- zoom and pan ---------- */
+
+/* Scrolling over the plot zooms both axes. Scrolling over an axis — the margin
+   outside the frame where its ticks are — zooms that axis alone, which is the
+   convention in Plotly and Bokeh. Shift or Alt does the same from anywhere. */
+/* The wheel belongs to the page: with the plot filling most of the window, a
+   chart that takes it leaves nothing to scroll with. Zoom is on the two
+   buttons in the corner of the plot, since zooming out is the rare move and a
+   mouse has nothing better than a wheel to offer. Shift and Alt still zoom one
+   axis for anyone who reaches for them. */
+/* Pointer position in the SVG's own coordinates, which is what plotted[] and
+   frame are measured in. */
+function localPoint(e) {
+  const rect = svg.getBoundingClientRect();
+  const vb = svg.viewBox.baseVal;
+  return { x: (e.clientX - rect.left) * vb.width / rect.width,
+           y: (e.clientY - rect.top) * vb.height / rect.height };
+}
+
+const ZOOM_STEP = 1.7;
+
+function atFullExtent(axis) {
+  const view = state.view[axis], full = state.full[axis];
+  return view[1] - view[0] >= (full[1] - full[0]) - 1e-6;
+}
+
+function zoomBy(k, doX, doY, fx, fy) {
+  if (!state.view) return;
+  const apply = (dom, f) => {
+    const at = dom[0] + (dom[1] - dom[0]) * Math.min(1, Math.max(0, f));
+    dom[0] = at + (dom[0] - at) * k;
+    dom[1] = at + (dom[1] - at) * k;
+  };
+  if (doX) apply(state.view.x, fx);
+  if (doY) apply(state.view.y, fy);
+  clampView();
+  render();
+}
+
+document.getElementById("zoomin")
+  .addEventListener("click", () => zoomBy(1 / ZOOM_STEP, true, true, 0.5, 0.5));
+document.getElementById("zoomout")
+  .addEventListener("click", () => zoomBy(ZOOM_STEP, true, true, 0.5, 0.5));
+document.getElementById("zoomreset")
+  .addEventListener("click", () => { state.view = null; render(); });
+
+// Double-click anywhere on the plot resets it, the convention in Plotly and
+// most charting libraries.
+box.addEventListener("dblclick", e => {
+  if (e.target.closest("#zoom")) return;
+  state.view = null;
+  render();
+});
+
+box.addEventListener("wheel", e => {
+  if (!state.view || !frame) return;
+  if (!e.shiftKey && !e.altKey && !e.ctrlKey) return;   // the page scrolls
+  e.preventDefault();
+  const p = localPoint(e);
+  const fx = (p.x - frame.x0) / (frame.x1 - frame.x0);
+  const fy = 1 - (p.y - frame.y0) / (frame.y1 - frame.y0);
+  zoomBy(Math.exp(e.deltaY * 0.0016), !e.altKey, !e.shiftKey, fx, fy);
+}, { passive: false });
+
+let drag = null;
+box.addEventListener("pointerdown", e => {
+  // The zoom buttons sit inside the chart panel; preventDefault here would
+  // stop their click ever firing, and a press on them is not a pan.
+  if (e.target.closest("#zoom")) return;
+  e.preventDefault();
+  const rect = svg.getBoundingClientRect();
+  drag = { x: e.clientX, y: e.clientY, w: rect.width, h: rect.height,
+           ox: e.clientX, oy: e.clientY, moved: false };
+  box.setPointerCapture(e.pointerId);
+});
+box.addEventListener("pointerleave", () => { if (!drag) { pointer = null; setHover(null); } });
+const PAN_SLOP = 4;
+
+box.addEventListener("pointermove", e => {
+  if (!drag) {
+    pointer = localPoint(e);
+    const hit = nearest(pointer.x, pointer.y);
+    if (hit !== hover) setHover(hit);
+    return;
+  }
+  if (!state.view) return;
+  // Below the slop a press is still a click: a mouse that shifts a pixel
+  // between press and release must not lose the point it was pointing at.
+  if (!drag.moved &&
+      Math.hypot(e.clientX - drag.ox, e.clientY - drag.oy) < PAN_SLOP) return;
+  drag.moved = true;
+  const dx = (e.clientX - drag.x) / (drag.w - PAD.l - PAD.r) * (state.view.x[1] - state.view.x[0]);
+  const dy = (e.clientY - drag.y) / (drag.h - PAD.t - PAD.b) * (state.view.y[1] - state.view.y[0]);
+  state.view.x[0] -= dx; state.view.x[1] -= dx;
+  state.view.y[0] += dy; state.view.y[1] += dy;
+  drag.x = e.clientX; drag.y = e.clientY;
+  clampView();
+  render();
+});
+addEventListener("pointerup", () => {
+  // A press that did not turn into a pan is a click: on the nearest point if
+  // the pointer is within reach of one, otherwise a click-off.
+  if (drag && !drag.moved) {
+    if (hover) select(hover.i); else deselect();
+  }
+  drag = null;
+});
+
+new ResizeObserver(() => render()).observe(app);
+addEventListener("resize", render);
+render();
+</script>

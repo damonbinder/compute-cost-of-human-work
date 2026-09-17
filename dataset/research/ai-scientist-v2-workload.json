@@ -1,0 +1,162 @@
+{
+  "status": "All counts and lengths below are task-specific estimates, not recorded usage",
+  "groups": [
+    {
+      "name": "experiment code and plan",
+      "model": "claude-3-5-sonnet-20241022",
+      "calls": 57,
+      "input": 9000,
+      "output": 3000
+    },
+    {
+      "name": "metric parsing code",
+      "model": "claude-3-5-sonnet-20241022",
+      "calls": 48,
+      "input": 4000,
+      "output": 1000
+    },
+    {
+      "name": "plotting code",
+      "model": "claude-3-5-sonnet-20241022",
+      "calls": 48,
+      "input": 7000,
+      "output": 2000
+    },
+    {
+      "name": "hyperparameter and ablation proposals",
+      "model": "claude-3-5-sonnet-20241022",
+      "calls": 24,
+      "input": 10000,
+      "output": 500
+    },
+    {
+      "name": "execution feedback",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 69,
+      "input": 6000,
+      "output": 500,
+      "cache_read": 1024
+    },
+    {
+      "name": "metric interpretation",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 60,
+      "input": 1000,
+      "output": 300,
+      "cache_read": 0
+    },
+    {
+      "name": "plot feedback and selection",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 60,
+      "input": 4000,
+      "output": 500,
+      "visual_positions": 1728,
+      "cache_read": 1024
+    },
+    {
+      "name": "node summaries",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 60,
+      "input": 6000,
+      "output": 500,
+      "cache_read": 1024
+    },
+    {
+      "name": "stage managers and report summaries",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 12,
+      "input": 15000,
+      "output": 1000,
+      "cache_read": 1024
+    },
+    {
+      "name": "citation collection",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 20,
+      "input": 4000,
+      "output": 1000,
+      "cache_read": 1024
+    },
+    {
+      "name": "manuscript text and visual reviews",
+      "model": "gpt-4o-2024-11-20",
+      "calls": 8,
+      "input": 10000,
+      "output": 1500,
+      "visual_positions": 1728,
+      "cache_read": 1024
+    },
+    {
+      "name": "writeup pass 1",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 15000,
+      "output": 12000,
+      "cache_read": 0
+    },
+    {
+      "name": "writeup pass 2",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 23000,
+      "output": 12000,
+      "cache_read": 13500.0
+    },
+    {
+      "name": "writeup pass 3",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 32000,
+      "output": 12000,
+      "cache_read": 20700.0
+    },
+    {
+      "name": "writeup pass 4",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 41000,
+      "output": 12000,
+      "cache_read": 28800.0
+    },
+    {
+      "name": "writeup pass 5",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 50000,
+      "output": 12000,
+      "cache_read": 36900.0
+    },
+    {
+      "name": "writeup pass 6",
+      "model": "o1-preview-2024-09-12",
+      "calls": 1,
+      "input": 59000,
+      "output": 12000,
+      "cache_read": 45000.0
+    },
+    {
+      "name": "aggregate plots",
+      "model": "o3-mini-2025-01-31",
+      "calls": 3,
+      "input": 15000,
+      "output": 4000,
+      "cache_read": 1024
+    }
+  ],
+  "extra_call_factor": 1.1,
+  "experimental_training": {
+    "fits": 200,
+    "examples": 1000,
+    "epochs": 30,
+    "sequence_length": 5,
+    "embedding": 64,
+    "hidden": 64,
+    "output": 1
+  },
+  "visual_encoder": {
+    "images": 204,
+    "flops_per_image": 381224583168
+  },
+  "human_time_seconds": 144000
+}

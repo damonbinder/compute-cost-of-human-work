@@ -1,0 +1,109 @@
+{
+  "point_id": "physical-table-tennis-dambrosio2024-minute",
+  "duration_seconds": 60,
+  "cameras": 2,
+  "camera_pairs_per_second": 125,
+  "detector_layers": [
+    {
+      "name": "spatial_1",
+      "height": 256,
+      "width": 512,
+      "kernel": 4,
+      "input_channels": 1,
+      "output_channels": 8,
+      "bias": false,
+      "batch_norm": true,
+      "reported_parameters": 128
+    },
+    {
+      "name": "temporal_2",
+      "height": 256,
+      "width": 512,
+      "kernel": 3,
+      "input_channels": 16,
+      "output_channels": 8,
+      "bias": false,
+      "batch_norm": true,
+      "reported_parameters": 1152
+    },
+    {
+      "name": "spatial_3",
+      "height": 128,
+      "width": 256,
+      "kernel": 4,
+      "input_channels": 8,
+      "output_channels": 16,
+      "bias": false,
+      "batch_norm": true,
+      "reported_parameters": 2048
+    },
+    {
+      "name": "spatial_4",
+      "height": 128,
+      "width": 256,
+      "kernel": 3,
+      "input_channels": 32,
+      "output_channels": 64,
+      "bias": true,
+      "batch_norm": false,
+      "reported_parameters": 18496
+    },
+    {
+      "name": "prediction",
+      "height": 128,
+      "width": 256,
+      "kernel": 4,
+      "input_channels": 64,
+      "output_channels": 5,
+      "bias": true,
+      "batch_norm": false,
+      "reported_parameters": 5125
+    }
+  ],
+  "llc_input_steps": 8,
+  "llc_input_channels": 16,
+  "llc_calls_per_second": 50,
+  "llc_layers": [
+    {
+      "kernel": 2,
+      "filters": 76,
+      "dilation": 1,
+      "gate": true
+    },
+    {
+      "kernel": 2,
+      "filters": 96,
+      "dilation": 2,
+      "gate": true
+    },
+    {
+      "kernel": 2,
+      "filters": 8,
+      "dilation": 4,
+      "gate": false
+    }
+  ],
+  "film_parameters": 2800,
+  "film_parameter_uses": 1,
+  "style_parameters": 4500,
+  "style_parameter_uses": 8,
+  "spin_widths": [
+    18,
+    128,
+    64,
+    2
+  ],
+  "incoming_balls_per_second": 1,
+  "spin_queries_per_incoming_ball": 5,
+  "source_locators": {
+    "detector": "system-rss2023.pdf, Appendix E.3/Table II, PDF pp.21\u201322; camera rate/region Section II.B, PDF p.4",
+    "llc": "competitive.pdf, Section II.C, Appendix VI.D/Table VIII, PDF pp.4,25\u201326; gating: gated-controller.pdf, Figure2/Section IV.A, PDF p.3",
+    "hlc": "competitive.pdf, Section II.D/Figure4 and Appendix VI.E, PDF pp.5\u20136,26\u201327"
+  },
+  "assumptions": {
+    "film": "All selected policies use the optional adapter once per call; widths are not published.",
+    "style": "Eight temporal uses per parameter, an upper allowance from the eight-step input; exact widths are not published.",
+    "events": "One incoming ball per second is a normalization assumption, not a measured event count.",
+    "spin": "Allow five queries for every incoming ball, including rallies; actual classifier is used on serves. Two output logits and ReLU hidden activation are assumed."
+  }
+}

@@ -1,0 +1,136 @@
+[
+  {
+    "point_id": "cyber-lyptus-password-strings-opus3",
+    "source_task_id": "cybashbench_forensics/nl2bash_005",
+    "native_task_id": "cybashbench_forensics/nl2bash_005",
+    "model_id": "claude-3-opus-20240229",
+    "native_model": "anthropic/claude-3-opus-20240229",
+    "human_sessions": [
+      "session_218",
+      "session_180"
+    ],
+    "human_logs": {},
+    "ai_logs": [
+      "data/eval_logs/eval-set-ciihqba6a1zp2jn2/2026-03-15T23-48-21+00-00_cybashbench_LXaUaHQ7b8SQ42dUarTHhN.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-cal-latex-opus3",
+    "source_task_id": "nl2bash_complex/task_713",
+    "native_task_id": "nl2bash_complex/task_713",
+    "model_id": "claude-3-opus-20240229",
+    "native_model": "anthropic/claude-3-opus-20240229",
+    "human_sessions": [
+      "session_497"
+    ],
+    "human_logs": {
+      "session_497": "data/human/eval_logs/nl2bash/nl2bash_complex_task_713/session_497_20260217_102631.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-2oac1z1n4r1dcmzd/2026-03-16T00-05-16+00-00_nl2bash_kPVgkZhVFzGspcxS6vEphS.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-keygenme-gpt4o",
+    "source_task_id": "intercode-ctf_reverse/task_13",
+    "native_task_id": "intercode-ctf_reverse/task_13",
+    "model_id": "gpt-4o-2024-08-06",
+    "native_model": "openai/gpt-4o-2024-08-06",
+    "human_sessions": [
+      "session_283",
+      "session_206"
+    ],
+    "human_logs": {
+      "session_206": "data/human/eval_logs/intercode-ctf/intercode-ctf_reverse_task_13/session_206_20260225_231301.eval.gz",
+      "session_283": "data/human/eval_logs/intercode-ctf/intercode-ctf_reverse_task_13/session_283_20260217_212338.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-od5z7r1ihc2d21lk/2026-03-27T06-06-32+00-00_intercode-ctf_bbvn972WK2eeUVaqjQbpfz.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-packedaway-gemini25pro",
+    "source_task_id": "packedaway",
+    "native_task_id": "packedaway",
+    "model_id": "gemini-2.5-pro",
+    "native_model": "google/vertex/gemini-2.5-pro",
+    "human_sessions": [
+      "session_130"
+    ],
+    "human_logs": {
+      "session_130": "data/human/eval_logs/cybench/packedaway/session_130_20260302_212354.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-nrgurmyktt0qkhiw/2026-03-17T08-39-29+00-00_cybench_EsAoFzBn8s4spt8A79wSrW.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-back-to-past-gemini25pro",
+    "source_task_id": "back_to_the_past",
+    "native_task_id": "back_to_the_past",
+    "model_id": "gemini-2.5-pro",
+    "native_model": "google/vertex/gemini-2.5-pro",
+    "human_sessions": [
+      "session_004",
+      "session_332"
+    ],
+    "human_logs": {
+      "session_004": "data/human/eval_logs/cybench/back_to_the_past/session_004_20260129_171037.eval.gz",
+      "session_332": "data/human/eval_logs/cybench/back_to_the_past/session_332_20260302_165544.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-nrgurmyktt0qkhiw/2026-03-17T08-39-29+00-00_cybench_EsAoFzBn8s4spt8A79wSrW.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-flatbuffers-opus46",
+    "source_task_id": "arvo:46883",
+    "native_task_id": "arvo:46883",
+    "model_id": "claude-opus-4-6",
+    "native_model": "anthropic/claude-opus-4-6",
+    "human_sessions": [
+      "session_244"
+    ],
+    "human_logs": {
+      "session_244": "data/human/eval_logs/cybergym/arvo:46883/session_244_20260130_084558.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-9garycpkytw2ae95/full.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-stock-management-sonnet46",
+    "source_task_id": "CVE-2024-36779",
+    "native_task_id": "CVE-2024-36779-one_day",
+    "model_id": "claude-sonnet-4-6",
+    "native_model": "anthropic/claude-sonnet-4-6",
+    "human_sessions": [
+      "session_241",
+      "session_433"
+    ],
+    "human_logs": {
+      "session_241": "data/human/eval_logs/cvebench/CVE-2024-36779/session_241_20260203_095244.eval.gz",
+      "session_433": "data/human/eval_logs/cvebench/CVE-2024-36779/session_433_20260217_112152.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-rnjcl1u90s49rfsx/2026-03-20T02-55-23+00-00_cvebench_dxQMRLGqnv89Q99am6nQ27.eval",
+      "data/eval_logs/eval-set-rnjcl1u90s49rfsx/2026-03-20T03-32-44+00-00_cvebench_dxQMRLGqnv89Q99am6nQ27.eval"
+    ]
+  },
+  {
+    "point_id": "cyber-lyptus-kill-pcap-gpt4o",
+    "source_task_id": "2016q-for-kill",
+    "native_task_id": "2016q-for-kill",
+    "model_id": "gpt-4o-2024-08-06",
+    "native_model": "openai/gpt-4o-2024-08-06",
+    "human_sessions": [
+      "session_187"
+    ],
+    "human_logs": {
+      "session_187": "data/human/eval_logs/nyuctf/2016q-for-kill/session_187_20260218_031858.eval.gz"
+    },
+    "ai_logs": [
+      "data/eval_logs/eval-set-wufinjdaxbtgv4a8/2026-03-27T04-46-00+00-00_nyuctf_nnGKVhVUiJudMn55jRXuJg.eval"
+    ]
+  }
+]

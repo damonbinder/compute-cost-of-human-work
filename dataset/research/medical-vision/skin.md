@@ -1,0 +1,17 @@
+# Skin lesion classification
+
+## perc-skin-inceptionv3
+
+The work is one malignant-versus-benign judgment from a supplied dermoscopic image of a melanocytic lesion. It excludes taking the photograph, a consultation, biopsy and pathology. The selected comparison is the 111-image dermoscopy set in Esteva et al., containing 71 malignant and 40 benign lesions, assessed by 21 board-certified dermatologists. The malignant-versus-benign question in Extended Data Figure 4 is a closer fit to the timing evidence than the biopsy-or-reassure question in Figure 3.
+
+[Original author-hosted paper](https://cs.stanford.edu/people/esteva/home/assets/nature_skincancer.pdf), Methods, Figure 3 and Extended Data Figure 4. The authors describe broadly comparable CNN and dermatologist performance. The 111-image CNN ROC has AUC 0.91; the larger 1,010-image dermoscopy test has AUC 0.94. We retain **match** for the actual reader comparison, rather than treating the larger test AUC as a human-comparison measurement.
+
+The network is Inception v3 with 299×299 RGB input and 757 disease-class outputs, subsequently combined into the task classes. All layers were fine-tuned. The reported 720-fold augmentation is **training** augmentation. The inference recipe is one forward pass; no 720 multiplier is applied.
+
+`count_models.py` executes the retained [original TensorFlow architecture function](https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v3.py) against shape-counting operators. The convolutional backbone plus the 2,048×757 classifier uses **5,712,718,432 MACs**, or **11,425,436,864 FLOPs** per image. The auxiliary training head is not needed to obtain the final prediction. Pooling, normalization, nonlinearities and the small class-probability sums are omitted. The retained source and operation ledger make the selected architecture reproducible even if the upstream file changes.
+
+[Dreiseitl, Pivec and Binder 2012](https://pure.fh-ooe.at/de/publications/differences-in-examination-characteristics-of-pigmented-skin-lesi), DOI [10.1016/j.artmed.2011.11.004](https://doi.org/10.1016/j.artmed.2011.11.004), provides the human timing. Sixteen physicians of different experience levels diagnosed 28 digital dermatoscopy images. The expert group's mean time until diagnosis was **3.17 seconds**. The means for the other two groups were 6.61 and 6.19 seconds. The published author abstract gives the timing but does not establish the expert subgroup's count or its accuracy on Esteva's cases. Human_attempts is therefore blank, with subset all for the contributing expert judgments. The full 16-person population includes other skill groups and is not the donor for the expert-only mean; multiplying 16 by 28 would be incorrect.
+
+Transfer the expert mean as **3.2 seconds per image**. This is an estimate of mean expert judgment time, not an observed timing of the 21 readers. Use 2–10 seconds as sensitivity for different case difficulty and reader proficiency; it is not a statistical interval. The comparison has different human populations and image sets. The timing study's diagnosis question and Esteva's malignant/benign question are related but do not establish identical decisions or quality at this speed. Dermatologists saw larger images than the model's 299×299 input.
+
+Organization: Stanford University. First public release of these fine-tuned weights is not established; leave the model release date blank.

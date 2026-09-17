@@ -1,0 +1,177 @@
+{
+  "point_id": "agen-village-claude37-first-own-site",
+  "agent_id": "8e2f2b1b-409c-4c0e-b4e4-e5df8ae38fdb",
+  "native_model": "claude-3-7-sonnet-20250219",
+  "session_ids": [
+    "5e772ed5-b136-4214-8266-7a7a95f11e50",
+    "db750344-a907-4c24-82ee-64d5c6ae9d81",
+    "88f3b7a3-bb3c-48b4-86d8-07b19af7a4c1",
+    "cd56a3bb-adf7-444a-bd8c-461780e504f9",
+    "99b72bc0-e6d4-475b-a1d9-b28e1f1970ae",
+    "2164ca39-aacf-4fad-b52a-594417ef5daf",
+    "20a5e88e-0bdd-4238-a540-e013398dc34a",
+    "c35bdf4d-8061-461d-b40a-6ae47a36221c",
+    "4adbee61-fe72-4914-91ac-7db69a093a27",
+    "0be26037-979e-40c7-8702-ae3162db540c"
+  ],
+  "event_ids": [
+    "15585724-74e3-46b9-8519-2154978f1dc5",
+    "52cd3bf9-e88a-4f55-86b9-77b8f28ea4a9",
+    "8b49fb6d-a1e8-4a8a-b9e5-3be4e36ce5b3",
+    "eb759e86-6b59-4c67-9170-3134667976fb",
+    "5ab799c6-0976-49ab-af13-4a939d133be6",
+    "3d4b3d5b-ef27-4b87-9e42-24952b106afb",
+    "7a15fd03-e30f-4184-93e1-2ec32cba918d",
+    "5305c445-cc1f-42a7-9027-3fe8b4a17484",
+    "ba8808b3-f8d7-47ce-ab37-a556489bfa1b",
+    "aa30c5e6-e13e-4be5-94b9-335342591b31",
+    "2721622c-971b-4aa2-83c2-cd49a1a94d22",
+    "a3a1d88c-c1e9-442c-8446-a2d509b7886d",
+    "20fdc491-44f8-4512-ab96-f64b34ba0242",
+    "a1f5aaa8-3ce3-4e52-ba7b-27d914731bfb",
+    "b07817b1-b81e-448c-b343-6742c7175476",
+    "73833767-3bdd-49e0-a7cb-19b05b3295c5",
+    "37c4ba61-fc27-4f61-bbcd-f84563ee4968",
+    "eb45d87f-5aff-423a-a65b-fb3841331e52",
+    "73211191-e069-4f32-a8f7-e02020bc7f5d",
+    "b5180052-1240-4d4c-972a-76adeafacb89",
+    "4e33e4d2-cdf9-4017-9555-39c63ce115b8",
+    "d69581ae-1c0b-4085-8e0a-d8c3f07ce651",
+    "f91066cb-2a97-48e3-a70f-61f76fa40dbd",
+    "c8cd4b83-95dd-48a2-96be-ffd1e33ad3a0",
+    "23541338-7bfa-4c9d-aa55-1cbb542a5543",
+    "012578f4-4a06-47c1-bb4a-f3d649e8b8d9",
+    "527018f7-ac1d-4f12-9a54-e4709e46911e",
+    "10ecab65-59ba-4784-ab2a-8c3d109f3746",
+    "862c149c-cd7e-489a-a958-48c0e217faa6",
+    "4d32de08-9e02-4197-a374-410b9c07d9d4",
+    "33862b2c-07b7-4dce-81b7-b7904af95e6c",
+    "2b737fda-8200-4c0e-a457-676de04976e5",
+    "950ec21b-1e9a-4879-abd5-224a3c00834f",
+    "fdf70e32-560f-4fc5-8bd7-a34543815fc0",
+    "be8c2fb3-5e2e-4a0e-8f07-da4c0629b06a",
+    "78f842d2-5f89-46d2-8916-de748c5d54dd",
+    "c44f0ea7-7fdf-4f97-994f-ebf7640204ae",
+    "95fc9443-f364-433c-b6a4-f383b6123498",
+    "af234171-f2cc-4cd7-b8af-053abafff3f5",
+    "88f8d485-9cb5-4159-9cc0-5d15e9bb82e8",
+    "3bbb964a-9091-414b-a5b1-ad82433047af",
+    "824be3ed-ed3b-4b89-a0b1-0f0bf1b9a0bf",
+    "40380ef5-c60f-46e9-8eaa-47e2c7619543",
+    "a7781bad-ef5d-4553-9e47-11f2d263675e",
+    "573eef4c-9b33-4f0a-8b21-cd5707f376c6"
+  ],
+  "event_indices": [
+    87639,
+    87640,
+    87680,
+    87681,
+    87689,
+    87690,
+    87756,
+    87758,
+    87763,
+    87764,
+    87796,
+    87797,
+    87803,
+    87804,
+    87811,
+    87837,
+    87840,
+    87849,
+    87850,
+    87909,
+    87910,
+    87916,
+    87917,
+    87963,
+    87965,
+    87969,
+    87970,
+    88031,
+    88032,
+    88054,
+    88055,
+    88135,
+    88137,
+    88144,
+    88145,
+    88203,
+    88204,
+    88207,
+    88208,
+    88212,
+    88213,
+    88406,
+    88407,
+    88458,
+    88461
+  ],
+  "scope": "First own-site episode on 2025-10-13, creation through deployed URL email handoff and immediate completion report; excludes intervening Git-workflow document reviews, later redirect verification, and later Grok rescue.",
+  "screenshot_width": 1024,
+  "screenshot_height": 768,
+  "image_area_per_unit": 750,
+  "image_tail_tokens": 10,
+  "vision_crops": 12,
+  "primary_active_parameters": 100000000000,
+  "helper_active_parameters": 100000000000,
+  "summary_tokenizer": "cl100k_base",
+  "summary_tool_wrapper_tokens": 32,
+  "helper_screenshot_counters": [
+    {
+      "turn_id": "abc621d8-4598-4575-b7d2-b2658fdbb89d",
+      "path": "artifacts/initial-html-after-return.png",
+      "tokens": 2853
+    },
+    {
+      "turn_id": "f2aa8a7f-2f85-49c6-ada5-3ea630c3bb7d",
+      "path": "artifacts/initial-css-helper-completed.png",
+      "tokens": 9815
+    }
+  ],
+  "missing_helpers": [
+    {
+      "turn_id": "342f1289-ff9e-4845-ac38-b513a029a688",
+      "tokens": 7000,
+      "low": 3000,
+      "high": 20000,
+      "basis": "First CSS invocation was interrupted after reading HTML and removing inline CSS, before styles.css existed. A completed similar CSS retry used 9815 fresh tokens; 7000 is a coarse partial-run allowance."
+    },
+    {
+      "turn_id": "3d569b00-4a09-425a-8abb-853b1288b312",
+      "tokens": 25000,
+      "low": 0,
+      "high": 60000,
+      "basis": "Dispatched full four-card personality request timed out without a counter. The next successful two-card plus CSS helper used24500 and the remaining-card helper15929; 25000 allows substantial unsuccessful work but is not derived from timeout seconds."
+    }
+  ],
+  "human_minutes": [
+    {
+      "component": "Interpret supplied personality/project content and organize page copy",
+      "minutes": 20
+    },
+    {
+      "component": "Implement the home page and separate project-description page",
+      "minutes": 35
+    },
+    {
+      "component": "Style shared cards, typography, hover effects and responsive layouts",
+      "minutes": 40
+    },
+    {
+      "component": "Create and integrate three simple avatar/chart/network illustrations",
+      "minutes": 20
+    },
+    {
+      "component": "Check links, images, layout and small-screen rendering",
+      "minutes": 20
+    },
+    {
+      "component": "Deploy the static folder and send its URL",
+      "minutes": 15
+    }
+  ],
+  "human_minutes_low": 75,
+  "human_minutes_high": 300
+}

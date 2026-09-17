@@ -1,0 +1,170 @@
+[
+  {
+    "identifier": "deepseek-llm-67b-chat",
+    "model_id": "deepseek-llm-67b-chat",
+    "point_id": "reas-epoch-gpqa-ds67b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/deepseek-ai--deepseek-llm-67b-chat--tokenizer.json",
+    "tokenizer_qualification": "Original model tokenizer."
+  },
+  {
+    "identifier": "gpt-3.5-turbo-0125",
+    "model_id": "gpt-3.5-turbo-0125",
+    "point_id": "reas-epoch-gpqa-gpt35-0125",
+    "tokenizer_type": "tiktoken",
+    "tokenizer": "cl100k_base",
+    "tokenizer_qualification": "Official tokenizer family mapping; model size remains the shared conditional estimate."
+  },
+  {
+    "identifier": "gpt-3.5-turbo-1106",
+    "model_id": "gpt-3.5-turbo-1106",
+    "point_id": "reas-epoch-gpqa-gpt35-1106",
+    "tokenizer_type": "tiktoken",
+    "tokenizer": "cl100k_base",
+    "tokenizer_qualification": "Official tokenizer family mapping; model size transfers the shared conditional 0125 estimate."
+  },
+  {
+    "identifier": "gpt-4-0613",
+    "model_id": "gpt-4-0613",
+    "point_id": "reas-epoch-gpqa-gpt4-0613",
+    "tokenizer_type": "tiktoken",
+    "tokenizer": "cl100k_base",
+    "tokenizer_qualification": "Official tokenizer family mapping; model size remains the shared GPT-4 family estimate."
+  },
+  {
+    "identifier": "gemma-2-9b-it",
+    "model_id": "gemma-2-9b-it",
+    "point_id": "reas-epoch-gpqa-gemma2-9b",
+    "tokenizer_type": "sentencepiece",
+    "tokenizer": "gemma-tokenizer.model",
+    "tokenizer_qualification": "Original Google vocabulary; Gemma 2 paper explicitly shares the Gemma 1 tokenizer."
+  },
+  {
+    "identifier": "Llama-2-70b-chat-hf",
+    "model_id": "llama-2-70b-chat",
+    "point_id": "reas-epoch-gpqa-llama2-70b",
+    "tokenizer_type": "sentencepiece",
+    "tokenizer": "llama2-tokenizer.model",
+    "tokenizer_qualification": "Public NousResearch mirror of the original Llama 2 vocabulary; exact serving wrapper is unavailable."
+  },
+  {
+    "identifier": "Meta-Llama-3-8B-Instruct",
+    "model_id": "llama-3-8b-instruct",
+    "point_id": "reas-epoch-gpqa-llama3-8b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/NousResearch--Meta-Llama-3-8B-Instruct--tokenizer.json",
+    "tokenizer_qualification": "Public NousResearch mirror of the named model tokenizer."
+  },
+  {
+    "identifier": "Llama-3.1-8B-Instruct",
+    "model_id": "llama-3.1-8b-instruct",
+    "point_id": "reas-epoch-gpqa-llama31-8b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/NousResearch--Meta-Llama-3.1-8B-Instruct--tokenizer.json",
+    "tokenizer_qualification": "Public NousResearch mirror of the named model tokenizer."
+  },
+  {
+    "identifier": "ministral-3b-2410",
+    "model_id": "ministral-3b-2410",
+    "point_id": "reas-epoch-gpqa-ministral3b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/mistralai--Ministral-8B-Instruct-2410--tokenizer.json",
+    "tokenizer_qualification": "Original Ministral 8B tokenizer used as an explicit same-release-family proxy for the closed 3B endpoint."
+  },
+  {
+    "identifier": "ministral-8b-2410",
+    "model_id": "ministral-8b-2410",
+    "point_id": "reas-epoch-gpqa-ministral8b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/mistralai--Ministral-8B-Instruct-2410--tokenizer.json",
+    "tokenizer_qualification": "Original released Ministral 8B tokenizer; historical provider wrapper is unavailable."
+  },
+  {
+    "identifier": "Mistral-7B-Instruct-v0.3",
+    "model_id": "mistral-7b-instruct-v0.3",
+    "point_id": "reas-epoch-gpqa-mistral7bv03",
+    "tokenizer_type": "json",
+    "tokenizer": "mistral3-tokenizer.json",
+    "tokenizer_qualification": "Original v0.3 tokenizer."
+  },
+  {
+    "identifier": "open-mistral-7b",
+    "model_id": "open-mistral-7b",
+    "point_id": "reas-epoch-gpqa-mistral7b-api",
+    "tokenizer_type": "json",
+    "tokenizer": "models/mistralai--Mistral-7B-Instruct-v0.1--tokenizer.json",
+    "tokenizer_qualification": "Original v0.1 tokenizer used as a family proxy: the served API alias revision is unresolved."
+  },
+  {
+    "identifier": "open-mistral-nemo-2407",
+    "model_id": "mistral-nemo-2407",
+    "point_id": "reas-epoch-gpqa-nemo",
+    "tokenizer_type": "json",
+    "tokenizer": "nemo-tokenizer.json",
+    "tokenizer_qualification": "Original released NeMo tokenizer."
+  },
+  {
+    "identifier": "Mixtral-8x7B-Instruct-v0.1",
+    "model_id": "mixtral-8x7b-instruct-v0.1",
+    "point_id": "reas-epoch-gpqa-mixtral8x7b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/mistralai--Mixtral-8x7B-Instruct-v0.1--tokenizer.json",
+    "tokenizer_qualification": "Original released tokenizer; this is the source table HF-style configuration."
+  },
+  {
+    "identifier": "open-mixtral-8x7b",
+    "model_id": "mixtral-8x7b-instruct-v0.1",
+    "point_id": "reas-epoch-gpqa-mixtral8x7b-api",
+    "tokenizer_type": "json",
+    "tokenizer": "models/mistralai--Mixtral-8x7B-Instruct-v0.1--tokenizer.json",
+    "tokenizer_qualification": "Original released tokenizer for the v0.1 family; distinct source table API configuration with different scores and output length."
+  },
+  {
+    "identifier": "qwen1.5-32b-chat",
+    "model_id": "qwen1.5-32b-chat",
+    "point_id": "reas-epoch-gpqa-qwen15-32b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/Qwen--Qwen1.5-32B-Chat--tokenizer.json",
+    "tokenizer_qualification": "Original named-model tokenizer."
+  },
+  {
+    "identifier": "qwen1.5-72b-chat",
+    "model_id": "qwen1.5-72b-chat",
+    "point_id": "reas-epoch-gpqa-qwen15-72b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/Qwen--Qwen1.5-72B-Chat--tokenizer.json",
+    "tokenizer_qualification": "Original named-model tokenizer."
+  },
+  {
+    "identifier": "Yi-1.5-34B-Chat",
+    "model_id": "yi-1.5-34b-chat",
+    "point_id": "reas-epoch-gpqa-yi15-34b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/01-ai--Yi-1.5-34B-Chat--tokenizer.json",
+    "tokenizer_qualification": "Original named-model tokenizer."
+  },
+  {
+    "identifier": "Yi-34B-Chat",
+    "model_id": "yi-34b-chat",
+    "point_id": "reas-epoch-gpqa-yi34b",
+    "tokenizer_type": "json",
+    "tokenizer": "models/01-ai--Yi-34B-Chat--tokenizer.json",
+    "tokenizer_qualification": "Original named-model tokenizer."
+  },
+  {
+    "identifier": "Phi-3-medium-128k-instruct ",
+    "model_id": "phi-3-medium-128k-instruct",
+    "point_id": "reas-epoch-gpqa-phi3-medium",
+    "tokenizer_type": "json",
+    "tokenizer": "models/microsoft--Phi-3-medium-128k-instruct--tokenizer.json",
+    "tokenizer_qualification": "Original named-model tokenizer. Trailing whitespace in the original table identifier is retained for the exact join."
+  },
+  {
+    "identifier": "o1-2024-12-17_high",
+    "model_id": "o1-2024-12-17",
+    "point_id": "reas-epoch-gpqa-o1high",
+    "tokenizer_type": "tiktoken",
+    "tokenizer": "o200k_base",
+    "tokenizer_qualification": "Official tokenizer family mapping; high reasoning effort. Shared active-size prior is estimated, not provider-reported."
+  }
+]

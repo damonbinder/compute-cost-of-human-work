@@ -1,0 +1,30 @@
+[
+  {
+    "point_id": "reas-epoch-otis-llama2-70b",
+    "identifier": "Llama-2-70b-chat-hf",
+    "benchmark": "OTIS Mock AIME 2024-2025",
+    "model_id": "llama-2-70b-chat",
+    "tokenizer": "llama2"
+  },
+  {
+    "point_id": "reas-epoch-otis-r1",
+    "identifier": "DeepSeek-R1",
+    "benchmark": "OTIS Mock AIME 2024-2025",
+    "model_id": "deepseek-r1",
+    "tokenizer": "deepseek"
+  },
+  {
+    "point_id": "reas-epoch-otis-o3high",
+    "identifier": "o3-2025-04-16_high",
+    "benchmark": "OTIS Mock AIME 2024-2025",
+    "model_id": "o3-2025-04-16",
+    "tokenizer": "o200k"
+  },
+  {
+    "point_id": "reas-epoch-mathl5-openmixtral8x7b",
+    "identifier": "open-mixtral-8x7b",
+    "benchmark": "MATH level 5",
+    "model_id": "mixtral-8x7b-instruct-v0.1",
+    "tokenizer": "mixtral"
+  }
+]

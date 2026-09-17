@@ -1,0 +1,54 @@
+{
+  "repository_commit": "8922f1af853a32652b1c1dcbc5121dcbbd50761e",
+  "source_root": "selected-original",
+  "tax_year": "2024",
+  "tokenizer_proxy": "cl100k_base.tiktoken",
+  "framing_input_tokens": 32,
+  "termination_output_tokens": 1,
+  "tokenizer_length_scenario": [
+    0.75,
+    1.25
+  ],
+  "configurations": [
+    {
+      "native": "gemini/gemini-2.5-flash-preview-05-20",
+      "model_id": "gemini-2.5-flash-preview-05-20",
+      "short": "flash",
+      "repeated_prompt_cache_fraction": 0.5,
+      "parameter_scenario_billions": [
+        10,
+        150
+      ]
+    },
+    {
+      "native": "anthropic/claude-sonnet-4-20250514",
+      "model_id": "claude-sonnet-4",
+      "short": "sonnet4",
+      "repeated_prompt_cache_fraction": 0,
+      "parameter_scenario_billions": [
+        50,
+        200
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "single-w2-balance-due-no-state-income-tax",
+      "short": "single-w2",
+      "human_seconds": 600,
+      "human_scenario_seconds": [
+        300,
+        1200
+      ]
+    },
+    {
+      "case_id": "hoh-multiple-w2-box12-codes",
+      "short": "hoh-box12",
+      "human_seconds": 1080,
+      "human_scenario_seconds": [
+        480,
+        1800
+      ]
+    }
+  ]
+}

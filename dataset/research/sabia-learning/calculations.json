@@ -1,0 +1,220 @@
+{
+  "7b": {
+    "central": {
+      "parameters": 6738415616,
+      "training_tokens": 10485760000,
+      "training_weight_flops": 565259271437025280000,
+      "training_attention_flops": 2.252899325313024e+19,
+      "evaluation_positions": 198525971.64000002,
+      "evaluation_weight_flops": 2.675501014961099e+18,
+      "evaluation_attention_flops": 6.348496572368057e+16,
+      "optimizer_flops": 1347683123200000,
+      "total_flops": 5.905285983539635e+20,
+      "attention_context": 1022.5470138337205,
+      "attention_ratio": 0.03978005805369825,
+      "eval_tasks": [
+        {
+          "task": "AGNews",
+          "test_examples": 7600,
+          "positions_per_example": 1367.4733333333331,
+          "mean_context": 684.2366666666666
+        },
+        {
+          "task": "ASSINRTE",
+          "test_examples": 2448,
+          "positions_per_example": 1030.6033333333335,
+          "mean_context": 515.8016666666667
+        },
+        {
+          "task": "ASSINSTS",
+          "test_examples": 2448,
+          "positions_per_example": 890.6133333333333,
+          "mean_context": 445.8066666666667
+        },
+        {
+          "task": "BLUEX",
+          "test_examples": 178,
+          "positions_per_example": 962.7199999999999,
+          "mean_context": 481.85999999999996
+        },
+        {
+          "task": "BoolQ",
+          "test_examples": 3270,
+          "positions_per_example": 1081.1666666666665,
+          "mean_context": 541.0833333333333
+        },
+        {
+          "task": "ENEM",
+          "test_examples": 916,
+          "positions_per_example": 1001.7866666666667,
+          "mean_context": 501.3933333333334
+        },
+        {
+          "task": "ENEM2022",
+          "test_examples": 118,
+          "positions_per_example": 924.16,
+          "mean_context": 462.58
+        },
+        {
+          "task": "FaQuAD",
+          "test_examples": 63,
+          "positions_per_example": 1904.7833333333335,
+          "mean_context": 952.8916666666668
+        },
+        {
+          "task": "IMDB",
+          "test_examples": 25000,
+          "positions_per_example": 1258.56,
+          "mean_context": 629.78
+        },
+        {
+          "task": "MASSIVE",
+          "test_examples": 2974,
+          "positions_per_example": 986.9833333333332,
+          "mean_context": 493.9916666666666
+        },
+        {
+          "task": "MKQA",
+          "test_examples": 6758,
+          "positions_per_example": 1241.7066666666667,
+          "mean_context": 621.3533333333334
+        },
+        {
+          "task": "SST2",
+          "test_examples": 872,
+          "positions_per_example": 1126.2166666666667,
+          "mean_context": 563.6083333333333
+        },
+        {
+          "task": "TweetSentBR",
+          "test_examples": 2010,
+          "positions_per_example": 1108.3066666666664,
+          "mean_context": 554.6533333333332
+        },
+        {
+          "task": "WSC",
+          "test_examples": 285,
+          "positions_per_example": 790.95,
+          "mean_context": 395.975
+        }
+      ]
+    },
+    "human_hours": 200,
+    "human_seconds": 720000,
+    "scenarios": {
+      "no_rematerialization_one_final_suite": 4.417555415276348e+20,
+      "half_forward_rematerialization_three_suites": 5.170550652676941e+20,
+      "full_rematerialization_eleven_suites": 5.97832560969123e+20,
+      "dense_attention_full_square_three_suites": 6.130575916070938e+20
+    }
+  },
+  "65b": {
+    "central": {
+      "parameters": 65285660672,
+      "training_tokens": 10485760000,
+      "training_weight_flops": 5476558153984245760000,
+      "training_attention_flops": 1.126449662656512e+20,
+      "evaluation_positions": 198525971.64000002,
+      "evaluation_weight_flops": 2.592179843813627e+19,
+      "evaluation_attention_flops": 3.174248286184028e+17,
+      "optimizer_flops": 13057132134400000,
+      "total_flops": 5.615455400648786e+21,
+      "attention_context": 1022.5470138337206,
+      "attention_ratio": 0.020529359865189452,
+      "eval_tasks": [
+        {
+          "task": "AGNews",
+          "test_examples": 7600,
+          "positions_per_example": 1367.4733333333331,
+          "mean_context": 684.2366666666666
+        },
+        {
+          "task": "ASSINRTE",
+          "test_examples": 2448,
+          "positions_per_example": 1030.6033333333335,
+          "mean_context": 515.8016666666667
+        },
+        {
+          "task": "ASSINSTS",
+          "test_examples": 2448,
+          "positions_per_example": 890.6133333333333,
+          "mean_context": 445.8066666666667
+        },
+        {
+          "task": "BLUEX",
+          "test_examples": 178,
+          "positions_per_example": 962.7199999999999,
+          "mean_context": 481.85999999999996
+        },
+        {
+          "task": "BoolQ",
+          "test_examples": 3270,
+          "positions_per_example": 1081.1666666666665,
+          "mean_context": 541.0833333333333
+        },
+        {
+          "task": "ENEM",
+          "test_examples": 916,
+          "positions_per_example": 1001.7866666666667,
+          "mean_context": 501.3933333333334
+        },
+        {
+          "task": "ENEM2022",
+          "test_examples": 118,
+          "positions_per_example": 924.16,
+          "mean_context": 462.58
+        },
+        {
+          "task": "FaQuAD",
+          "test_examples": 63,
+          "positions_per_example": 1904.7833333333335,
+          "mean_context": 952.8916666666668
+        },
+        {
+          "task": "IMDB",
+          "test_examples": 25000,
+          "positions_per_example": 1258.56,
+          "mean_context": 629.78
+        },
+        {
+          "task": "MASSIVE",
+          "test_examples": 2974,
+          "positions_per_example": 986.9833333333332,
+          "mean_context": 493.9916666666666
+        },
+        {
+          "task": "MKQA",
+          "test_examples": 6758,
+          "positions_per_example": 1241.7066666666667,
+          "mean_context": 621.3533333333334
+        },
+        {
+          "task": "SST2",
+          "test_examples": 872,
+          "positions_per_example": 1126.2166666666667,
+          "mean_context": 563.6083333333333
+        },
+        {
+          "task": "TweetSentBR",
+          "test_examples": 2010,
+          "positions_per_example": 1108.3066666666664,
+          "mean_context": 554.6533333333332
+        },
+        {
+          "task": "WSC",
+          "test_examples": 285,
+          "positions_per_example": 790.95,
+          "mean_context": 395.975
+        }
+      ]
+    },
+    "human_hours": 100,
+    "human_seconds": 360000,
+    "scenarios": {
+      "no_rematerialization_one_final_suite": 4.200661805075142e+21,
+      "half_forward_rematerialization_three_suites": 4.916805010617549e+21,
+      "full_rematerialization_eleven_suites": 5.685426662693465e+21,
+      "dense_attention_full_square_three_suites": 5.728100366914438e+21
+    }
+  }
+}

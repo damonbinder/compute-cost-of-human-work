@@ -1,0 +1,29 @@
+{
+  "source_commit": "417e82b85743f88719ba7cf8838220fcb872e2ae",
+  "model_id": "gpt-4-original-unspecified",
+  "tokenizer": "cl100k_base",
+  "chat_tokens_per_message": 3,
+  "chat_reply_priming": 3,
+  "output_end_token": 1,
+  "cache_reads": 0,
+  "groups": [
+    {
+      "file": "buchwald-hartwig.csv",
+      "point_id": "research-coscientist-buchwald-hartwig-gpt4",
+      "human_time_seconds": 2700,
+      "sha256": "073aa0af95d72753275d3a5058ec4269448b6087b43ee97c6055e92689c36c25"
+    },
+    {
+      "file": "suzuki-no-prior.csv",
+      "point_id": "research-coscientist-suzuki-no-prior-gpt4",
+      "human_time_seconds": 2400,
+      "sha256": "983b9b49e920b90de6977163e3b9e13173ea00b2b4753d91837f193245798a98"
+    },
+    {
+      "file": "suzuki-prior.csv",
+      "point_id": "research-coscientist-suzuki-prior-gpt4",
+      "human_time_seconds": 2700,
+      "sha256": "e6443f3f58d68fecd249bf4b983a1bba9a3d66564fae58179abf611107ed0c55"
+    }
+  ]
+}

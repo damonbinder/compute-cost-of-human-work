@@ -1,0 +1,9 @@
+# Source dispositions for conventional robot leads
+
+## robo-cube-machine
+
+Primary sources: [MIT's March 2018 report](https://news.mit.edu/2018/featured-video-solving-rubiks-cube-record-time-0316) and [builder Ben Katz's original technical log](https://build-its-inprogress.blogspot.com/2018/03/the-rubiks-contraption.html). The 0.38-second mechanical solve is supported. The log identifies color recognition as averages of pixels in manually assigned polygons compared with thresholds, and solution planning as the min2phase implementation of Kociemba's two-phase algorithm. The computation is conventional image processing and predominantly integer search. Non-neural AI is not categorically excluded from this collection. The metric limitation is that no meaningful floating-point AI-workload estimate or supported conversion from the integer-search work is established by the source. Retain the ID with this explicit metric disposition; do not manufacture a model size, convert integer operations silently into FLOPs, or use motor electrical power as inference compute.
+
+## robo-picker-delta
+
+The primary [ABB IRB360 product page](https://www.abb.com/global/en/areas/robotics/products/robots/delta-robots/irb-360) identifies a family of industrial delta mechanisms, conventional TrueMove/QuickMove control, and PickMaster setup. The source lead does not identify a learned model, its evaluation configuration or a particular picking work unit. A future vision integration could use a neural model, but that cannot be assumed for this hardware family. The available evidence concerns conventional control and motion hardware, without a defined AI computation workload that can meaningfully be expressed in FLOPs. Retain the ID with this metric and work-unit limitation, not a categorical exclusion of non-neural AI. No positive AI FLOP estimate is justified merely from the robot's high picking speed.

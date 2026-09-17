@@ -1,0 +1,255 @@
+<table>
+<thead>
+<tr>
+ <th>MONEY</th>
+ <th>GEMS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+ <th>EQUIPMENT</th>
+ <th></th>
+ <th rowspan="6"></th>
+</tr>
+<tr>
+ <th></th>
+ <th>1</th>
+</tr>
+<tr>
+ <th></th>
+ <th>2</th>
+</tr>
+<tr>
+ <th></th>
+ <th>3</th>
+</tr>
+<tr>
+ <th></th>
+ <th>4</th>
+</tr>
+<tr>
+ <th></th>
+ <th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td></td>
+ <td>6</td>
+ <td rowspan="5">+1 Enc</td>
+</tr>
+<tr>
+ <td></td>
+ <td>7</td>
+</tr>
+<tr>
+ <td></td>
+ <td>8</td>
+</tr>
+<tr>
+ <td></td>
+ <td>9</td>
+</tr>
+<tr>
+ <td></td>
+ <td>10</td>
+</tr>
+<tr>
+ <td></td>
+ <td>11</td>
+ <td rowspan="5">+1 Enc</td>
+</tr>
+<tr>
+ <td></td>
+ <td>12</td>
+</tr>
+<tr>
+ <td></td>
+ <td>13</td>
+</tr>
+<tr>
+ <td></td>
+ <td>14</td>
+</tr>
+<tr>
+ <td></td>
+ <td>15</td>
+</tr>
+<tr>
+ <td></td>
+ <td>16</td>
+ <td rowspan="5">+1 Enc</td>
+</tr>
+<tr>
+ <td></td>
+ <td>17</td>
+</tr>
+<tr>
+ <td></td>
+ <td>18</td>
+</tr>
+<tr>
+ <td></td>
+ <td>19</td>
+</tr>
+<tr>
+ <td></td>
+ <td>20</td>
+</tr>
+<tr>
+ <td></td>
+ <td>21</td>
+ <td rowspan="11">+1 Enc</td>
+</tr>
+<tr>
+ <td></td>
+ <td>22</td>
+</tr>
+<tr>
+ <td></td>
+ <td>23</td>
+</tr>
+<tr>
+ <td></td>
+ <td>24</td>
+</tr>
+<tr>
+ <td></td>
+ <td>25</td>
+</tr>
+<tr>
+ <td></td>
+ <td>26</td>
+</tr>
+<tr>
+ <td></td>
+ <td>27</td>
+</tr>
+<tr>
+ <td></td>
+ <td>28</td>
+</tr>
+<tr>
+ <td></td>
+ <td>29</td>
+</tr>
+<tr>
+ <td></td>
+ <td>30</td>
+</tr>
+<tr>
+ <td></td>
+ <td>31</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+ <th colspan="2">LANGUAGES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td>KNOWN</td>
+ <td>NOT KNOWN</td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+ <th colspan="2">NON-ENCUMBERING EQUIPMENT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td></td>
+ <td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+ <th colspan="3">PROPERTIES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td>Name</td>
+ <td>Location</td>
+ <td>Value</td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+ <td></td>
+</tr>
+<tr>
+ <td>Library Value</td>
+ <td>Laboratory Value</td>
+ <td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+ <th colspan="3">INVESTMENTS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td>Name</td>
+ <td>Type</td>
+ <td>Value</td>
+</tr>
+<tr>
+ <td></td>
+ <td></td>
+ <td></td>
+</tr>
+</tbody>
+</table>

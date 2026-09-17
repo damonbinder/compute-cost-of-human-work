@@ -1,0 +1,404 @@
+{
+  "_about": "Inputs for compute_videogamebench.py. Every number here is either copied from a retained source under agent-work/sources/videogamebench/ or is a named modeling assumption whose scenario range is defined in 'scenarios'. Nothing is derived here.",
+  "_sources": {
+    "costs": "agent-work/sources/videogamebench/vgb-paper-tables.md, Table 8 (arXiv:2505.18134v3 Appendix D.2)",
+    "progress": "agent-work/sources/videogamebench/vgb-paper-tables.md, Table 10 (Appendix D.4)",
+    "prices": "agent-work/sources/videogamebench/litellm-model-prices-2025-05-22.json, plus the harness fallback rate documented in agent-work/sources/videogamebench/vgb-harness-extracts.md section 6",
+    "image_tokens": "agent-work/sources/videogamebench/provider-image-token-rules.md",
+    "prompt_tokens": "agent-work/sources/videogamebench/vgb-harness-extracts.md section 8",
+    "walkthroughs": "agent-work/sources/videogamebench/walkthrough-metadata.json",
+    "model_record": "candidates/balrog/models.csv, record gemini-2.5-pro-03-25, copied byte-identically",
+    "review": "reviews/videogamebench-independent.md"
+  },
+  "prompt_tokens": {
+    "system_dos": 926,
+    "system_gba_realtime": 189,
+    "reflection_prompt": 219,
+    "gba_realtime_prompt": 84,
+    "gb_frame_label": 5,
+    "dos_frame_label": 2,
+    "dos_observation_line": 8,
+    "dos_mouse_line": 21,
+    "message_overhead": 4,
+    "dos_assistant_json_overhead": 15,
+    "gb_assistant_prefix": 5,
+    "dos_response_json_overhead": 25,
+    "gb_response_tag_overhead": 20
+  },
+  "games": {
+    "civ1": {
+      "name": "Civilization I",
+      "emulator": "dos",
+      "task_prompt_tokens": 888,
+      "walkthrough_key": "civ1"
+    },
+    "nfs": {
+      "name": "The Need for Speed",
+      "emulator": "dos",
+      "task_prompt_tokens": 284,
+      "walkthrough_key": "nfs"
+    },
+    "tim": {
+      "name": "The Incredible Machine",
+      "emulator": "dos",
+      "task_prompt_tokens": 398,
+      "walkthrough_key": "tim"
+    },
+    "doom2": {
+      "name": "Doom II",
+      "emulator": "dos",
+      "task_prompt_tokens": 819,
+      "walkthrough_key": "doom2"
+    },
+    "crystal": {
+      "name": "Pokemon Crystal",
+      "emulator": "gb",
+      "task_prompt_tokens": 506,
+      "walkthrough_key": "crystal"
+    },
+    "kirby": {
+      "name": "Kirby's Dream Land",
+      "emulator": "gb",
+      "task_prompt_tokens": 546,
+      "walkthrough_key": "kirby"
+    },
+    "zelda": {
+      "name": "Link's Awakening (DX)",
+      "emulator": "gb",
+      "task_prompt_tokens": 228,
+      "walkthrough_key": "zelda"
+    }
+  },
+  "models": {
+    "gpt4o": {
+      "api_string": "gpt-4o",
+      "paper_revision": "gpt-4o-2024-08-06",
+      "model_id": "gpt-4o-2024-08-06",
+      "display": "GPT-4o",
+      "price_in_per_token": 2.5e-06,
+      "price_out_per_token": 1e-05,
+      "price_basis": "litellm list price",
+      "context_messages": 20,
+      "max_output_tokens": 1024,
+      "active_parameters": 50000000000,
+      "image_tokens": {
+        "640x400": 425,
+        "160x144": 255,
+        "700x475": 425
+      },
+      "encoder_parameters": 2000000000
+    },
+    "sonnet37": {
+      "api_string": "claude-3-7-sonnet-20250219",
+      "paper_revision": "claude-3-7-sonnet-20250219",
+      "model_id": "claude-3-7-sonnet",
+      "display": "Claude 3.7 Sonnet",
+      "price_in_per_token": 3e-06,
+      "price_out_per_token": 1.5e-05,
+      "price_basis": "litellm list price",
+      "context_messages": 20,
+      "max_output_tokens": 1024,
+      "active_parameters": 100000000000,
+      "image_tokens": {
+        "640x400": 345,
+        "160x144": 36,
+        "700x475": 425
+      },
+      "encoder_parameters": null
+    },
+    "gemini25pro": {
+      "api_string": "gemini/gemini-2.5-pro-preview-03-25",
+      "paper_revision": "gemini-2.5-pro-preview-03-25",
+      "model_id": "gemini-2.5-pro-03-25",
+      "display": "Gemini 2.5 Pro Preview 03-25",
+      "price_in_per_token": 1.25e-06,
+      "price_out_per_token": 1e-05,
+      "price_basis": "litellm list price, below the 200k-token tier boundary",
+      "context_messages": 20,
+      "max_output_tokens": 2048,
+      "active_parameters": 100000000000,
+      "image_tokens": {
+        "640x400": 1548,
+        "160x144": 258,
+        "700x475": 1548
+      },
+      "encoder_parameters": null
+    },
+    "llama4mav": {
+      "api_string": "together_ai/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "paper_revision": "Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "model_id": "llama-4-maverick",
+      "display": "Llama 4 Maverick",
+      "price_in_per_token": 1e-07,
+      "price_out_per_token": 2e-07,
+      "price_basis": "harness _calculate_cost fallback rate actually applied to this model",
+      "context_messages": 10,
+      "max_output_tokens": 1024,
+      "active_parameters": 17000000000,
+      "image_tokens": {
+        "640x400": 432,
+        "160x144": 144,
+        "700x475": 432
+      },
+      "encoder_parameters": null
+    },
+    "gemini20flash": {
+      "api_string": "gemini/gemini-2.0-flash",
+      "paper_revision": "gemini-2.0-flash",
+      "model_id": "gemini-2.0-flash-001",
+      "display": "Gemini 2.0 Flash",
+      "price_in_per_token": 1e-07,
+      "price_out_per_token": 4e-07,
+      "price_basis": "litellm list price",
+      "context_messages": 20,
+      "max_output_tokens": 2048,
+      "active_parameters": 40000000000,
+      "image_tokens": {
+        "640x400": 1548,
+        "160x144": 258,
+        "700x475": 1548
+      },
+      "encoder_parameters": null
+    }
+  },
+  "run_cost_usd": {
+    "civ1": {
+      "gpt4o": 14.46,
+      "sonnet37": 30.0,
+      "gemini25pro": 5.29,
+      "llama4mav": 0.42,
+      "gemini20flash": 10.05
+    },
+    "nfs": {
+      "gpt4o": 0.5,
+      "sonnet37": 0.62,
+      "gemini25pro": 0.38,
+      "llama4mav": 0.04,
+      "gemini20flash": 0.08
+    },
+    "tim": {
+      "gpt4o": 1.36,
+      "sonnet37": 5.26,
+      "gemini25pro": 1.31,
+      "llama4mav": 0.11,
+      "gemini20flash": 0.18
+    },
+    "doom2": {
+      "gpt4o": 0.17,
+      "sonnet37": 0.4,
+      "gemini25pro": 3.79,
+      "llama4mav": 0.03,
+      "gemini20flash": 0.01
+    },
+    "crystal": {
+      "gpt4o": 15.04,
+      "sonnet37": 29.64,
+      "gemini25pro": 4.78,
+      "llama4mav": 0.14,
+      "gemini20flash": 3.88
+    },
+    "kirby": {
+      "gpt4o": 8.91,
+      "sonnet37": 2.98,
+      "gemini25pro": 3.89,
+      "llama4mav": 0.09,
+      "gemini20flash": 0.16
+    },
+    "zelda": {
+      "gpt4o": 7.86,
+      "sonnet37": 20.0,
+      "gemini25pro": 18.51,
+      "llama4mav": 0.09,
+      "gemini20flash": 0.18
+    }
+  },
+  "checkpoint_score_pct": {
+    "civ1": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "nfs": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "tim": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "doom2": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "crystal": {
+      "gpt4o": 0.9,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "kirby": {
+      "gpt4o": 0.0,
+      "sonnet37": 4.8,
+      "gemini25pro": 4.8,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "zelda": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.0,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    }
+  },
+  "exact_progress_pct": {
+    "civ1": {
+      "gpt4o": 1.99,
+      "sonnet37": 0.91,
+      "gemini25pro": 0.18,
+      "llama4mav": 1.02,
+      "gemini20flash": 0.0
+    },
+    "nfs": {
+      "gpt4o": 0.67,
+      "sonnet37": 0.07,
+      "gemini25pro": 0.39,
+      "llama4mav": 0.07,
+      "gemini20flash": 0.52
+    },
+    "tim": {
+      "gpt4o": 0.0,
+      "sonnet37": 0.1,
+      "gemini25pro": 0.0,
+      "llama4mav": 0.0,
+      "gemini20flash": 0.0
+    },
+    "doom2": {
+      "gpt4o": 0.12,
+      "sonnet37": 0.13,
+      "gemini25pro": 0.17,
+      "llama4mav": 0.12,
+      "gemini20flash": 0.12
+    },
+    "crystal": {
+      "gpt4o": 1.04,
+      "sonnet37": 0.37,
+      "gemini25pro": 0.37,
+      "llama4mav": 0.37,
+      "gemini20flash": 0.48
+    },
+    "kirby": {
+      "gpt4o": 2.89,
+      "sonnet37": 5.07,
+      "gemini25pro": 5.07,
+      "llama4mav": 2.45,
+      "gemini20flash": 2.89
+    },
+    "zelda": {
+      "gpt4o": 0.65,
+      "sonnet37": 0.85,
+      "gemini25pro": 0.85,
+      "llama4mav": 0.65,
+      "gemini20flash": 0.65
+    }
+  },
+  "central": {
+    "response_action_tokens": 200,
+    "response_memory_tokens": 250,
+    "gb_actions_per_call": 3,
+    "dos_frames_per_step": 1,
+    "dos_image_size": "640x400",
+    "gb_image_size": "160x144",
+    "gemini25pro_reasoning_tokens_per_call": 700,
+    "image_units_are_positions": true,
+    "llama4_price_override": null,
+    "gemini25pro_unpriced_reasoning_tokens_per_call": 0,
+    "ramp_up_context": true,
+    "gpt4o_encoder_parameters": true
+  },
+  "scenarios": {
+    "short_responses": {
+      "response_action_tokens": 100,
+      "response_memory_tokens": 60
+    },
+    "long_responses": {
+      "response_action_tokens": 400,
+      "response_memory_tokens": 600
+    },
+    "gb_one_action_per_call": {
+      "gb_actions_per_call": 1
+    },
+    "gb_six_actions_per_call": {
+      "gb_actions_per_call": 6
+    },
+    "dos_700x475_viewport": {
+      "dos_image_size": "700x475"
+    },
+    "dos_three_frames": {
+      "dos_frames_per_step": 3
+    },
+    "steady_state_context": {
+      "ramp_up_context": false
+    },
+    "gemini25pro_reasoning_0": {
+      "gemini25pro_reasoning_tokens_per_call": 0
+    },
+    "gemini25pro_reasoning_300": {
+      "gemini25pro_reasoning_tokens_per_call": 300
+    },
+    "gemini25pro_reasoning_600": {
+      "gemini25pro_reasoning_tokens_per_call": 600
+    },
+    "gemini25pro_reasoning_1000": {
+      "gemini25pro_reasoning_tokens_per_call": 1000
+    },
+    "gemini25pro_reasoning_1500": {
+      "gemini25pro_reasoning_tokens_per_call": 1500
+    },
+    "gemini25pro_reasoning_unpriced_700": {
+      "gemini25pro_reasoning_tokens_per_call": 0,
+      "gemini25pro_unpriced_reasoning_tokens_per_call": 700
+    },
+    "llama4_litellm_together_category": {
+      "llama4_price_override": [
+        3e-07,
+        3e-07
+      ]
+    },
+    "llama4_together_list_price": {
+      "llama4_price_override": [
+        2.7e-07,
+        8.5e-07
+      ]
+    },
+    "no_gpt4o_encoder": {
+      "gpt4o_encoder_parameters": false
+    },
+    "images_not_positions": {
+      "image_units_are_positions": false
+    }
+  },
+  "parameter_sensitivity": {
+    "_about": "Applied as a multiplier on compute_flops for models whose active_parameters is an estimate.",
+    "low_multiplier": 0.3,
+    "high_multiplier": 3.0,
+    "estimated_models": [
+      "gpt4o",
+      "sonnet37",
+      "gemini25pro",
+      "gemini20flash"
+    ]
+  }
+}

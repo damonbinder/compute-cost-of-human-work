@@ -1,0 +1,212 @@
+[
+  {
+    "Model": "DeepSeek LLM 67B",
+    "Identifier": "deepseek-llm-67b-chat",
+    "Release Date": "2023-11-29",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2462121212121212",
+    "Output tokens per question": "371.27777777777777",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.9123287671232"
+  },
+  {
+    "Model": "GPT-3.5 Turbo",
+    "Identifier": "gpt-3.5-turbo-0125",
+    "Release Date": "2024-01-25",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.271780303030303",
+    "Output tokens per question": "108.64141414141416",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.0684931506848"
+  },
+  {
+    "Model": "GPT-3.5 Turbo",
+    "Identifier": "gpt-3.5-turbo-1106",
+    "Release Date": "2023-11-06",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2803030303030303",
+    "Output tokens per question": "97.97474747474747",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.849315068493"
+  },
+  {
+    "Model": "GPT-4",
+    "Identifier": "gpt-4-0613",
+    "Release Date": "2023-06-13",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.3065025252525252",
+    "Output tokens per question": "216.4747474747475",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.4493150684932"
+  },
+  {
+    "Model": "Gemma 2 9B",
+    "Identifier": "gemma-2-9b-it",
+    "Release Date": "2024-06-24",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2746212121212121",
+    "Output tokens per question": "317.8939393939394",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.482191780822"
+  },
+  {
+    "Model": "Llama 2-70B",
+    "Identifier": "Llama-2-70b-chat-hf",
+    "Release Date": "2023-07-18",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2632575757575757",
+    "Output tokens per question": "445.9141414141414",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.545205479452"
+  },
+  {
+    "Model": "Llama 3-8B",
+    "Identifier": "Meta-Llama-3-8B-Instruct",
+    "Release Date": "2024-04-18",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2607323232323232",
+    "Output tokens per question": "378.9242424242424",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.2986301369863"
+  },
+  {
+    "Model": "Llama 3.1-8B",
+    "Identifier": "Llama-3.1-8B-Instruct",
+    "Release Date": "2024-07-23",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2594696969696969",
+    "Output tokens per question": "1043.449494949495",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.5616438356165"
+  },
+  {
+    "Model": "Ministral 3B",
+    "Identifier": "ministral-3b-2410",
+    "Release Date": "2024-10-16",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2525252525252525",
+    "Output tokens per question": "461.6818181818182",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.7945205479452"
+  },
+  {
+    "Model": "Ministral 8B",
+    "Identifier": "ministral-8b-2410",
+    "Release Date": "2024-10-16",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2714646464646464",
+    "Output tokens per question": "506.7626262626263",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.7945205479452"
+  },
+  {
+    "Model": "Mistral 7B",
+    "Identifier": "Mistral-7B-Instruct-v0.3",
+    "Release Date": "2024-05-27",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.1518308080808081",
+    "Output tokens per question": "481.3080808080808",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.4054794520548"
+  },
+  {
+    "Model": "Mistral 7B",
+    "Identifier": "open-mistral-7b",
+    "Release Date": "2023-09-27",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.132260101010101",
+    "Output tokens per question": "456.82828282828285",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.7397260273972"
+  },
+  {
+    "Model": "Mistral NeMo",
+    "Identifier": "open-mistral-nemo-2407",
+    "Release Date": "2024-07-18",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2989267676767677",
+    "Output tokens per question": "392.5959595959596",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.5479452054794"
+  },
+  {
+    "Model": "Mixtral 8x7B",
+    "Identifier": "Mixtral-8x7B-Instruct-v0.1",
+    "Release Date": "2023-12-11",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.3058712121212121",
+    "Output tokens per question": "467.7323232323232",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.945205479452"
+  },
+  {
+    "Model": "Mixtral 8x7B",
+    "Identifier": "open-mixtral-8x7b",
+    "Release Date": "2023-12-11",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2982954545454545",
+    "Output tokens per question": "510.9343434343434",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.945205479452"
+  },
+  {
+    "Model": "Qwen1.5-32B",
+    "Identifier": "qwen1.5-32b-chat",
+    "Release Date": "2024-04-03",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.307449494949495",
+    "Output tokens per question": "408.8181818181818",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.2575342465752"
+  },
+  {
+    "Model": "Qwen1.5-72B",
+    "Identifier": "qwen1.5-72b-chat",
+    "Release Date": "2024-02-04",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2881944444444444",
+    "Output tokens per question": "397.1313131313131",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.0958904109589"
+  },
+  {
+    "Model": "Yi-1.5-34B",
+    "Identifier": "Yi-1.5-34B-Chat",
+    "Release Date": "2024-05-13",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.319760101010101",
+    "Output tokens per question": "732.0656565656566",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.3671232876711"
+  },
+  {
+    "Model": "Yi-34B",
+    "Identifier": "Yi-34B-Chat",
+    "Release Date": "2023-11-22",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.1474116161616161",
+    "Output tokens per question": "331.37373737373736",
+    "Reasoning model?": "N",
+    "Decimal year": "2023.8931506849315"
+  },
+  {
+    "Model": "phi-3-medium 14B",
+    "Identifier": "Phi-3-medium-128k-instruct ",
+    "Release Date": "2024-04-23",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.2758838383838384",
+    "Output tokens per question": "502.44444444444446",
+    "Reasoning model?": "N",
+    "Decimal year": "2024.3123287671233"
+  },
+  {
+    "Model": "o1",
+    "Identifier": "o1-2024-12-17_high",
+    "Release Date": "2024-12-17",
+    "Benchmark": "GPQA diamond",
+    "Best score (across scorers)": "0.7676767676767676",
+    "Output tokens per question": "6357.838383838384",
+    "Reasoning model?": "Y",
+    "Decimal year": "2024.964383561644"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "resolution": 1024,
+  "resolution_scenarios": [
+    512,
+    768,
+    1024
+  ],
+  "controlnet": "full",
+  "control_end": 0.3,
+  "control_end_scenarios": [
+    0.2,
+    0.3,
+    0.4
+  ],
+  "control_weight": 1.2,
+  "cfg_branches": 2,
+  "steps": 30,
+  "lora_rank": 16,
+  "lora_alpha": 4,
+  "lora_weight": 0.8,
+  "scheduler_scalar_ops_per_latent_position_step": 16,
+  "human_components_seconds": {
+    "prescribed_ideation": 45,
+    "estimated_listing_and_selection": 15,
+    "estimated_drawing": 75
+  },
+  "human_range_seconds": [
+    95,
+    195
+  ],
+  "discard_fraction_scenarios": [
+    0,
+    0.1,
+    0.25,
+    0.5
+  ]
+}

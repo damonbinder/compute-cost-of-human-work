@@ -1,0 +1,44 @@
+{
+  "benchmark": "ARC-AGI-1 public evaluation",
+  "test_selection": "First test input only, identified from actual prompt grids; two recoverable AI responses.",
+  "human_endpoint": "Up to two submitted grids, stopping when source stops. Actual submit-event output scoring; first explanation remains in task clock; final post-grid explanation excluded.",
+  "weighting": "One reference observation per timed H-ARC participant-task session; identical weights for AI compute, both scores and human duration.",
+  "configurations": [
+    {
+      "point_id": "reas-arcagi-v1-gpt4o",
+      "source_directory": "gpt-4o",
+      "endpoint": "gpt-4o",
+      "model_id": "gpt-4o-arc-alias"
+    },
+    {
+      "point_id": "reas-arcagi-v1-gpt52-none",
+      "source_directory": "gpt-5-2-2025-12-11-thinking-none",
+      "endpoint": "gpt-5.2-2025-12-11",
+      "model_id": "gpt-5.2-2025-12-11"
+    },
+    {
+      "point_id": "reas-arcagi-v1-gpt54-high",
+      "source_directory": "gpt-5-4-high",
+      "endpoint": "galapagos-alpha",
+      "model_id": "gpt-5.4-2026-03-05"
+    },
+    {
+      "point_id": "reas-arcagi-v1-kimi-k25",
+      "source_directory": "kimi-k2.5",
+      "endpoint": "accounts/fireworks/models/kimi-k2p5",
+      "model_id": "kimi-k2.5"
+    },
+    {
+      "point_id": "reas-arcagi-v1-opus46-max",
+      "source_directory": "claude-opus-4-6-thinking-120K-max",
+      "endpoint": "claude-opus-4-6",
+      "model_id": "claude-opus-4-6"
+    },
+    {
+      "point_id": "reas-arcagi-v1-qwen3-235b",
+      "source_directory": "qwen3-235b-a22b-instruct-2507",
+      "endpoint": "accounts/fireworks/models/qwen3-235b-a22b-instruct-2507",
+      "model_id": "qwen3-235b-a22b-instruct-2507"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "source": "https://arxiv.org/html/2605.15221v1#S5.T1",
+  "condition": "OpenEvolve, GPT-5.2, no coding agent, no hack detection, no DB observation",
+  "model_id": "gpt-5.2-2025-12-11",
+  "tokens_per_algorithm_rounded": 23900,
+  "best_valid_score": 2.41852,
+  "human_seconds": 3600,
+  "workload_assumptions": "Budget approximates consumed tokens. One stateless model completion per generated algorithm; equal call lengths approximate attention. Native total treated as input plus output, without an unobserved cache discount.",
+  "runs": 2,
+  "algorithms_mean_per_run": 1671,
+  "token_budget_per_run": 40000000
+}

@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "point_id": "reas-arcagi-v1-gemini3dt",
+      "model_id": "gemini-3-deep-think-preview",
+      "endpoint": "gemini-3-deep-think-preview",
+      "source_directory": "v1/gemini-3-deep-think-preview"
+    },
+    {
+      "point_id": "reas-arcagi-v1-gpt52-xhigh",
+      "model_id": "gpt-5.2-2025-12-11",
+      "endpoint": "gpt-5.2-2025-12-11",
+      "source_directory": "v1/gpt-5-2-2025-12-11-thinking-xhigh"
+    },
+    {
+      "point_id": "reas-arcagi-v1-grok420",
+      "model_id": "grok-4.20-beta-0309b-reasoning",
+      "endpoint": "grok-4.20-beta-0309b-reasoning",
+      "source_directory": "v1/grok-4.20-beta-0309b-reasoning"
+    }
+  ]
+}
