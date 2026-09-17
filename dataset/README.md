@@ -4,6 +4,9 @@ For a given task, how much compute does an AI system spend on it, and how much
 active time does a human spend on the same task? Each row pairs the two and says
 how the AI's performance compared with the human's.
 
+The dataset was built with the assistance of ChatGPT Astra 6, Claude Fable 5.1,
+and Claude Opus 5.
+
 This is the frozen snapshot of 2026-09-17, tagged `v1-2026-09-17`. Later
 commits on `main` may revise it; cite the tag for the version described here.
 

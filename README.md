@@ -6,6 +6,9 @@ dataset that pairs the two, and the explorer that plots it.
 
 This is the frozen snapshot of 2026-09-17, tagged `v1-2026-09-17`.
 
+The dataset and the explorer were created with the assistance of ChatGPT and
+Claude.
+
 ## What is here
 
 | Path | What it holds |
