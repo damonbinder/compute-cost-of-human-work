@@ -62,6 +62,3 @@ Every value is derivable. The citation columns — `human_time_source`,
 carry public URLs and paths into `research/`, and every one of those paths
 resolves to a file in this folder. The retained copies of the sources themselves
 are not shipped here; the notes describe where each came from.
-
-A `METHODS.md` covering how the figures are derived and what they can and cannot
-support is forthcoming.
